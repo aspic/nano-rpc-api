@@ -38,7 +38,7 @@ paths:
               $ref: '#/components/schemas/AccountBlockCountRequest'
       responses:
         '200':
-          description: Returns balance and pending
+          description: The number of blocks
           content:
             application/json:
               schema:
@@ -66,7 +66,7 @@ components:
         action:
           type: string
           enum: 
-            - "account_balance"
+            - "account_block_count"
         account: 
           $ref: '#/components/schemas/NanoAddress'
     NanoAddress:
@@ -83,4 +83,9 @@ components:
           $ref: '#/components/schemas/Raw'
         pending: 
           $ref: '#/components/schemas/Raw'
+    AccountBlockCountResponse:
+      type: object
+      properties:
+        block_count:
+          type: string
       
