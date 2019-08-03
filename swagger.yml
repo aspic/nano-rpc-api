@@ -2,19 +2,40 @@ openapi: '3.0.0'
 info:
   version: 19.0.1
   title: nano-rpc-api
+servers: 
+ - url: http://localhost:7076
 paths:
-  /:
+  /#account_balance:
     post:
       tags:
         - Node RPCs
       operationId: account_balance
       summary: Returns how many RAW is owned and how many have not yet been received by account
       requestBody:
-        description: Pet to add to the store
+        description: account_balance
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/AccountBalanceRequest'
+      responses:
+        '200':
+          description: Returns balance and pending
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBalanceResponse'
+  /#account_block_count:
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_block_count
+      summary: Get number of blocks for a specific account
+      requestBody:
+        description: account_block_count
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountBlockCountRequest'
       responses:
         '200':
           description: Returns balance and pending
