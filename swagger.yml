@@ -1,48 +1,65 @@
-swagger: '2.0'
+openapi: '3.0.0'
 info:
-  version: 0.2.0
+  version: 19.0.1
   title: nano-rpc-api
-schemes:
-  - http
 paths:
   /:
     post:
+      tags:
+        - Node RPCs
+      operationId: account_balance
       summary: Returns how many RAW is owned and how many have not yet been received by account
-      parameters:
-        - in: body
-          name: body
-          required: true
-          schema: 
-            $ref: '#/definitions/AccountBalanceRequest'
+      requestBody:
+        description: Pet to add to the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountBalanceRequest'
       responses:
-        200:
-          description: Returns the balance and pending of the given account
-          schema:
-            $ref: '#/definitions/AccountBalanceResponse'
-
-definitions:
-  AccountBalanceRequest:
-    type: object
-    required: 
-      - action
-      - account
-    properties:
-      action:
-        type: string
-        enum: 
-          - "account_balance"
-      account: 
-        $ref: '#/definitions/NanoAddress'
-  NanoAddress:
-    type: string
-    example: "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8"
-  AccountBalanceResponse:
-    type: object
-    properties:
-      balance:
-        type: number
-        example: '1000'
-      pending: 
-        type: number
-        example: '1000'
+        '200':
+          description: Returns balance and pending
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBalanceResponse'
+components:
+  schemas:
+    AccountBalanceRequest:
+      type: object
+      required: 
+        - action
+        - account
+      properties:
+        action:
+          type: string
+          enum: 
+            - "account_balance"
+        account: 
+          $ref: '#/components/schemas/NanoAddress'
+    AccountBlockCountRequest:
+      type: object
+      required: 
+        - action
+        - account
+      properties:
+        action:
+          type: string
+          enum: 
+            - "account_balance"
+        account: 
+          $ref: '#/components/schemas/NanoAddress'
+    NanoAddress:
+      type: string
+      example: "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8"
+    Raw:
+      type: number
+      description: 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
+      example: "1000000000000000000000000000000"
+    AccountBalanceResponse:
+      type: object
+      properties:
+        balance:
+          $ref: '#/components/schemas/Raw'
+        pending: 
+          $ref: '#/components/schemas/Raw'
       
