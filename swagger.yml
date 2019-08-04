@@ -12,7 +12,6 @@ paths:
       operationId: account_balance
       summary: Returns how many RAW is owned and how many have not yet been received by account
       requestBody:
-        description: account_balance
         content:
           application/json:
             schema:
@@ -31,7 +30,6 @@ paths:
       operationId: account_block_count
       summary: Get number of blocks for a specific account
       requestBody:
-        description: account_block_count
         content:
           application/json:
             schema:
@@ -50,7 +48,6 @@ paths:
       operationId: account_get
       summary: Get account for the public key
       requestBody:
-        description: account_get
         content:
           application/json:
             schema:
@@ -71,18 +68,39 @@ paths:
       description: |
         Reports send/receive information for an account.
       requestBody:
-        description: account_get
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/AccountHistoryRequest'
       responses:
         '200':
-          description: the account for a public key
+          description: the account history
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountHistoryResponse'
+  /#account_info:
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_info
+      summary: Gets account information
+      description: |
+        Returns frontier, open block, change representative block, balance, last modified timestamp from local database &
+        block count for **account**. Only works for accounts that have an entry on the ledger, will return _Account not
+        found_ otherwise.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountInfoRequest'
+      responses:
+        '200':
+          description: the account information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountInfoResponse'
 components:
   schemas:
     AccountBalanceRequest:
@@ -135,6 +153,15 @@ components:
           $ref: '#/components/schemas/NanoAddress'
         count:
           $ref: '#/components/schemas/BlockCount'
+    AccountInfoRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "account_info"
+        account: 
+          $ref: '#/components/schemas/NanoAddress'
     AccountBalanceResponse:
       type: object
       properties:
@@ -163,7 +190,25 @@ components:
             $ref: '#/components/schemas/Block'
         previous:
           $ref: '#/components/schemas/BlockHash'
-          
+    AccountInfoResponse:
+      type: object
+      properties:
+        frontier:
+          type: string
+        open_block:
+          $ref: '#/components/schemas/BlockHash'
+        representative_block:
+          $ref: '#/components/schemas/BlockHash'
+        balance:
+          $ref: '#/components/schemas/Raw'
+        modified_timestamp:
+          $ref: '#/components/schemas/LocalTimestamp'
+        block_count:
+          $ref: '#/components/schemas/BlockCount'
+        confirmation_height:
+          $ref: '#/components/schemas/ConfirmationHeight'
+        account_version:
+          $ref: '#/components/schemas/AccountVersion'  
     NanoAddress:
       type: string
       example: "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8"
@@ -187,9 +232,15 @@ components:
       type: string
       enum: 
         - "send"
+    ConfirmationHeight:
+      type: string
+      example: "28"
     LocalTimestamp:
       type: string
       example: "1551532723"
+    AccountVersion:
+      type: string
+      example: "1"
     Block:
       type: object
       properties:
