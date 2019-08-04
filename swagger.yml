@@ -101,6 +101,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountInfoResponse'  
+                
+  /#create:
+    post:
+      tags:
+        - Wallet
+      operationId: walletCreate
+      summary: Creates a new random wallet id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletCreateRequest'
+      responses:
+        '200':
+          description: The created wallet id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletCreateResponse'
+  /#accounts_create:
+    post:
+      tags:
+        - Wallet
+      operationId: accounts_create
+      summary: Creates new accounts, insert next deterministic keys in wallet up to count
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountsCreateRequest'
+      responses:
+        '200':
+          description: a list of the created accounts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsCreateResponse'
   /#receive:
     post:
       tags:
@@ -180,6 +217,24 @@ components:
             - "account_info"
         account: 
           $ref: '#/components/schemas/NanoAddress'
+    WalletCreateRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "wallet_create"
+    AccountsCreateRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "accounts_create"
+        wallet:
+          $ref: '#/components/schemas/Wallet'
+        count:
+          $ref: '#/components/schemas/AccountCount'
     ReceiveRequest:
       type: object
       properties:
@@ -240,6 +295,18 @@ components:
           $ref: '#/components/schemas/ConfirmationHeight'
         account_version:
           $ref: '#/components/schemas/AccountVersion'
+    WalletCreateResponse:
+      type: object
+      properties:
+        wallet:
+          $ref: '#/components/schemas/Wallet'
+    AccountsCreateResponse:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/NanoAddress'
     ReceiveResponse:
       type: object
       properties:
@@ -248,6 +315,9 @@ components:
     Wallet:
       type: string
       example: "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
+    AccountCount:
+      type: string
+      example: "2"
     NanoAddress:
       type: string
       example: "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8"
