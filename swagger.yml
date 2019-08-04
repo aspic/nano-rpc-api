@@ -101,6 +101,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountInfoResponse'  
+  /#accounts_pending:
+    post:
+      tags:
+        - Node RPCs
+      operationId: accounts_pending
+      summary: Returns a list of block hashes which have not yet been received by these accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountsPendingRequest'
+      responses:
+        '200':
+          description: Block hashes which have not yet been received
+          content:
+            application/json:
+             schema:
+                $ref: '#/components/schemas/AccountsPendingResponse' 
                 
   /#create:
     post:
@@ -217,6 +235,17 @@ components:
             - "account_info"
         account: 
           $ref: '#/components/schemas/NanoAddress'
+    AccountsPendingRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum: 
+            - "accounts_pending"
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/NanoAddress'
     WalletCreateRequest:
       type: object
       properties:
@@ -295,6 +324,22 @@ components:
           $ref: '#/components/schemas/ConfirmationHeight'
         account_version:
           $ref: '#/components/schemas/AccountVersion'
+    AccountsPendingResponse:
+      type: object
+      properties:
+        blocks:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AccountPending'
+          example: 
+            "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": { 
+             "142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D": {   
+             "amount": "6000000000000000000000000000000",       
+             "source": "nano_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr"
+            }
+          }
+              
+
     WalletCreateResponse:
       type: object
       properties:
@@ -321,6 +366,10 @@ components:
     NanoAddress:
       type: string
       example: "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8"
+    AccountPending:
+      type: object
+      additionalProperties:
+        type: string
     PublicKey:
       type: string
       example: "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"
