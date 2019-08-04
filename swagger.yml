@@ -100,7 +100,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountInfoResponse'
+                $ref: '#/components/schemas/AccountInfoResponse'  
+  /#receive:
+    post:
+      tags:
+        - Wallet
+      operationId: receive
+      summary: Receive pending block for account in wallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReceiveRequest'
+      responses:
+        '200':
+          description: the eventually received block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceiveResponse'
 components:
   schemas:
     AccountBalanceRequest:
@@ -162,6 +180,19 @@ components:
             - "account_info"
         account: 
           $ref: '#/components/schemas/NanoAddress'
+    ReceiveRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "receive"
+        wallet:
+          $ref: '#/components/schemas/Wallet'
+        account: 
+          $ref: '#/components/schemas/NanoAddress'
+        block:
+          $ref: '#/components/schemas/BlockHash'
     AccountBalanceResponse:
       type: object
       properties:
@@ -208,7 +239,15 @@ components:
         confirmation_height:
           $ref: '#/components/schemas/ConfirmationHeight'
         account_version:
-          $ref: '#/components/schemas/AccountVersion'  
+          $ref: '#/components/schemas/AccountVersion'
+    ReceiveResponse:
+      type: object
+      properties:
+        block:
+          $ref: '#/components/schemas/BlockHash'
+    Wallet:
+      type: string
+      example: "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F"
     NanoAddress:
       type: string
       example: "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8"
