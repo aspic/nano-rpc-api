@@ -159,8 +159,24 @@ paths:
             application/json:
              schema:
                 $ref: '#/components/schemas/BlockCreateResponse' 
-
-
+  /#process:
+    post:
+      tags:
+        - Node RPCs
+      operationId: process
+      summary: Publish block to the network
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessRequest'
+      responses:
+        '200':
+          description: Hash of the processed block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessResponse'
                 
   /#create:
     post:
@@ -328,7 +344,15 @@ components:
           $ref: '#/components/schemas/Work'
         previous:
           $ref: '#/components/schemas/BlockHash'
-          
+    ProcessRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "process"
+        block:
+          $ref: '#/components/schemas/BlockData'
     WalletCreateRequest:
       type: object
       properties:
@@ -436,7 +460,12 @@ components:
         hash: 
           $ref: '#/components/schemas/BlockHash'
         blocK:
-          type: string
+          $ref: '#/components/schemas/BlockData'
+    ProcessResponse:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/BlockHash'
     WalletCreateResponse:
       type: object
       properties:
@@ -490,6 +519,10 @@ components:
     BlockHeight:
       type: string
       example: "60"
+    BlockData:
+      type: string
+      example:
+        "{\"type\"...}"
     BlockHash:
       type: string
       example: "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72"
