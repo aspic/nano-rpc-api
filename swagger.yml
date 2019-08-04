@@ -42,7 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountBalanceResponse'
+                $ref: '#/components/schemas/AccountBlockCountResponse'
   /#account_get:
     post:
       tags:
@@ -62,6 +62,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountGetResponse'
+  /#account_history:
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_history
+      summary: Gets account history
+      description: |
+        Reports send/receive information for an account.
+      requestBody:
+        description: account_get
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountHistoryRequest'
+      responses:
+        '200':
+          description: the account for a public key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountHistoryResponse'
 components:
   schemas:
     AccountBalanceRequest:
@@ -97,19 +118,23 @@ components:
         action:
           type: string
           enum: 
-            - "account_block_count"
+            - "account_get"
         key: 
           $ref: '#/components/schemas/PublicKey'
-    NanoAddress:
-      type: string
-      example: "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8"
-    PublicKey:
-      type: string
-      example: "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"
-    Raw:
-      type: number
-      description: 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
-      example: "1000000000000000000000000000000"
+    AccountHistoryRequest:
+      type: object
+      required: 
+        - action
+        - key
+      properties:
+        action:
+          type: string
+          enum: 
+            - "account_history"
+        account: 
+          $ref: '#/components/schemas/NanoAddress'
+        count:
+          $ref: '#/components/schemas/BlockCount'
     AccountBalanceResponse:
       type: object
       properties:
@@ -127,4 +152,56 @@ components:
       properties:
         account:
           $ref: '#/components/schemas/NanoAddress'
-      
+    AccountHistoryResponse:
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/NanoAddress'
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/Block'
+        previous:
+          $ref: '#/components/schemas/BlockHash'
+          
+    NanoAddress:
+      type: string
+      example: "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8"
+    PublicKey:
+      type: string
+      example: "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"
+    Raw:
+      type: number
+      description: 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
+      example: "1000000000000000000000000000000"
+    BlockCount:
+      type: string
+      example: "1"
+    BlockHeight:
+      type: string
+      example: "60"
+    BlockHash:
+      type: string
+      example: "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72"
+    BlockState:
+      type: string
+      enum: 
+        - "send"
+    LocalTimestamp:
+      type: string
+      example: "1551532723"
+    Block:
+      type: object
+      properties:
+        "type":
+          $ref: '#/components/schemas/BlockState'
+        account:
+          $ref: '#/components/schemas/NanoAddress'
+        amount:
+          $ref: '#/components/schemas/Raw'
+        local_timestamp:
+          $ref: '#/components/schemas/LocalTimestamp'
+        height:
+          $ref: '#/components/schemas/BlockHeight'
+        hash:
+          $ref: '#/components/schemas/BlockHash'
