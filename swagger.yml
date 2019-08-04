@@ -459,7 +459,7 @@ components:
       properties:
         hash: 
           $ref: '#/components/schemas/BlockHash'
-        blocK:
+        block:
           $ref: '#/components/schemas/BlockData'
     ProcessResponse:
       type: object
