@@ -140,6 +140,27 @@ paths:
             application/json:
              schema:
                 $ref: '#/components/schemas/WorkGenerateResponse' 
+  /#block_create:
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_create
+      description: |
+        Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockCreateRequest' 
+      responses:
+        '200':
+          description: The response of a state block
+          content:
+            application/json:
+             schema:
+                $ref: '#/components/schemas/BlockCreateResponse' 
+
+
                 
   /#create:
     post:
@@ -271,6 +292,8 @@ components:
           $ref: '#/components/schemas/BlockCount'
         include_active:
           type: boolean
+        source:
+          type: boolean
     WorkGenerateRequest:
       type: object
       properties:
@@ -282,6 +305,30 @@ components:
           $ref: '#/components/schemas/BlockHash'
         difficulty:
           $ref: '#/components/schemas/WorkDifficulty'
+    BlockCreateRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum: 
+            - "block_create"
+        "type":
+          type: string
+          enum: 
+            - "state"
+        balance:
+          $ref: '#/components/schemas/Raw'
+        key:
+          $ref: '#/components/schemas/PrivateKey'
+        representative:
+          $ref: '#/components/schemas/NanoAddress'
+        link:
+          type: string
+        work:
+          $ref: '#/components/schemas/Work'
+        previous:
+          $ref: '#/components/schemas/BlockHash'
+          
     WalletCreateRequest:
       type: object
       properties:
@@ -383,6 +430,13 @@ components:
           $ref: '#/components/schemas/WorkDifficulty'
         multiplier:
           $ref: '#/components/schemas/WorkMultiplier'
+    BlockCreateResponse:
+      type: object
+      properties:
+        hash: 
+          $ref: '#/components/schemas/BlockHash'
+        blocK:
+          type: string
     WalletCreateResponse:
       type: object
       properties:
@@ -421,6 +475,9 @@ components:
         source:
           $ref: '#/components/schemas/NanoAddress'
     PublicKey:
+      type: string
+      example: "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"
+    PrivateKey:
       type: string
       example: "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"
     Raw:
