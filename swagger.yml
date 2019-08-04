@@ -43,6 +43,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountBalanceResponse'
+  /#account_get:
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_get
+      summary: Get account for the public key
+      requestBody:
+        description: account_get
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountGetRequest'
+      responses:
+        '200':
+          description: the account for a public key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountGetResponse'
 components:
   schemas:
     AccountBalanceRequest:
@@ -69,9 +88,24 @@ components:
             - "account_block_count"
         account: 
           $ref: '#/components/schemas/NanoAddress'
+    AccountGetRequest:
+      type: object
+      required: 
+        - action
+        - key
+      properties:
+        action:
+          type: string
+          enum: 
+            - "account_block_count"
+        key: 
+          $ref: '#/components/schemas/PublicKey'
     NanoAddress:
       type: string
       example: "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8"
+    PublicKey:
+      type: string
+      example: "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"
     Raw:
       type: number
       description: 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
@@ -88,4 +122,9 @@ components:
       properties:
         block_count:
           type: string
+    AccountGetResponse:
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/NanoAddress'
       
