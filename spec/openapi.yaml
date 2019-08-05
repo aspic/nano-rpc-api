@@ -12,7 +12,7 @@ paths:
       tags:
         - Node RPCs
       operationId: account_balance
-      summary: Returns RAW amount owned and not received
+      summary: account_balance
       description: | 
         Returns how many RAW is owned and how many have not yet been received by account
       requestBody:
