@@ -10,7 +10,9 @@ paths:
       tags:
         - Node RPCs
       operationId: account_balance
-      summary: Returns how many RAW is owned and how many have not yet been received by account
+      summary: Returns RAW amount owned and not received
+      description: | 
+        Returns how many RAW is owned and how many have not yet been received by account
       requestBody:
         content:
           application/json:
@@ -125,7 +127,7 @@ paths:
       tags:
         - Node RPCs
       operationId: work_generate
-      summary: Generates work for blocks.
+      summary: Generates work for blocks
       description: |
         Generates work for block. hash is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with account_key
       requestBody:
@@ -145,6 +147,7 @@ paths:
       tags:
         - Node RPCs
       operationId: block_create
+      summary: Creates state blocks
       description: |
         Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing.
       requestBody:
@@ -177,6 +180,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessResponse'
+  /#key_create:
+    post:
+      tags:
+        - Node RPCs
+      operationId: key_create
+      summary: Creates key pair
+      description: |
+        Generates an **adhoc random** keypair
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyCreateRequest'
+      responses:
+        '200':
+          description: created key pair
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyCreateResponse'
+            
                 
   /#create:
     post:
@@ -321,6 +345,7 @@ components:
           $ref: '#/components/schemas/BlockHash'
         difficulty:
           $ref: '#/components/schemas/WorkDifficulty'
+        
     BlockCreateRequest:
       type: object
       properties:
@@ -344,6 +369,10 @@ components:
           $ref: '#/components/schemas/Work'
         previous:
           $ref: '#/components/schemas/BlockHash'
+        wallet:
+          $ref: '#/components/schemas/Wallet'
+        account:
+          $ref: '#/components/schemas/NanoAddress'
     ProcessRequest:
       type: object
       properties:
@@ -353,6 +382,13 @@ components:
             - "process"
         block:
           $ref: '#/components/schemas/BlockData'
+    KeyCreateRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "key_create"
     WalletCreateRequest:
       type: object
       properties:
@@ -466,6 +502,15 @@ components:
       properties:
         hash:
           $ref: '#/components/schemas/BlockHash'
+    KeyCreateResponse:
+      type: object
+      properties:
+        private:
+          $ref: '#/components/schemas/PrivateKey'
+        public:
+          $ref: '#/components/schemas/PublicKey'
+        account:
+          $ref: '#/components/schemas/NanoAddress'
     WalletCreateResponse:
       type: object
       properties:
