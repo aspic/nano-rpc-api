@@ -6,15 +6,25 @@ info:
     API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol)
 servers:
   - url: 'http://localhost:7076'
+tags:
+  - name: Node RPCs
+    description: For interacting with the node and ledger.
+    externalDocs:
+      url: 'https://docs.nano.org/commands/rpc-protocol/#node-rpcs'
+  - name: Wallet
+    description: |
+      For interacting with the built-in, QT-based node wallet. **NOTE: This wallet is only recommended for development and testing.**
+    externalDocs:
+      url: 'https://docs.nano.org/commands/rpc-protocol/#node-rpcs'
 paths:
   '/#account_balance':
     post:
       tags:
         - Node RPCs
       operationId: account_balance
-      summary: Returns RAW amount owned and not received
       description: |
-        Returns how many RAW is owned and how many have not yet been received by account
+        Returns how many RAW is owned and how many have not yet been received by **account**
+        > This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.
       requestBody:
         content:
           application/json:
@@ -32,7 +42,7 @@ paths:
       tags:
         - Node RPCs
       operationId: account_block_count
-      summary: Get number of blocks for a specific account
+      description: Get number of blocks for a specific account
       requestBody:
         content:
           application/json:
@@ -50,7 +60,7 @@ paths:
       tags:
         - Node RPCs
       operationId: account_get
-      summary: Get account for the public key
+      description: Get account for the public key
       requestBody:
         content:
           application/json:
@@ -68,9 +78,8 @@ paths:
       tags:
         - Node RPCs
       operationId: account_history
-      summary: Gets account history
       description: |
-        Reports send/receive information for an account.
+        Gets the account history. Reports send/receive information for an account.
       requestBody:
         content:
           application/json:
@@ -88,7 +97,6 @@ paths:
       tags:
         - Node RPCs
       operationId: account_info
-      summary: Gets account information
       description: |
         Returns frontier, open block, change representative block, balance, last modified timestamp from local database &
         block count for **account**. Only works for accounts that have an entry on the ledger, will return _Account not
@@ -110,7 +118,7 @@ paths:
       tags:
         - Node RPCs
       operationId: accounts_pending
-      summary: Returns a list of block hashes which have not yet been received by these accounts
+      description: Returns a list of block hashes which have not yet been received by these accounts
       requestBody:
         content:
           application/json:
@@ -128,7 +136,6 @@ paths:
       tags:
         - Node RPCs
       operationId: work_generate
-      summary: Generates work for blocks
       description: |
         Generates work for block. hash is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with account_key
       requestBody:
@@ -148,7 +155,6 @@ paths:
       tags:
         - Node RPCs
       operationId: block_create
-      summary: Creates state blocks
       description: |
         Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing.
       requestBody:
@@ -168,7 +174,7 @@ paths:
       tags:
         - Node RPCs
       operationId: process
-      summary: Publish block to the network
+      description: Publish block to the network
       requestBody:
         content:
           application/json:
@@ -186,7 +192,6 @@ paths:
       tags:
         - Node RPCs
       operationId: key_create
-      summary: Creates key pair
       description: |
         Generates an **adhoc random** keypair
       requestBody:
@@ -268,7 +273,7 @@ components:
           enum:
             - account_balance
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     AccountBlockCountRequest:
       type: object
       required:
@@ -280,7 +285,7 @@ components:
           enum:
             - account_block_count
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     AccountGetRequest:
       type: object
       required:
@@ -304,7 +309,7 @@ components:
           enum:
             - account_history
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
         count:
           $ref: '#/components/schemas/BlockCount'
     AccountInfoRequest:
@@ -315,7 +320,7 @@ components:
           enum:
             - account_info
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     AccountsPendingRequest:
       type: object
       properties:
@@ -326,7 +331,7 @@ components:
         accounts:
           type: array
           items:
-            $ref: '#/components/schemas/NanoAddress'
+            $ref: '#/components/schemas/Account'
         count:
           $ref: '#/components/schemas/BlockCount'
         include_active:
@@ -360,7 +365,7 @@ components:
         key:
           $ref: '#/components/schemas/PrivateKey'
         representative:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
         link:
           type: string
         work:
@@ -370,7 +375,7 @@ components:
         wallet:
           $ref: '#/components/schemas/Wallet'
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     ProcessRequest:
       type: object
       properties:
@@ -415,7 +420,7 @@ components:
         wallet:
           $ref: '#/components/schemas/Wallet'
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
         block:
           $ref: '#/components/schemas/BlockHash'
     AccountBalanceResponse:
@@ -429,17 +434,17 @@ components:
       type: object
       properties:
         block_count:
-          type: string
+          $ref: '#/components/schemas/BlockCount'
     AccountGetResponse:
       type: object
       properties:
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     AccountHistoryResponse:
       type: object
       properties:
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
         history:
           type: array
           items:
@@ -506,7 +511,7 @@ components:
         public:
           $ref: '#/components/schemas/PublicKey'
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     WalletCreateResponse:
       type: object
       properties:
@@ -518,7 +523,7 @@ components:
         accounts:
           type: array
           items:
-            $ref: '#/components/schemas/NanoAddress'
+            $ref: '#/components/schemas/Account'
     ReceiveResponse:
       type: object
       properties:
@@ -530,7 +535,7 @@ components:
     AccountCount:
       type: string
       example: '2'
-    NanoAddress:
+    Account:
       type: string
       example: nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8
     AccountPending:
@@ -543,7 +548,7 @@ components:
         amount:
           $ref: '#/components/schemas/BlockHash'
         source:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     PublicKey:
       type: string
       example: 3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039
@@ -594,7 +599,7 @@ components:
         type:
           $ref: '#/components/schemas/BlockState'
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
         amount:
           $ref: '#/components/schemas/Raw'
         local_timestamp:
