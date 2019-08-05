@@ -1,7 +1,9 @@
 openapi: '3.0.0'
 info:
-  version: 19.0.1
+  version: 19.0.0-alpha
   title: nano-rpc-api
+  description: |
+    API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol)
 servers: 
  - url: http://localhost:7076
 paths:
