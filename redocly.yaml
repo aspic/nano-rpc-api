@@ -1,0 +1,8 @@
+specFileName: swagger.yml
+apiTitle: nano-rpc-api
+splitSpec: false
+codeSamples: false
+swaggerUI: true
+travis: true
+repo: aspic/nano-rpc-api
+oasVersion: 3.0.0
