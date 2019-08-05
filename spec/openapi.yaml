@@ -276,7 +276,7 @@ components:
           enum: 
             - "account_balance"
         account: 
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     AccountBlockCountRequest:
       type: object
       required: 
@@ -288,7 +288,7 @@ components:
           enum: 
             - "account_block_count"
         account: 
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     AccountGetRequest:
       type: object
       required: 
@@ -312,7 +312,7 @@ components:
           enum: 
             - "account_history"
         account: 
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
         count:
           $ref: '#/components/schemas/BlockCount'
     AccountInfoRequest:
@@ -323,7 +323,7 @@ components:
           enum:
             - "account_info"
         account: 
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     AccountsPendingRequest:
       type: object
       properties:
@@ -334,7 +334,7 @@ components:
         accounts:
           type: array
           items:
-            $ref: '#/components/schemas/NanoAddress'
+            $ref: '#/components/schemas/Account'
         count: 
           $ref: '#/components/schemas/BlockCount'
         include_active:
@@ -369,7 +369,7 @@ components:
         key:
           $ref: '#/components/schemas/PrivateKey'
         representative:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
         link:
           type: string
         work:
@@ -379,7 +379,7 @@ components:
         wallet:
           $ref: '#/components/schemas/Wallet'
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     ProcessRequest:
       type: object
       properties:
@@ -424,7 +424,7 @@ components:
         wallet:
           $ref: '#/components/schemas/Wallet'
         account: 
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
         block:
           $ref: '#/components/schemas/BlockHash'
     AccountBalanceResponse:
@@ -443,12 +443,12 @@ components:
       type: object
       properties:
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     AccountHistoryResponse:
       type: object
       properties:
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
         history:
           type: array
           items:
@@ -517,7 +517,7 @@ components:
         public:
           $ref: '#/components/schemas/PublicKey'
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     WalletCreateResponse:
       type: object
       properties:
@@ -529,7 +529,7 @@ components:
         accounts:
           type: array
           items:
-            $ref: '#/components/schemas/NanoAddress'
+            $ref: '#/components/schemas/Account'
     ReceiveResponse:
       type: object
       properties:
@@ -541,7 +541,7 @@ components:
     AccountCount:
       type: string
       example: "2"
-    NanoAddress:
+    Account:
       type: string
       example: "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8"
     AccountPending:
@@ -554,7 +554,7 @@ components:
         amount:
           $ref: '#/components/schemas/BlockHash'
         source:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
     PublicKey:
       type: string
       example: "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039"
@@ -606,7 +606,7 @@ components:
         "type":
           $ref: '#/components/schemas/BlockState'
         account:
-          $ref: '#/components/schemas/NanoAddress'
+          $ref: '#/components/schemas/Account'
         amount:
           $ref: '#/components/schemas/Raw'
         local_timestamp:
