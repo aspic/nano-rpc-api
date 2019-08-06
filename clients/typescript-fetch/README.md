@@ -1,10 +1,12 @@
 # nano-rpc-fetch
 
+[![npm version](https://badge.fury.io/js/nano-rpc-fetch.svg)](//npmjs.com/package/nano-rpc-fetch)
+
 Generated Typescript client for Nano RPC
 
 ## Install with NPM
 
-  $ npm install --save nano-rpc-fetch
+    $ npm install --save nano-rpc-fetch
 
 ## Example usage
 

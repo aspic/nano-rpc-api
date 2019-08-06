@@ -3,7 +3,7 @@
 
 ## Clients
 
-* [/clients/typescript-fetch](nano-rpc-fetch): A typescript fetch client
+* [nano-rpc-fetch](/clients/typescript-fetch) - typescript fetch client
 
 ## Links
 
