@@ -1,6 +1,10 @@
 # nano-rpc-api OpenAPI Specification
 [![Build Status](https://travis-ci.com/aspic/nano-rpc-api.svg?branch=master)](https://travis-ci.com/aspic/nano-rpc-api)
 
+## Clients
+
+* [/clients/typescript-fetch](nano-rpc-fetch): A typescript fetch client
+
 ## Links
 
 - [Reference Documentation (ReDoc)](https://aspic.github.io/nano-rpc-api/)
