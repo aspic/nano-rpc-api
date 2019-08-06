@@ -1,7 +1,7 @@
 {
-  "name": "nano-rpc-client",
-  "version": "1.0.0",
-  "description": "A typescript Nano RPC client",
+  "name": "nano-rpc-fetch",
+  "version": "0.0.1",
+  "description": "Nano Node RPC client built with Typescript and Fetch",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
