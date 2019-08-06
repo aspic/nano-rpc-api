@@ -2,6 +2,7 @@
   "name": "nano-rpc-api",
   "version": "1.0.0",
   "dependencies": {
+    "@openapitools/openapi-generator-cli": "0.0.16-4.0.3",
     "swagger-repo": "^2.0.0-rc.13"
   },
   "private": true,
@@ -9,6 +10,7 @@
     "start": "swagger-repo serve",
     "build": "swagger-repo build -o web_deploy",
     "test": "swagger-repo validate",
-    "gh-pages": "swagger-repo gh-pages"
+    "gh-pages": "swagger-repo gh-pages",
+    "gen-typescript": "openapi-generator generate -g typescript-fetch -i ./spec/openapi.yaml -o ./clients/typescript-fetch"
   }
 }
