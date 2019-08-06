@@ -132,6 +132,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountKeyResponse'
+  /#account_representative:
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_representative
+      description: |
+        Returns the representative for **account**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRepresentativeRequest'
+      responses:
+        '200':
+          description: the public key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRepresentativeResponse'
   /#accounts_pending:
     post:
       tags:
@@ -352,6 +371,15 @@ components:
             - "account_key"
         account: 
           $ref: '#/components/schemas/Account'
+    AccountRepresentativeRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "account_representative"
+        account: 
+          $ref: '#/components/schemas/Account'
     AccountsPendingRequest:
       type: object
       properties:
@@ -507,6 +535,11 @@ components:
       properties:
         key:
           $ref: '#/components/schemas/PublicKey'
+    AccountRepresentativeResponse:
+      type: object
+      properties:
+        representative:
+          $ref: '#/components/schemas/Account'
     AccountsPendingResponse:
       type: object
       properties:
