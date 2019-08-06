@@ -113,6 +113,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountInfoResponse'  
+  /#account_key:
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_key
+      description: |
+        Get the public key for **account**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountKeyRequest'
+      responses:
+        '200':
+          description: the public key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountKeyResponse'
   /#accounts_pending:
     post:
       tags:
@@ -324,6 +343,15 @@ components:
             - "account_info"
         account: 
           $ref: '#/components/schemas/Account'
+    AccountKeyRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "account_key"
+        account: 
+          $ref: '#/components/schemas/Account'
     AccountsPendingRequest:
       type: object
       properties:
@@ -474,6 +502,11 @@ components:
           $ref: '#/components/schemas/ConfirmationHeight'
         account_version:
           $ref: '#/components/schemas/AccountVersion'
+    AccountKeyResponse:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/PublicKey'
     AccountsPendingResponse:
       type: object
       properties:
@@ -615,3 +648,4 @@ components:
           $ref: '#/components/schemas/BlockHeight'
         hash:
           $ref: '#/components/schemas/BlockHash'
+
