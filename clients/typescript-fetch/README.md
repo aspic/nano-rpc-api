@@ -4,7 +4,7 @@ Generated Typescript client for Nano RPC
 
 ## Install with NPM
 
-  $ npm install --save nano-rpc-fetch
+    $ npm install --save nano-rpc-fetch
 
 ## Example usage
 
