@@ -44,6 +44,18 @@ import {
     AccountInfoResponse,
     AccountInfoResponseFromJSON,
     AccountInfoResponseToJSON,
+    AccountKeyRequest,
+    AccountKeyRequestFromJSON,
+    AccountKeyRequestToJSON,
+    AccountKeyResponse,
+    AccountKeyResponseFromJSON,
+    AccountKeyResponseToJSON,
+    AccountRepresentativeRequest,
+    AccountRepresentativeRequestFromJSON,
+    AccountRepresentativeRequestToJSON,
+    AccountRepresentativeResponse,
+    AccountRepresentativeResponseFromJSON,
+    AccountRepresentativeResponseToJSON,
     AccountsPendingRequest,
     AccountsPendingRequestFromJSON,
     AccountsPendingRequestToJSON,
@@ -94,6 +106,14 @@ export interface AccountHistoryRequest {
 
 export interface AccountInfoRequest {
     accountInfoRequest?: AccountInfoRequest;
+}
+
+export interface AccountKeyRequest {
+    accountKeyRequest?: AccountKeyRequest;
+}
+
+export interface AccountRepresentativeRequest {
+    accountRepresentativeRequest?: AccountRepresentativeRequest;
 }
 
 export interface AccountsPendingRequest {
@@ -263,6 +283,64 @@ export class NodeRPCsApi extends runtime.BaseAPI {
      */
     async accountInfo(requestParameters: AccountInfoRequest): Promise<AccountInfoResponse> {
         const response = await this.accountInfoRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Get the public key for **account** 
+     */
+    async accountKeyRaw(requestParameters: AccountKeyRequest): Promise<runtime.ApiResponse<AccountKeyResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#account_key`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AccountKeyRequestToJSON(requestParameters.accountKeyRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AccountKeyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the public key for **account** 
+     */
+    async accountKey(requestParameters: AccountKeyRequest): Promise<AccountKeyResponse> {
+        const response = await this.accountKeyRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Returns the representative for **account** 
+     */
+    async accountRepresentativeRaw(requestParameters: AccountRepresentativeRequest): Promise<runtime.ApiResponse<AccountRepresentativeResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#account_representative`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AccountRepresentativeRequestToJSON(requestParameters.accountRepresentativeRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AccountRepresentativeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns the representative for **account** 
+     */
+    async accountRepresentative(requestParameters: AccountRepresentativeRequest): Promise<AccountRepresentativeResponse> {
+        const response = await this.accountRepresentativeRaw(requestParameters);
         return await response.value();
     }
 
