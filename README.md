@@ -32,3 +32,7 @@ Validates the spec.
 
 #### `npm run gh-pages`
 Deploys docs to GitHub Pages. You don't need to run it manually if you have Travis CI configured.
+
+Nano donations happily received 😍 ↓
+
+<img src="nano-donation.png" width="100" alt="nano_3yxiqwmjq33z1gcdwn6t5njmfm8tdapze5p6i58jcuzdyi7g8nt3jzotzjuq">
