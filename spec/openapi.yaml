@@ -170,6 +170,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountWeightResponse'
+  /#accounts_balances:
+    post:
+      tags:
+        - Node RPCs
+      operationId: accounts_balances
+      description: |
+        Returns how many RAW is owned and how many have not yet been received by **accounts list**
+        
+        This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountsBalancesRequest'
+      responses:
+        '200':
+          description: balance and pending for each account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsBalancesResponse'
   /#accounts_pending:
     post:
       tags:
@@ -408,6 +429,19 @@ components:
             - "account_weight"
         account: 
           $ref: '#/components/schemas/Account'
+    AccountsBalancesRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "accounts_balances"
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+          example:
+            ["nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
     AccountsPendingRequest:
       type: object
       properties:
@@ -573,6 +607,26 @@ components:
       properties:
         weight:
           $ref: '#/components/schemas/Raw'
+    AccountsBalancesResponse:
+      type: object
+      properties:
+        balances:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AccountBalanceResponse'
+          example:
+            { 
+              "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000":  
+              {  
+                "balance": "10000",  
+                "pending": "10000"  
+              },
+              "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7":  
+                {  
+                  "balance": "10000000",  
+                  "pending": "0"  
+                }  
+            }
     AccountsPendingResponse:
       type: object
       properties:
