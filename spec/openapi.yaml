@@ -750,6 +750,9 @@ components:
     AccountVersion:
       type: string
       example: "1"
+    WorkMultiplier:
+      type: string
+      example: "1.273557846739298"
     Block:
       type: object
       properties:
