@@ -447,36 +447,6 @@
         }
       }
     },
-    "/#create": {
-      "post": {
-        "tags": [
-          "Wallet"
-        ],
-        "operationId": "walletCreate",
-        "summary": "Creates a new random wallet id",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WalletCreateRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The created wallet id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/WalletCreateResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/#accounts_create": {
       "post": {
         "tags": [
@@ -530,6 +500,36 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ReceiveResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/#wallet_create": {
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "operationId": "wallet_create",
+        "summary": "Creates a new random wallet id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WalletCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created wallet id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletCreateResponse"
                 }
               }
             }
