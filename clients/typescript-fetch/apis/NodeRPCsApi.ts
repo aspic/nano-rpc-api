@@ -56,6 +56,18 @@ import {
     AccountRepresentativeResponse,
     AccountRepresentativeResponseFromJSON,
     AccountRepresentativeResponseToJSON,
+    AccountWeightRequest,
+    AccountWeightRequestFromJSON,
+    AccountWeightRequestToJSON,
+    AccountWeightResponse,
+    AccountWeightResponseFromJSON,
+    AccountWeightResponseToJSON,
+    AccountsBalancesRequest,
+    AccountsBalancesRequestFromJSON,
+    AccountsBalancesRequestToJSON,
+    AccountsBalancesResponse,
+    AccountsBalancesResponseFromJSON,
+    AccountsBalancesResponseToJSON,
     AccountsPendingRequest,
     AccountsPendingRequestFromJSON,
     AccountsPendingRequestToJSON,
@@ -114,6 +126,14 @@ export interface AccountKeyRequest {
 
 export interface AccountRepresentativeRequest {
     accountRepresentativeRequest?: AccountRepresentativeRequest;
+}
+
+export interface AccountWeightRequest {
+    accountWeightRequest?: AccountWeightRequest;
+}
+
+export interface AccountsBalancesRequest {
+    accountsBalancesRequest?: AccountsBalancesRequest;
 }
 
 export interface AccountsPendingRequest {
@@ -341,6 +361,64 @@ export class NodeRPCsApi extends runtime.BaseAPI {
      */
     async accountRepresentative(requestParameters: AccountRepresentativeRequest): Promise<AccountRepresentativeResponse> {
         const response = await this.accountRepresentativeRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Returns the voting weight for **account** 
+     */
+    async accountWeightRaw(requestParameters: AccountWeightRequest): Promise<runtime.ApiResponse<AccountWeightResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#account_weight`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AccountWeightRequestToJSON(requestParameters.accountWeightRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AccountWeightResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns the voting weight for **account** 
+     */
+    async accountWeight(requestParameters: AccountWeightRequest): Promise<AccountWeightResponse> {
+        const response = await this.accountWeightRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Returns how many RAW is owned and how many have not yet been received by **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
+     */
+    async accountsBalancesRaw(requestParameters: AccountsBalancesRequest): Promise<runtime.ApiResponse<AccountsBalancesResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#accounts_balances`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AccountsBalancesRequestToJSON(requestParameters.accountsBalancesRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AccountsBalancesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns how many RAW is owned and how many have not yet been received by **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
+     */
+    async accountsBalances(requestParameters: AccountsBalancesRequest): Promise<AccountsBalancesResponse> {
+        const response = await this.accountsBalancesRaw(requestParameters);
         return await response.value();
     }
 
