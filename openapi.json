@@ -237,6 +237,66 @@
         }
       }
     },
+    "/#account_weight": {
+      "post": {
+        "tags": [
+          "Node RPCs"
+        ],
+        "operationId": "account_weight",
+        "description": "Returns the voting weight for **account**\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountWeightRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "voting weight in raw",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountWeightResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/#accounts_balances": {
+      "post": {
+        "tags": [
+          "Node RPCs"
+        ],
+        "operationId": "accounts_balances",
+        "description": "Returns how many RAW is owned and how many have not yet been received by **accounts list**\n\nThis call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountsBalancesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "balance and pending for each account",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountsBalancesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/#accounts_pending": {
       "post": {
         "tags": [
@@ -597,6 +657,41 @@
           }
         }
       },
+      "AccountWeightRequest": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "account_weight"
+            ]
+          },
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          }
+        }
+      },
+      "AccountsBalancesRequest": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "accounts_balances"
+            ]
+          },
+          "accounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Account"
+            },
+            "example": [
+              "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000",
+              "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"
+            ]
+          }
+        }
+      },
       "AccountsPendingRequest": {
         "type": "object",
         "properties": {
@@ -843,6 +938,35 @@
           }
         }
       },
+      "AccountWeightResponse": {
+        "type": "object",
+        "properties": {
+          "weight": {
+            "$ref": "#/components/schemas/Raw"
+          }
+        }
+      },
+      "AccountsBalancesResponse": {
+        "type": "object",
+        "properties": {
+          "balances": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AccountBalanceResponse"
+            },
+            "example": {
+              "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000": {
+                "balance": "10000",
+                "pending": "10000"
+              },
+              "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7": {
+                "balance": "10000000",
+                "pending": "0"
+              }
+            }
+          }
+        }
+      },
       "AccountsPendingResponse": {
         "type": "object",
         "properties": {
@@ -1016,13 +1140,13 @@
         "type": "string",
         "example": "2bf29ef00786a6bc"
       },
-      "WorkMultiplier": {
-        "type": "string",
-        "example": "1.394647"
-      },
       "AccountVersion": {
         "type": "string",
         "example": "1"
+      },
+      "WorkMultiplier": {
+        "type": "string",
+        "example": "1.273557846739298"
       },
       "Block": {
         "type": "object",
