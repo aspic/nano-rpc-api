@@ -304,6 +304,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockCountResponse'
+  /#block_count_type:
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_count_type
+      description: |
+        Reports the number of blocks in the ledger by type (send, receive, open, change, state with version)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockCountTypeRequest'
+      responses:
+        '200':
+          description: The number of blocks in the ledger.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockCountTypeResponse'
   /#work_generate:
     post:
       tags:
@@ -609,6 +628,15 @@ components:
           description: |
             _enable_control required, version 19.0+_
             Default "false". If "true", "cemented" in the response will contain the number of cemented blocks.
+    BlockCountTypeRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "block_count_type"
     WorkGenerateRequest:
       type: object
       properties:
@@ -812,6 +840,31 @@ components:
         unchecked:
           $ref: '#/components/schemas/BlockCount'
         cemented:
+          $ref: '#/components/schemas/BlockCount'
+    BlockCountTypeResponse:
+      type: object
+      required:
+        - send
+        - receive
+        - open
+        - change
+        - state_v0
+        - state_v1
+        - state
+      properties:
+        send:
+          $ref: '#/components/schemas/BlockCount'
+        receive:
+          $ref: '#/components/schemas/BlockCount'
+        open:
+          $ref: '#/components/schemas/BlockCount'
+        change:
+          $ref: '#/components/schemas/BlockCount'
+        state_v0:
+          $ref: '#/components/schemas/BlockCount'
+        state_v1:
+          $ref: '#/components/schemas/BlockCount'
+        state:
           $ref: '#/components/schemas/BlockCount'
     AccountsPendingResponse:
       type: object
