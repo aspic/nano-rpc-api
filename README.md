@@ -58,7 +58,7 @@ Nano donations happily received 😍 ↓
     ☑ available_supply
     ☑ block_account
     ☑ block_confirm
-      block_count
+    ☑ block_count
       block_count_type
     ☑ block_create
       block_hash

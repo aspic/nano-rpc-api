@@ -285,6 +285,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockConfirmResponse'
+  /#block_count:
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_count
+      description: |
+        Reports the number of blocks in the ledger and unchecked synchronizing blocks.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockCountRequest'
+      responses:
+        '200':
+          description: The count and unchecked blocks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockCountResponse'
   /#work_generate:
     post:
       tags:
@@ -576,6 +595,20 @@ components:
             - "block_confirm"
         hash:
           $ref: '#/components/schemas/BlockHash'
+    BlockCountRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "block_count"
+        include_cemented:
+          type: boolean
+          description: |
+            _enable_control required, version 19.0+_
+            Default "false". If "true", "cemented" in the response will contain the number of cemented blocks.
     WorkGenerateRequest:
       type: object
       properties:
@@ -768,6 +801,18 @@ components:
       properties:
         started:
           $ref: '#/components/schemas/BlockConfirmCount'
+    BlockCountResponse:
+      type: object
+      required:
+        - count
+        - unchecked
+      properties:
+        count:
+          $ref: '#/components/schemas/BlockCount'
+        unchecked:
+          $ref: '#/components/schemas/BlockCount'
+        cemented:
+          $ref: '#/components/schemas/BlockCount'
     AccountsPendingResponse:
       type: object
       properties:
@@ -897,6 +942,11 @@ components:
     WorkMultiplier:
       type: string
       example: "1.273557846739298"
+    Boolean:
+      type: string
+      enum:
+        - "true"
+        - "false"
     Block:
       type: object
       properties:
