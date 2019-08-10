@@ -74,6 +74,42 @@ import {
     AccountsPendingResponse,
     AccountsPendingResponseFromJSON,
     AccountsPendingResponseToJSON,
+    ActiveDifficultyRequest,
+    ActiveDifficultyRequestFromJSON,
+    ActiveDifficultyRequestToJSON,
+    ActiveDifficultyResponse,
+    ActiveDifficultyResponseFromJSON,
+    ActiveDifficultyResponseToJSON,
+    AvailableSupplyRequest,
+    AvailableSupplyRequestFromJSON,
+    AvailableSupplyRequestToJSON,
+    AvailableSupplyResponse,
+    AvailableSupplyResponseFromJSON,
+    AvailableSupplyResponseToJSON,
+    BlockAccountRequest,
+    BlockAccountRequestFromJSON,
+    BlockAccountRequestToJSON,
+    BlockAccountResponse,
+    BlockAccountResponseFromJSON,
+    BlockAccountResponseToJSON,
+    BlockConfirmRequest,
+    BlockConfirmRequestFromJSON,
+    BlockConfirmRequestToJSON,
+    BlockConfirmResponse,
+    BlockConfirmResponseFromJSON,
+    BlockConfirmResponseToJSON,
+    BlockCountRequest,
+    BlockCountRequestFromJSON,
+    BlockCountRequestToJSON,
+    BlockCountResponse,
+    BlockCountResponseFromJSON,
+    BlockCountResponseToJSON,
+    BlockCountTypeRequest,
+    BlockCountTypeRequestFromJSON,
+    BlockCountTypeRequestToJSON,
+    BlockCountTypeResponse,
+    BlockCountTypeResponseFromJSON,
+    BlockCountTypeResponseToJSON,
     BlockCreateRequest,
     BlockCreateRequestFromJSON,
     BlockCreateRequestToJSON,
@@ -138,6 +174,30 @@ export interface AccountsBalancesRequest {
 
 export interface AccountsPendingRequest {
     accountsPendingRequest?: AccountsPendingRequest;
+}
+
+export interface ActiveDifficultyRequest {
+    activeDifficultyRequest?: ActiveDifficultyRequest;
+}
+
+export interface AvailableSupplyRequest {
+    availableSupplyRequest?: AvailableSupplyRequest;
+}
+
+export interface BlockAccountRequest {
+    blockAccountRequest?: BlockAccountRequest;
+}
+
+export interface BlockConfirmRequest {
+    blockConfirmRequest?: BlockConfirmRequest;
+}
+
+export interface BlockCountRequest {
+    blockCountRequest?: BlockCountRequest;
+}
+
+export interface BlockCountTypeRequest {
+    blockCountTypeRequest?: BlockCountTypeRequest;
 }
 
 export interface BlockCreateRequest {
@@ -448,6 +508,180 @@ export class NodeRPCsApi extends runtime.BaseAPI {
      */
     async accountsPending(requestParameters: AccountsPendingRequest): Promise<AccountsPendingResponse> {
         const response = await this.accountsPendingRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (network_minimum) as well as the current active difficulty seen on the network (network_current, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the network_current from the base difficulty of network_minimum is also provided for comparison. 
+     */
+    async activeDifficultyRaw(requestParameters: ActiveDifficultyRequest): Promise<runtime.ApiResponse<ActiveDifficultyResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#active_difficulty`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ActiveDifficultyRequestToJSON(requestParameters.activeDifficultyRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ActiveDifficultyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (network_minimum) as well as the current active difficulty seen on the network (network_current, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the network_current from the base difficulty of network_minimum is also provided for comparison. 
+     */
+    async activeDifficulty(requestParameters: ActiveDifficultyRequest): Promise<ActiveDifficultyResponse> {
+        const response = await this.activeDifficultyRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Returns how many raw are in the public supply 
+     */
+    async availableSupplyRaw(requestParameters: AvailableSupplyRequest): Promise<runtime.ApiResponse<AvailableSupplyResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#available_supply`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AvailableSupplyRequestToJSON(requestParameters.availableSupplyRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AvailableSupplyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns how many raw are in the public supply 
+     */
+    async availableSupply(requestParameters: AvailableSupplyRequest): Promise<AvailableSupplyResponse> {
+        const response = await this.availableSupplyRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Returns the account containing block 
+     */
+    async blockAccountRaw(requestParameters: BlockAccountRequest): Promise<runtime.ApiResponse<BlockAccountResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#block_account`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BlockAccountRequestToJSON(requestParameters.blockAccountRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlockAccountResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns the account containing block 
+     */
+    async blockAccount(requestParameters: BlockAccountRequest): Promise<BlockAccountResponse> {
+        const response = await this.blockAccountRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Request confirmation for **block** from known online representative nodes. Check results with confirmation history. 
+     */
+    async blockConfirmRaw(requestParameters: BlockConfirmRequest): Promise<runtime.ApiResponse<BlockConfirmResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#block_confirm`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BlockConfirmRequestToJSON(requestParameters.blockConfirmRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlockConfirmResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Request confirmation for **block** from known online representative nodes. Check results with confirmation history. 
+     */
+    async blockConfirm(requestParameters: BlockConfirmRequest): Promise<BlockConfirmResponse> {
+        const response = await this.blockConfirmRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Reports the number of blocks in the ledger and unchecked synchronizing blocks. 
+     */
+    async blockCountRaw(requestParameters: BlockCountRequest): Promise<runtime.ApiResponse<BlockCountResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#block_count`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BlockCountRequestToJSON(requestParameters.blockCountRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlockCountResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Reports the number of blocks in the ledger and unchecked synchronizing blocks. 
+     */
+    async blockCount(requestParameters: BlockCountRequest): Promise<BlockCountResponse> {
+        const response = await this.blockCountRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Reports the number of blocks in the ledger by type (send, receive, open, change, state with version) 
+     */
+    async blockCountTypeRaw(requestParameters: BlockCountTypeRequest): Promise<runtime.ApiResponse<BlockCountTypeResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#block_count_type`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BlockCountTypeRequestToJSON(requestParameters.blockCountTypeRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlockCountTypeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Reports the number of blocks in the ledger by type (send, receive, open, change, state with version) 
+     */
+    async blockCountType(requestParameters: BlockCountTypeRequest): Promise<BlockCountTypeResponse> {
+        const response = await this.blockCountTypeRaw(requestParameters);
         return await response.value();
     }
 
