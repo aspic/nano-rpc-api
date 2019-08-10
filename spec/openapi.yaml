@@ -266,6 +266,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockAccountResponse'
+  /#block_confirm:
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_confirm
+      description: |
+        Request confirmation for **block** from known online representative nodes. Check results with confirmation history.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockConfirmRequest'
+      responses:
+        '200':
+          description: The account containing block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockConfirmResponse'
   /#work_generate:
     post:
       tags:
@@ -546,6 +565,17 @@ components:
             - "block_account"
         hash:
           $ref: '#/components/schemas/BlockHash'
+    BlockConfirmRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "block_confirm"
+        hash:
+          $ref: '#/components/schemas/BlockHash'
     WorkGenerateRequest:
       type: object
       properties:
@@ -733,6 +763,11 @@ components:
       properties:
         account:
           $ref: '#/components/schemas/Account'
+    BlockConfirmResponse:
+      type: object
+      properties:
+        started:
+          $ref: '#/components/schemas/BlockConfirmCount'
     AccountsPendingResponse:
       type: object
       properties:
@@ -844,6 +879,9 @@ components:
     ConfirmationHeight:
       type: string
       example: "28"
+    BlockConfirmCount:
+      type: string
+      example: "1"
     LocalTimestamp:
       type: string
       example: "1551532723"
