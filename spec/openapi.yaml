@@ -227,7 +227,45 @@ paths:
           content:
             application/json:
              schema:
-                $ref: '#/components/schemas/ActiveDifficultyResponse' 
+                $ref: '#/components/schemas/ActiveDifficultyResponse'
+  /#available_supply:
+    post:
+      tags:
+        - Node RPCs
+      operationId: available_supply
+      description: |
+        Returns how many raw are in the public supply
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvailableSupplyRequest'
+      responses:
+        '200':
+          description: Available supply in RAW
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableSupplyResponse'
+  /#block_account:
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_account
+      description: |
+        Returns the account containing block
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockAccountRequest'
+      responses:
+        '200':
+          description: The account containing block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockAccountResponse'
   /#work_generate:
     post:
       tags:
@@ -488,6 +526,26 @@ components:
           description: |
             Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample.
           type: boolean
+    AvailableSupplyRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "available_supply"
+    BlockAccountRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "block_account"
+        hash:
+          $ref: '#/components/schemas/BlockHash'
     WorkGenerateRequest:
       type: object
       properties:
@@ -665,6 +723,16 @@ components:
           $ref: '#/components/schemas/Work'
         multiplier:
           $ref: '#/components/schemas/WorkMultiplier'
+    AvailableSupplyResponse:
+      type: object
+      properties:
+        available:
+          $ref: '#/components/schemas/Raw'
+    BlockAccountResponse:
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/Account'
     AccountsPendingResponse:
       type: object
       properties:

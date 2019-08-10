@@ -55,8 +55,8 @@ Nano donations happily received 😍 ↓
     ☑ accounts_frontiers
     ☑ accounts_pending
     ☑ active_difficulty
-      available_supply
-      block_account
+    ☑ available_supply
+    ☑ block_account
       block_confirm
       block_count
       block_count_type
