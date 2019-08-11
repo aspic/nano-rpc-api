@@ -83,7 +83,7 @@ Nano donations happily received 😍 ↓
       frontiers
       keepalive
     ☑ key_create
-      key_expand
+    ☑ key_expand
       ledger
       node_id
       node_id_delete

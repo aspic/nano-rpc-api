@@ -398,6 +398,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeyCreateResponse'
+  /#key_expand:
+    post:
+      tags:
+        - Node RPCs
+      operationId: key_expand
+      description: |
+        Derive public key and account number from **private key**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyExpandRequest'
+      responses:
+        '200':
+          description: the public key and an account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyExpandResponse'
   /#accounts_create:
     post:
       tags:
@@ -692,6 +711,15 @@ components:
           type: string
           enum:
             - "key_create"
+    KeyExpandRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "key_expand"
+        key:
+          $ref: '#/components/schemas/PrivateKey'
     WalletCreateRequest:
       type: object
       properties:
@@ -902,6 +930,15 @@ components:
         hash:
           $ref: '#/components/schemas/BlockHash'
     KeyCreateResponse:
+      type: object
+      properties:
+        private:
+          $ref: '#/components/schemas/PrivateKey'
+        public:
+          $ref: '#/components/schemas/PublicKey'
+        account:
+          $ref: '#/components/schemas/Account'
+    KeyExpandResponse:
       type: object
       properties:
         private:
