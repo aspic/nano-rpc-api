@@ -122,6 +122,12 @@ import {
     KeyCreateResponse,
     KeyCreateResponseFromJSON,
     KeyCreateResponseToJSON,
+    KeyExpandRequest,
+    KeyExpandRequestFromJSON,
+    KeyExpandRequestToJSON,
+    KeyExpandResponse,
+    KeyExpandResponseFromJSON,
+    KeyExpandResponseToJSON,
     ProcessRequest,
     ProcessRequestFromJSON,
     ProcessRequestToJSON,
@@ -206,6 +212,10 @@ export interface BlockCreateRequest {
 
 export interface KeyCreateRequest {
     keyCreateRequest?: KeyCreateRequest;
+}
+
+export interface KeyExpandRequest {
+    keyExpandRequest?: KeyExpandRequest;
 }
 
 export interface ProcessRequest {
@@ -740,6 +750,35 @@ export class NodeRPCsApi extends runtime.BaseAPI {
      */
     async keyCreate(requestParameters: KeyCreateRequest): Promise<KeyCreateResponse> {
         const response = await this.keyCreateRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Derive public key and account number from **private key** 
+     */
+    async keyExpandRaw(requestParameters: KeyExpandRequest): Promise<runtime.ApiResponse<KeyExpandResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#key_expand`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: KeyExpandRequestToJSON(requestParameters.keyExpandRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => KeyExpandResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Derive public key and account number from **private key** 
+     */
+    async keyExpand(requestParameters: KeyExpandRequest): Promise<KeyExpandResponse> {
+        const response = await this.keyExpandRaw(requestParameters);
         return await response.value();
     }
 

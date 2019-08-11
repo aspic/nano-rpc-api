@@ -38,6 +38,8 @@ export * from './BlockCreateResponse';
 export * from './BlockState';
 export * from './KeyCreateRequest';
 export * from './KeyCreateResponse';
+export * from './KeyExpandRequest';
+export * from './KeyExpandResponse';
 export * from './ModelBoolean';
 export * from './PendingBlock';
 export * from './ProcessRequest';
