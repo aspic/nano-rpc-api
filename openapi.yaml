@@ -323,6 +323,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockCountTypeResponse'
+  '/#block_hash':
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_hash
+      description: |
+        Retrieves a json representations of **blocks**.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockHashRequest'
+      responses:
+        '200':
+          description: 'The json representation, keyd on block hash.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockHashResponse'
   '/#work_generate':
     post:
       tags:
@@ -657,6 +676,19 @@ components:
           type: string
           enum:
             - block_count_type
+    BlockHashRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - blocks
+        hashes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockHash'
     WorkGenerateRequest:
       type: object
       properties:
@@ -888,6 +920,25 @@ components:
           $ref: '#/components/schemas/BlockCount'
         state:
           $ref: '#/components/schemas/BlockCount'
+    BlockHashResponse:
+      type: object
+      properties:
+        blocks:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HashedBlock'
+      example:
+        87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9: |
+          {
+           "type": "state", "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+           "previous": "CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E",
+           "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+           "balance": "5606157000000000000000000000000000000",
+           "link": "5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5",
+           "link_as_account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
+           "signature": "82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501",
+           "work": "8a142e07a10996d5"
+           }
     AccountsPendingResponse:
       type: object
       properties:
@@ -969,6 +1020,8 @@ components:
       type: object
       additionalProperties:
         $ref: '#/components/schemas/PendingBlock'
+    HashedBlock:
+      type: string
     PendingBlock:
       type: object
       properties:
