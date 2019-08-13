@@ -64,7 +64,7 @@ Nano donations happily received 😍 ↓
     ☑ block_hash
       block_info
       blocks
-      blocks_info
+    ☑ blocks_info
       bootstrap
       bootstrap_any
       bootstrap_lazy
