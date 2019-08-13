@@ -323,25 +323,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockCountTypeResponse'
-  '/#block_hash':
+  '/#blocks':
     post:
       tags:
         - Node RPCs
-      operationId: block_hash
+      operationId: blocks
       description: |
         Retrieves a json representations of **blocks**.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BlockHashRequest'
+              $ref: '#/components/schemas/BlocksRequest'
       responses:
         '200':
           description: 'The json representation, keyd on block hash.'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BlockHashResponse'
+                $ref: '#/components/schemas/BlocksResponse'
   '/#blocks_info':
     post:
       tags:
@@ -698,7 +698,7 @@ components:
           type: string
           enum:
             - block_count_type
-    BlockHashRequest:
+    BlocksRequest:
       type: object
       required:
         - action
@@ -955,7 +955,7 @@ components:
           $ref: '#/components/schemas/BlockCount'
         state:
           $ref: '#/components/schemas/BlockCount'
-    BlockHashResponse:
+    BlocksResponse:
       type: object
       properties:
         blocks:

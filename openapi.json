@@ -507,18 +507,18 @@
         }
       }
     },
-    "/#block_hash": {
+    "/#blocks": {
       "post": {
         "tags": [
           "Node RPCs"
         ],
-        "operationId": "block_hash",
+        "operationId": "blocks",
         "description": "Retrieves a json representations of **blocks**.\n",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BlockHashRequest"
+                "$ref": "#/components/schemas/BlocksRequest"
               }
             }
           }
@@ -529,7 +529,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BlockHashResponse"
+                  "$ref": "#/components/schemas/BlocksResponse"
                 }
               }
             }
@@ -1086,7 +1086,7 @@
           }
         }
       },
-      "BlockHashRequest": {
+      "BlocksRequest": {
         "type": "object",
         "required": [
           "action"
@@ -1480,7 +1480,7 @@
           }
         }
       },
-      "BlockHashResponse": {
+      "BlocksResponse": {
         "type": "object",
         "properties": {
           "blocks": {
