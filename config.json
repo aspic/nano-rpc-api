@@ -1,3 +1,6 @@
 {
-  "supportsES6": true
+  "supportsES6": true,
+  "groupId": "no.mehl.nano",
+  "invokerPackage": "no.mehl.nano",
+  "artifactId": "nano-rpc-client"
 }
