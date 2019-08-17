@@ -62,7 +62,7 @@ Nano donations happily received 😍 ↓
     ☑ block_count_type
     ☑ block_create
       block_hash
-      block_info
+    ☑ block_info
     ☑ blocks
     ☑ blocks_info
       bootstrap
