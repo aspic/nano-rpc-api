@@ -1113,6 +1113,11 @@
           },
           "include_trend": {
             "description": "Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample.\n",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Boolean"
+              }
+            ],
             "type": "boolean"
           }
         }
@@ -1229,6 +1234,14 @@
               "blocks_info"
             ]
           },
+          "json_block": {
+            "description": "Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Boolean"
+              }
+            ]
+          },
           "hashes": {
             "type": "array",
             "items": {
@@ -1264,7 +1277,7 @@
             ]
           },
           "json_block": {
-            "description": "If \"true\", \"block\" must contain a JSON subtree instead of a JSON string.",
+            "description": "Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Boolean"
@@ -1317,7 +1330,7 @@
             ]
           },
           "json_block": {
-            "description": "If \"true\", \"block\" must contain a JSON subtree instead of a JSON string.",
+            "description": "Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Boolean"
@@ -1343,7 +1356,7 @@
             ]
           },
           "json_block": {
-            "description": "If \"true\", \"block\" must contain a JSON subtree instead of a JSON string.",
+            "description": "Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Boolean"
@@ -1365,7 +1378,7 @@
             ]
           },
           "json_block": {
-            "description": "If \"true\", \"block\" must contain a JSON subtree instead of a JSON string.",
+            "description": "Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Boolean"
