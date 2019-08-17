@@ -822,7 +822,6 @@ components:
             - "block_create"
         json_block:
           description: If "true", "block" must contain a JSON subtree instead of a JSON string.
-          default: "false"
           allOf:
             - $ref: '#/components/schemas/Boolean'
         "type":
@@ -857,7 +856,6 @@ components:
             - "block_info"
         json_block:
           description: If "true", "block" must contain a JSON subtree instead of a JSON string.
-          default: "false"
           allOf:
             - $ref: '#/components/schemas/Boolean'
         block:
@@ -874,7 +872,6 @@ components:
             - "block_info"
         json_block:
           description: If "true", "block" must contain a JSON subtree instead of a JSON string.
-          default: "false"
           allOf:
             - $ref: '#/components/schemas/Boolean'
         hash:
@@ -888,7 +885,6 @@ components:
             - "process"
         json_block:
           description: If "true", "block" must contain a JSON subtree instead of a JSON string.
-          default: "false"
           allOf:
             - $ref: '#/components/schemas/Boolean'
         block:
