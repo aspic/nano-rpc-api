@@ -3,7 +3,8 @@
 
 ## Clients
 
-* [nano-rpc-fetch](/clients/typescript-fetch) - typescript fetch client
+* [javascript/typescript](/clients/typescript-fetch) - typescript fetch client (published to NPM)
+* [java](/clients/java) - java client (unpublished)
 
 ## Links
 
