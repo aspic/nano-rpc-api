@@ -191,6 +191,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountsBalancesResponse'
+  '/#accounts_frontiers':
+    post:
+      tags:
+        - Node RPCs
+      operationId: accounts_frontiers
+      description: |
+        Returns a list of pairs of account and block hash representing the head block for **accounts list**
+
+        This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountsFrontiersRequest'
+      responses:
+        '200':
+          description: 'The frontiers for each account, keyed on account'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsFrontiersResponse'
   '/#accounts_pending':
     post:
       tags:
@@ -402,6 +423,49 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockCreateResponse'
+  '/#block_hash':
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_hash
+      description: |
+        Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockHashRequest'
+      responses:
+        '200':
+          description: The hashed representation of a block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockHashResponse'
+  '/#block_info':
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_info
+      description: |
+        Retrieves a json representation of the block in `contents` along with:
+
+        * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
+        * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`,  `change` or `epoch`
+
+        Using the optional `json_block` is recommended since v19.0.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockInfoRequest'
+      responses:
+        '200':
+          description: The response of a state block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockInfoResponse'
   '/#process':
     post:
       tags:
@@ -614,6 +678,20 @@ components:
           example:
             - nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000
             - nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7
+    AccountsFrontiersRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - accounts_frontiers
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+          example:
+            - nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000
+            - nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7
     AccountsPendingRequest:
       type: object
       properties:
@@ -742,6 +820,10 @@ components:
           type: string
           enum:
             - block_create
+        json_block:
+          description: 'If "true", "block" must contain a JSON subtree instead of a JSON string.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
         type:
           type: string
           enum:
@@ -762,6 +844,38 @@ components:
           $ref: '#/components/schemas/Wallet'
         account:
           $ref: '#/components/schemas/Account'
+    BlockHashRequest:
+      type: object
+      required:
+        - action
+        - block
+      properties:
+        action:
+          type: string
+          enum:
+            - block_info
+        json_block:
+          description: 'If "true", "block" must contain a JSON subtree instead of a JSON string.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        block:
+          $ref: '#/components/schemas/BlockDataJson'
+    BlockInfoRequest:
+      type: object
+      required:
+        - action
+        - hash
+      properties:
+        action:
+          type: string
+          enum:
+            - block_info
+        json_block:
+          description: 'If "true", "block" must contain a JSON subtree instead of a JSON string.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        hash:
+          $ref: '#/components/schemas/BlockHash'
     ProcessRequest:
       type: object
       properties:
@@ -769,8 +883,12 @@ components:
           type: string
           enum:
             - process
+        json_block:
+          description: 'If "true", "block" must contain a JSON subtree instead of a JSON string.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
         block:
-          $ref: '#/components/schemas/BlockData'
+          $ref: '#/components/schemas/BlockDataJson'
     KeyCreateRequest:
       type: object
       properties:
@@ -894,6 +1012,16 @@ components:
             nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7:
               balance: '10000000'
               pending: '0'
+    AccountsFrontiersResponse:
+      type: object
+      properties:
+        frontiers:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/BlockHash'
+          example:
+            nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3: 791AF413173EEE674A6FCF633B5DFC0F3C33F397F0DA08E987D9E0741D40D81A
+            nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7: 6A32397F4E95AF025DE29D9BF1ACE864D5404362258E06489FABDBA9DCCC046F
     ActiveDifficultyResponse:
       type: object
       properties:
@@ -1008,7 +1136,31 @@ components:
         hash:
           $ref: '#/components/schemas/BlockHash'
         block:
-          $ref: '#/components/schemas/BlockData'
+          $ref: '#/components/schemas/BlockDataJson'
+    BlockHashResponse:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+    BlockInfoResponse:
+      type: object
+      properties:
+        block_account:
+          $ref: '#/components/schemas/Account'
+        amount:
+          $ref: '#/components/schemas/Raw'
+        balance:
+          $ref: '#/components/schemas/Raw'
+        height:
+          $ref: '#/components/schemas/BlockHeight'
+        local_timestamp:
+          $ref: '#/components/schemas/LocalTimestamp'
+        confirmed:
+          $ref: '#/components/schemas/Boolean'
+        contents:
+          $ref: '#/components/schemas/BlockDataJson'
+        subType:
+          $ref: '#/components/schemas/SubType'
     ProcessResponse:
       type: object
       properties:
@@ -1121,9 +1273,6 @@ components:
     BlockHeight:
       type: string
       example: '60'
-    BlockData:
-      type: string
-      example: '{"type"...}'
     BlockHash:
       type: string
       example: 8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72
@@ -1172,3 +1321,29 @@ components:
           $ref: '#/components/schemas/BlockHeight'
         hash:
           $ref: '#/components/schemas/BlockHash'
+    BlockDataJson:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - state
+        account:
+          $ref: '#/components/schemas/Account'
+        previous:
+          $ref: '#/components/schemas/BlockHash'
+        representative:
+          $ref: '#/components/schemas/Account'
+        balance:
+          $ref: '#/components/schemas/Raw'
+        link:
+          $ref: '#/components/schemas/PublicKey'
+        link_as_account:
+          $ref: '#/components/schemas/Account'
+        signature:
+          $ref: '#/components/schemas/Signature'
+        work:
+          $ref: '#/components/schemas/Work'
+    Signature:
+      type: string
+      example: 82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501
