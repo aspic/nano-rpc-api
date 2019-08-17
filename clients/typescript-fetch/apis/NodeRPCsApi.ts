@@ -68,6 +68,12 @@ import {
     AccountsBalancesResponse,
     AccountsBalancesResponseFromJSON,
     AccountsBalancesResponseToJSON,
+    AccountsFrontiersRequest,
+    AccountsFrontiersRequestFromJSON,
+    AccountsFrontiersRequestToJSON,
+    AccountsFrontiersResponse,
+    AccountsFrontiersResponseFromJSON,
+    AccountsFrontiersResponseToJSON,
     AccountsPendingRequest,
     AccountsPendingRequestFromJSON,
     AccountsPendingRequestToJSON,
@@ -116,6 +122,30 @@ import {
     BlockCreateResponse,
     BlockCreateResponseFromJSON,
     BlockCreateResponseToJSON,
+    BlockHashRequest,
+    BlockHashRequestFromJSON,
+    BlockHashRequestToJSON,
+    BlockHashResponse,
+    BlockHashResponseFromJSON,
+    BlockHashResponseToJSON,
+    BlockInfoRequest,
+    BlockInfoRequestFromJSON,
+    BlockInfoRequestToJSON,
+    BlockInfoResponse,
+    BlockInfoResponseFromJSON,
+    BlockInfoResponseToJSON,
+    BlocksInfoRequest,
+    BlocksInfoRequestFromJSON,
+    BlocksInfoRequestToJSON,
+    BlocksInfoResponse,
+    BlocksInfoResponseFromJSON,
+    BlocksInfoResponseToJSON,
+    BlocksRequest,
+    BlocksRequestFromJSON,
+    BlocksRequestToJSON,
+    BlocksResponse,
+    BlocksResponseFromJSON,
+    BlocksResponseToJSON,
     KeyCreateRequest,
     KeyCreateRequestFromJSON,
     KeyCreateRequestToJSON,
@@ -178,6 +208,10 @@ export interface AccountsBalancesRequest {
     accountsBalancesRequest?: AccountsBalancesRequest;
 }
 
+export interface AccountsFrontiersRequest {
+    accountsFrontiersRequest?: AccountsFrontiersRequest;
+}
+
 export interface AccountsPendingRequest {
     accountsPendingRequest?: AccountsPendingRequest;
 }
@@ -208,6 +242,22 @@ export interface BlockCountTypeRequest {
 
 export interface BlockCreateRequest {
     blockCreateRequest?: BlockCreateRequest;
+}
+
+export interface BlockHashRequest {
+    blockHashRequest?: BlockHashRequest;
+}
+
+export interface BlockInfoRequest {
+    blockInfoRequest?: BlockInfoRequest;
+}
+
+export interface BlocksRequest {
+    blocksRequest?: BlocksRequest;
+}
+
+export interface BlocksInfoRequest {
+    blocksInfoRequest?: BlocksInfoRequest;
 }
 
 export interface KeyCreateRequest {
@@ -493,6 +543,35 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Returns a list of pairs of account and block hash representing the head block for **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
+     */
+    async accountsFrontiersRaw(requestParameters: AccountsFrontiersRequest): Promise<runtime.ApiResponse<AccountsFrontiersResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#accounts_frontiers`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AccountsFrontiersRequestToJSON(requestParameters.accountsFrontiersRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AccountsFrontiersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns a list of pairs of account and block hash representing the head block for **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
+     */
+    async accountsFrontiers(requestParameters: AccountsFrontiersRequest): Promise<AccountsFrontiersResponse> {
+        const response = await this.accountsFrontiersRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
      * Returns a list of block hashes which have not yet been received by these accounts
      */
     async accountsPendingRaw(requestParameters: AccountsPendingRequest): Promise<runtime.ApiResponse<AccountsPendingResponse>> {
@@ -721,6 +800,122 @@ export class NodeRPCsApi extends runtime.BaseAPI {
      */
     async blockCreate(requestParameters: BlockCreateRequest): Promise<BlockCreateResponse> {
         const response = await this.blockCreateRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0. 
+     */
+    async blockHashRaw(requestParameters: BlockHashRequest): Promise<runtime.ApiResponse<BlockHashResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#block_hash`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BlockHashRequestToJSON(requestParameters.blockHashRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlockHashResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0. 
+     */
+    async blockHash(requestParameters: BlockHashRequest): Promise<BlockHashResponse> {
+        const response = await this.blockHashRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a json representation of the block in `contents` along with:  * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp` * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`,  `change` or `epoch`  Using the optional `json_block` is recommended since v19.0. 
+     */
+    async blockInfoRaw(requestParameters: BlockInfoRequest): Promise<runtime.ApiResponse<BlockInfoResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#block_info`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BlockInfoRequestToJSON(requestParameters.blockInfoRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlockInfoResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a json representation of the block in `contents` along with:  * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp` * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`,  `change` or `epoch`  Using the optional `json_block` is recommended since v19.0. 
+     */
+    async blockInfo(requestParameters: BlockInfoRequest): Promise<BlockInfoResponse> {
+        const response = await this.blockInfoRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a json representations of **blocks**. 
+     */
+    async blocksRaw(requestParameters: BlocksRequest): Promise<runtime.ApiResponse<BlocksResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#blocks`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BlocksRequestToJSON(requestParameters.blocksRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlocksResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a json representations of **blocks**. 
+     */
+    async blocks(requestParameters: BlocksRequest): Promise<BlocksResponse> {
+        const response = await this.blocksRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a json representations of blocks in contents along with:  * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification  timestamp * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`, `change` or `epoch` 
+     */
+    async blocksInfoRaw(requestParameters: BlocksInfoRequest): Promise<runtime.ApiResponse<BlocksInfoResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#blocks_info`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BlocksInfoRequestToJSON(requestParameters.blocksInfoRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BlocksInfoResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a json representations of blocks in contents along with:  * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification  timestamp * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`, `change` or `epoch` 
+     */
+    async blocksInfo(requestParameters: BlocksInfoRequest): Promise<BlocksInfoResponse> {
+        const response = await this.blocksInfoRaw(requestParameters);
         return await response.value();
     }
 

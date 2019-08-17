@@ -24,11 +24,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.math.BigDecimal;
+import org.openapitools.client.model.ModelBoolean;
 
 /**
  * BlockCreateRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-14T13:51:02.588+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:08:44.524+02:00[Europe/Oslo]")
 public class BlockCreateRequest {
   /**
    * Gets or Sets action
@@ -78,6 +79,10 @@ public class BlockCreateRequest {
   public static final String SERIALIZED_NAME_ACTION = "action";
   @SerializedName(SERIALIZED_NAME_ACTION)
   private ActionEnum action;
+
+  public static final String SERIALIZED_NAME_JSON_BLOCK = "json_block";
+  @SerializedName(SERIALIZED_NAME_JSON_BLOCK)
+  private ModelBoolean jsonBlock = null;
 
   /**
    * Gets or Sets type
@@ -176,6 +181,24 @@ public class BlockCreateRequest {
 
   public void setAction(ActionEnum action) {
     this.action = action;
+  }
+
+  public BlockCreateRequest jsonBlock(ModelBoolean jsonBlock) {
+    this.jsonBlock = jsonBlock;
+    return this;
+  }
+
+   /**
+   * If \&quot;true\&quot;, \&quot;block\&quot; must contain a JSON subtree instead of a JSON string.
+   * @return jsonBlock
+  **/
+  @ApiModelProperty(value = "If \"true\", \"block\" must contain a JSON subtree instead of a JSON string.")
+  public ModelBoolean getJsonBlock() {
+    return jsonBlock;
+  }
+
+  public void setJsonBlock(ModelBoolean jsonBlock) {
+    this.jsonBlock = jsonBlock;
   }
 
   public BlockCreateRequest type(TypeEnum type) {
@@ -351,6 +374,7 @@ public class BlockCreateRequest {
     }
     BlockCreateRequest blockCreateRequest = (BlockCreateRequest) o;
     return Objects.equals(this.action, blockCreateRequest.action) &&
+        Objects.equals(this.jsonBlock, blockCreateRequest.jsonBlock) &&
         Objects.equals(this.type, blockCreateRequest.type) &&
         Objects.equals(this.balance, blockCreateRequest.balance) &&
         Objects.equals(this.key, blockCreateRequest.key) &&
@@ -364,7 +388,7 @@ public class BlockCreateRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(action, type, balance, key, representative, link, work, previous, wallet, account);
+    return Objects.hash(action, jsonBlock, type, balance, key, representative, link, work, previous, wallet, account);
   }
 
 
@@ -373,6 +397,7 @@ public class BlockCreateRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class BlockCreateRequest {\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
+    sb.append("    jsonBlock: ").append(toIndentedString(jsonBlock)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    balance: ").append(toIndentedString(balance)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");

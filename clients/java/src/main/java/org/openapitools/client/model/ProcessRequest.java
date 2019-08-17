@@ -23,11 +23,13 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.openapitools.client.model.BlockDataJson;
+import org.openapitools.client.model.ModelBoolean;
 
 /**
  * ProcessRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-14T13:51:02.588+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:08:44.524+02:00[Europe/Oslo]")
 public class ProcessRequest {
   /**
    * Gets or Sets action
@@ -78,9 +80,13 @@ public class ProcessRequest {
   @SerializedName(SERIALIZED_NAME_ACTION)
   private ActionEnum action;
 
+  public static final String SERIALIZED_NAME_JSON_BLOCK = "json_block";
+  @SerializedName(SERIALIZED_NAME_JSON_BLOCK)
+  private ModelBoolean jsonBlock = null;
+
   public static final String SERIALIZED_NAME_BLOCK = "block";
   @SerializedName(SERIALIZED_NAME_BLOCK)
-  private String block;
+  private BlockDataJson block = null;
 
   public ProcessRequest action(ActionEnum action) {
     this.action = action;
@@ -100,7 +106,25 @@ public class ProcessRequest {
     this.action = action;
   }
 
-  public ProcessRequest block(String block) {
+  public ProcessRequest jsonBlock(ModelBoolean jsonBlock) {
+    this.jsonBlock = jsonBlock;
+    return this;
+  }
+
+   /**
+   * If \&quot;true\&quot;, \&quot;block\&quot; must contain a JSON subtree instead of a JSON string.
+   * @return jsonBlock
+  **/
+  @ApiModelProperty(value = "If \"true\", \"block\" must contain a JSON subtree instead of a JSON string.")
+  public ModelBoolean getJsonBlock() {
+    return jsonBlock;
+  }
+
+  public void setJsonBlock(ModelBoolean jsonBlock) {
+    this.jsonBlock = jsonBlock;
+  }
+
+  public ProcessRequest block(BlockDataJson block) {
     this.block = block;
     return this;
   }
@@ -109,12 +133,12 @@ public class ProcessRequest {
    * Get block
    * @return block
   **/
-  @ApiModelProperty(example = "{\"type\"...}", value = "")
-  public String getBlock() {
+  @ApiModelProperty(value = "")
+  public BlockDataJson getBlock() {
     return block;
   }
 
-  public void setBlock(String block) {
+  public void setBlock(BlockDataJson block) {
     this.block = block;
   }
 
@@ -129,12 +153,13 @@ public class ProcessRequest {
     }
     ProcessRequest processRequest = (ProcessRequest) o;
     return Objects.equals(this.action, processRequest.action) &&
+        Objects.equals(this.jsonBlock, processRequest.jsonBlock) &&
         Objects.equals(this.block, processRequest.block);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(action, block);
+    return Objects.hash(action, jsonBlock, block);
   }
 
 
@@ -143,6 +168,7 @@ public class ProcessRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProcessRequest {\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
+    sb.append("    jsonBlock: ").append(toIndentedString(jsonBlock)).append("\n");
     sb.append("    block: ").append(toIndentedString(block)).append("\n");
     sb.append("}");
     return sb.toString();

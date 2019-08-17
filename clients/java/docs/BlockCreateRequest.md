@@ -7,6 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **action** | [**ActionEnum**](#ActionEnum) |  |  [optional]
+**jsonBlock** | [**ModelBoolean**](ModelBoolean.md) | If \&quot;true\&quot;, \&quot;block\&quot; must contain a JSON subtree instead of a JSON string. |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) |  |  [optional]
 **balance** | [**BigDecimal**](BigDecimal.md) | 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc. |  [optional]
 **key** | **String** |  |  [optional]

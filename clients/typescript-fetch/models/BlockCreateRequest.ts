@@ -12,6 +12,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ModelBoolean,
+    ModelBooleanFromJSON,
+    ModelBooleanToJSON,
+} from './';
+
 /**
  * 
  * @export
@@ -24,6 +30,12 @@ export interface BlockCreateRequest {
      * @memberof BlockCreateRequest
      */
     action?: BlockCreateRequestActionEnum;
+    /**
+     * If \"true\", \"block\" must contain a JSON subtree instead of a JSON string.
+     * @type {ModelBoolean}
+     * @memberof BlockCreateRequest
+     */
+    jsonBlock?: ModelBoolean;
     /**
      * 
      * @type {string}
@@ -83,6 +95,7 @@ export interface BlockCreateRequest {
 export function BlockCreateRequestFromJSON(json: any): BlockCreateRequest {
     return {
         'action': !exists(json, 'action') ? undefined : json['action'],
+        'jsonBlock': !exists(json, 'json_block') ? undefined : ModelBooleanFromJSON(json['json_block']),
         'type': !exists(json, 'type') ? undefined : json['type'],
         'balance': !exists(json, 'balance') ? undefined : json['balance'],
         'key': !exists(json, 'key') ? undefined : json['key'],
@@ -101,6 +114,7 @@ export function BlockCreateRequestToJSON(value?: BlockCreateRequest): any {
     }
     return {
         'action': value.action,
+        'json_block': ModelBooleanToJSON(value.jsonBlock),
         'type': value.type,
         'balance': value.balance,
         'key': value.key,

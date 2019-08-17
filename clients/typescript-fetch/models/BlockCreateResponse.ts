@@ -12,6 +12,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    BlockDataJson,
+    BlockDataJsonFromJSON,
+    BlockDataJsonToJSON,
+} from './';
+
 /**
  * 
  * @export
@@ -26,16 +32,16 @@ export interface BlockCreateResponse {
     hash?: string;
     /**
      * 
-     * @type {string}
+     * @type {BlockDataJson}
      * @memberof BlockCreateResponse
      */
-    block?: string;
+    block?: BlockDataJson;
 }
 
 export function BlockCreateResponseFromJSON(json: any): BlockCreateResponse {
     return {
         'hash': !exists(json, 'hash') ? undefined : json['hash'],
-        'block': !exists(json, 'block') ? undefined : json['block'],
+        'block': !exists(json, 'block') ? undefined : BlockDataJsonFromJSON(json['block']),
     };
 }
 
@@ -45,7 +51,7 @@ export function BlockCreateResponseToJSON(value?: BlockCreateResponse): any {
     }
     return {
         'hash': value.hash,
-        'block': value.block,
+        'block': BlockDataJsonToJSON(value.block),
     };
 }
 

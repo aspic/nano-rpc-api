@@ -12,6 +12,15 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    BlockDataJson,
+    BlockDataJsonFromJSON,
+    BlockDataJsonToJSON,
+    ModelBoolean,
+    ModelBooleanFromJSON,
+    ModelBooleanToJSON,
+} from './';
+
 /**
  * 
  * @export
@@ -25,17 +34,24 @@ export interface ProcessRequest {
      */
     action?: ProcessRequestActionEnum;
     /**
-     * 
-     * @type {string}
+     * If \"true\", \"block\" must contain a JSON subtree instead of a JSON string.
+     * @type {ModelBoolean}
      * @memberof ProcessRequest
      */
-    block?: string;
+    jsonBlock?: ModelBoolean;
+    /**
+     * 
+     * @type {BlockDataJson}
+     * @memberof ProcessRequest
+     */
+    block?: BlockDataJson;
 }
 
 export function ProcessRequestFromJSON(json: any): ProcessRequest {
     return {
         'action': !exists(json, 'action') ? undefined : json['action'],
-        'block': !exists(json, 'block') ? undefined : json['block'],
+        'jsonBlock': !exists(json, 'json_block') ? undefined : ModelBooleanFromJSON(json['json_block']),
+        'block': !exists(json, 'block') ? undefined : BlockDataJsonFromJSON(json['block']),
     };
 }
 
@@ -45,7 +61,8 @@ export function ProcessRequestToJSON(value?: ProcessRequest): any {
     }
     return {
         'action': value.action,
-        'block': value.block,
+        'json_block': ModelBooleanToJSON(value.jsonBlock),
+        'block': BlockDataJsonToJSON(value.block),
     };
 }
 

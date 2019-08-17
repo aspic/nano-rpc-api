@@ -45,6 +45,8 @@ import org.openapitools.client.model.AccountWeightRequest;
 import org.openapitools.client.model.AccountWeightResponse;
 import org.openapitools.client.model.AccountsBalancesRequest;
 import org.openapitools.client.model.AccountsBalancesResponse;
+import org.openapitools.client.model.AccountsFrontiersRequest;
+import org.openapitools.client.model.AccountsFrontiersResponse;
 import org.openapitools.client.model.AccountsPendingRequest;
 import org.openapitools.client.model.AccountsPendingResponse;
 import org.openapitools.client.model.ActiveDifficultyRequest;
@@ -61,6 +63,10 @@ import org.openapitools.client.model.BlockCountTypeRequest;
 import org.openapitools.client.model.BlockCountTypeResponse;
 import org.openapitools.client.model.BlockCreateRequest;
 import org.openapitools.client.model.BlockCreateResponse;
+import org.openapitools.client.model.BlockHashRequest;
+import org.openapitools.client.model.BlockHashResponse;
+import org.openapitools.client.model.BlockInfoRequest;
+import org.openapitools.client.model.BlockInfoResponse;
 import org.openapitools.client.model.BlocksInfoRequest;
 import org.openapitools.client.model.BlocksInfoResponse;
 import org.openapitools.client.model.BlocksRequest;
@@ -1036,6 +1042,110 @@ public class NodeRpCsApi {
         return localVarCall;
     }
     /**
+     * Build call for accountsFrontiers
+     * @param accountsFrontiersRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The frontiers for each account, keyed on account </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call accountsFrontiersCall(AccountsFrontiersRequest accountsFrontiersRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = accountsFrontiersRequest;
+
+        // create path and map variables
+        String localVarPath = "/#accounts_frontiers";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call accountsFrontiersValidateBeforeCall(AccountsFrontiersRequest accountsFrontiersRequest, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = accountsFrontiersCall(accountsFrontiersRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Returns a list of pairs of account and block hash representing the head block for **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
+     * @param accountsFrontiersRequest  (optional)
+     * @return AccountsFrontiersResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The frontiers for each account, keyed on account </td><td>  -  </td></tr>
+     </table>
+     */
+    public AccountsFrontiersResponse accountsFrontiers(AccountsFrontiersRequest accountsFrontiersRequest) throws ApiException {
+        ApiResponse<AccountsFrontiersResponse> localVarResp = accountsFrontiersWithHttpInfo(accountsFrontiersRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Returns a list of pairs of account and block hash representing the head block for **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
+     * @param accountsFrontiersRequest  (optional)
+     * @return ApiResponse&lt;AccountsFrontiersResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The frontiers for each account, keyed on account </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<AccountsFrontiersResponse> accountsFrontiersWithHttpInfo(AccountsFrontiersRequest accountsFrontiersRequest) throws ApiException {
+        okhttp3.Call localVarCall = accountsFrontiersValidateBeforeCall(accountsFrontiersRequest, null);
+        Type localVarReturnType = new TypeToken<AccountsFrontiersResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Returns a list of pairs of account and block hash representing the head block for **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
+     * @param accountsFrontiersRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The frontiers for each account, keyed on account </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call accountsFrontiersAsync(AccountsFrontiersRequest accountsFrontiersRequest, final ApiCallback<AccountsFrontiersResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = accountsFrontiersValidateBeforeCall(accountsFrontiersRequest, _callback);
+        Type localVarReturnType = new TypeToken<AccountsFrontiersResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for accountsPending
      * @param accountsPendingRequest  (optional)
      * @param _callback Callback for upload/download progress
@@ -1864,6 +1974,214 @@ public class NodeRpCsApi {
 
         okhttp3.Call localVarCall = blockCreateValidateBeforeCall(blockCreateRequest, _callback);
         Type localVarReturnType = new TypeToken<BlockCreateResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for blockHash
+     * @param blockHashRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The hashed representation of a block </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call blockHashCall(BlockHashRequest blockHashRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = blockHashRequest;
+
+        // create path and map variables
+        String localVarPath = "/#block_hash";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call blockHashValidateBeforeCall(BlockHashRequest blockHashRequest, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = blockHashCall(blockHashRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0. 
+     * @param blockHashRequest  (optional)
+     * @return BlockHashResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The hashed representation of a block </td><td>  -  </td></tr>
+     </table>
+     */
+    public BlockHashResponse blockHash(BlockHashRequest blockHashRequest) throws ApiException {
+        ApiResponse<BlockHashResponse> localVarResp = blockHashWithHttpInfo(blockHashRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0. 
+     * @param blockHashRequest  (optional)
+     * @return ApiResponse&lt;BlockHashResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The hashed representation of a block </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<BlockHashResponse> blockHashWithHttpInfo(BlockHashRequest blockHashRequest) throws ApiException {
+        okhttp3.Call localVarCall = blockHashValidateBeforeCall(blockHashRequest, null);
+        Type localVarReturnType = new TypeToken<BlockHashResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0. 
+     * @param blockHashRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The hashed representation of a block </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call blockHashAsync(BlockHashRequest blockHashRequest, final ApiCallback<BlockHashResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = blockHashValidateBeforeCall(blockHashRequest, _callback);
+        Type localVarReturnType = new TypeToken<BlockHashResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for blockInfo
+     * @param blockInfoRequest  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The response of a state block </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call blockInfoCall(BlockInfoRequest blockInfoRequest, final ApiCallback _callback) throws ApiException {
+        Object localVarPostBody = blockInfoRequest;
+
+        // create path and map variables
+        String localVarPath = "/#block_info";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call blockInfoValidateBeforeCall(BlockInfoRequest blockInfoRequest, final ApiCallback _callback) throws ApiException {
+        
+
+        okhttp3.Call localVarCall = blockInfoCall(blockInfoRequest, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * Retrieves a json representation of the block in &#x60;contents&#x60; along with:  * _since version 18.0_: &#x60;block_account&#x60;, transaction &#x60;amount&#x60;, block &#x60;balance&#x60;, block &#x60;height&#x60; in account chain, block local modification &#x60;timestamp&#x60; * _since version 19.0_: Whether block was &#x60;confirmed&#x60;, &#x60;subtype&#x60; (for state blocks) of &#x60;send&#x60;, &#x60;receive&#x60;,  &#x60;change&#x60; or &#x60;epoch&#x60;  Using the optional &#x60;json_block&#x60; is recommended since v19.0. 
+     * @param blockInfoRequest  (optional)
+     * @return BlockInfoResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The response of a state block </td><td>  -  </td></tr>
+     </table>
+     */
+    public BlockInfoResponse blockInfo(BlockInfoRequest blockInfoRequest) throws ApiException {
+        ApiResponse<BlockInfoResponse> localVarResp = blockInfoWithHttpInfo(blockInfoRequest);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * Retrieves a json representation of the block in &#x60;contents&#x60; along with:  * _since version 18.0_: &#x60;block_account&#x60;, transaction &#x60;amount&#x60;, block &#x60;balance&#x60;, block &#x60;height&#x60; in account chain, block local modification &#x60;timestamp&#x60; * _since version 19.0_: Whether block was &#x60;confirmed&#x60;, &#x60;subtype&#x60; (for state blocks) of &#x60;send&#x60;, &#x60;receive&#x60;,  &#x60;change&#x60; or &#x60;epoch&#x60;  Using the optional &#x60;json_block&#x60; is recommended since v19.0. 
+     * @param blockInfoRequest  (optional)
+     * @return ApiResponse&lt;BlockInfoResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The response of a state block </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<BlockInfoResponse> blockInfoWithHttpInfo(BlockInfoRequest blockInfoRequest) throws ApiException {
+        okhttp3.Call localVarCall = blockInfoValidateBeforeCall(blockInfoRequest, null);
+        Type localVarReturnType = new TypeToken<BlockInfoResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * Retrieves a json representation of the block in &#x60;contents&#x60; along with:  * _since version 18.0_: &#x60;block_account&#x60;, transaction &#x60;amount&#x60;, block &#x60;balance&#x60;, block &#x60;height&#x60; in account chain, block local modification &#x60;timestamp&#x60; * _since version 19.0_: Whether block was &#x60;confirmed&#x60;, &#x60;subtype&#x60; (for state blocks) of &#x60;send&#x60;, &#x60;receive&#x60;,  &#x60;change&#x60; or &#x60;epoch&#x60;  Using the optional &#x60;json_block&#x60; is recommended since v19.0. 
+     * @param blockInfoRequest  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> The response of a state block </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call blockInfoAsync(BlockInfoRequest blockInfoRequest, final ApiCallback<BlockInfoResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = blockInfoValidateBeforeCall(blockInfoRequest, _callback);
+        Type localVarReturnType = new TypeToken<BlockInfoResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

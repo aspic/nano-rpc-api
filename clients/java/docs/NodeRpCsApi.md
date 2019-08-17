@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**accountRepresentative**](NodeRpCsApi.md#accountRepresentative) | **POST** /#account_representative | 
 [**accountWeight**](NodeRpCsApi.md#accountWeight) | **POST** /#account_weight | 
 [**accountsBalances**](NodeRpCsApi.md#accountsBalances) | **POST** /#accounts_balances | 
+[**accountsFrontiers**](NodeRpCsApi.md#accountsFrontiers) | **POST** /#accounts_frontiers | 
 [**accountsPending**](NodeRpCsApi.md#accountsPending) | **POST** /#accounts_pending | 
 [**activeDifficulty**](NodeRpCsApi.md#activeDifficulty) | **POST** /#active_difficulty | 
 [**availableSupply**](NodeRpCsApi.md#availableSupply) | **POST** /#available_supply | 
@@ -21,6 +22,8 @@ Method | HTTP request | Description
 [**blockCount**](NodeRpCsApi.md#blockCount) | **POST** /#block_count | 
 [**blockCountType**](NodeRpCsApi.md#blockCountType) | **POST** /#block_count_type | 
 [**blockCreate**](NodeRpCsApi.md#blockCreate) | **POST** /#block_create | 
+[**blockHash**](NodeRpCsApi.md#blockHash) | **POST** /#block_hash | 
+[**blockInfo**](NodeRpCsApi.md#blockInfo) | **POST** /#block_info | 
 [**blocks**](NodeRpCsApi.md#blocks) | **POST** /#blocks | 
 [**blocksInfo**](NodeRpCsApi.md#blocksInfo) | **POST** /#blocks_info | 
 [**keyCreate**](NodeRpCsApi.md#keyCreate) | **POST** /#key_create | 
@@ -587,6 +590,68 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | balance and pending for each account |  -  |
 
+<a name="accountsFrontiers"></a>
+# **accountsFrontiers**
+> AccountsFrontiersResponse accountsFrontiers(accountsFrontiersRequest)
+
+
+
+Returns a list of pairs of account and block hash representing the head block for **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    AccountsFrontiersRequest accountsFrontiersRequest = new AccountsFrontiersRequest(); // AccountsFrontiersRequest | 
+    try {
+      AccountsFrontiersResponse result = apiInstance.accountsFrontiers(accountsFrontiersRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#accountsFrontiers");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **accountsFrontiersRequest** | [**AccountsFrontiersRequest**](AccountsFrontiersRequest.md)|  | [optional]
+
+### Return type
+
+[**AccountsFrontiersResponse**](AccountsFrontiersResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The frontiers for each account, keyed on account |  -  |
+
 <a name="accountsPending"></a>
 # **accountsPending**
 > AccountsPendingResponse accountsPending(accountsPendingRequest)
@@ -1068,6 +1133,130 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BlockCreateResponse**](BlockCreateResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The response of a state block |  -  |
+
+<a name="blockHash"></a>
+# **blockHash**
+> BlockHashResponse blockHash(blockHashRequest)
+
+
+
+Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0. 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    BlockHashRequest blockHashRequest = new BlockHashRequest(); // BlockHashRequest | 
+    try {
+      BlockHashResponse result = apiInstance.blockHash(blockHashRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#blockHash");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **blockHashRequest** | [**BlockHashRequest**](BlockHashRequest.md)|  | [optional]
+
+### Return type
+
+[**BlockHashResponse**](BlockHashResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The hashed representation of a block |  -  |
+
+<a name="blockInfo"></a>
+# **blockInfo**
+> BlockInfoResponse blockInfo(blockInfoRequest)
+
+
+
+Retrieves a json representation of the block in &#x60;contents&#x60; along with:  * _since version 18.0_: &#x60;block_account&#x60;, transaction &#x60;amount&#x60;, block &#x60;balance&#x60;, block &#x60;height&#x60; in account chain, block local modification &#x60;timestamp&#x60; * _since version 19.0_: Whether block was &#x60;confirmed&#x60;, &#x60;subtype&#x60; (for state blocks) of &#x60;send&#x60;, &#x60;receive&#x60;,  &#x60;change&#x60; or &#x60;epoch&#x60;  Using the optional &#x60;json_block&#x60; is recommended since v19.0. 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    BlockInfoRequest blockInfoRequest = new BlockInfoRequest(); // BlockInfoRequest | 
+    try {
+      BlockInfoResponse result = apiInstance.blockInfo(blockInfoRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#blockInfo");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **blockInfoRequest** | [**BlockInfoRequest**](BlockInfoRequest.md)|  | [optional]
+
+### Return type
+
+[**BlockInfoResponse**](BlockInfoResponse.md)
 
 ### Authorization
 
