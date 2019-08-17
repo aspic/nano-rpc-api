@@ -191,6 +191,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountsBalancesResponse'
+  /#accounts_frontiers:
+    post:
+      tags:
+        - Node RPCs
+      operationId: accounts_frontiers
+      description: |
+        Returns a list of pairs of account and block hash representing the head block for **accounts list**
+
+        This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountsFrontiersRequest'
+      responses:
+        '200':
+          description: The frontiers for each account, keyed on account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsFrontiersResponse'
   /#accounts_pending:
     post:
       tags:
@@ -614,6 +635,19 @@ components:
             $ref: '#/components/schemas/Account'
           example:
             ["nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
+    AccountsFrontiersRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - "accounts_frontiers"
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+          example:
+            ["nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000", "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7"]
     AccountsPendingRequest:
       type: object
       properties:
@@ -900,6 +934,18 @@ components:
                   "balance": "10000000",  
                   "pending": "0"  
                 }  
+            }
+    AccountsFrontiersResponse:
+      type: object
+      properties:
+        frontiers:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/BlockHash'
+          example:
+            {
+              "nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3": "791AF413173EEE674A6FCF633B5DFC0F3C33F397F0DA08E987D9E0741D40D81A",
+              "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7": "6A32397F4E95AF025DE29D9BF1ACE864D5404362258E06489FABDBA9DCCC046F"
             }
     ActiveDifficultyResponse:
       type: object
