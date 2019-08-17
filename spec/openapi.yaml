@@ -801,6 +801,11 @@ components:
           type: string
           enum: 
             - "block_create"
+        json_block:
+          description: If "true", "block" must contain a JSON subtree instead of a JSON string.
+          default: "false"
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
         "type":
           type: string
           enum: 
@@ -842,8 +847,13 @@ components:
           type: string
           enum:
             - "process"
+        json_block:
+          description: If "true", "block" must contain a JSON subtree instead of a JSON string.
+          default: "false"
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
         block:
-          $ref: '#/components/schemas/BlockData'
+          $ref: '#/components/schemas/BlockDataJson'
     KeyCreateRequest:
       type: object
       properties:
@@ -1102,7 +1112,7 @@ components:
         hash:
           $ref: '#/components/schemas/BlockHash'
         block:
-          $ref: '#/components/schemas/BlockData'
+          $ref: '#/components/schemas/BlockDataJson'
     BlockInfoResponse:
       type: object
       properties:
@@ -1235,10 +1245,6 @@ components:
     BlockHeight:
       type: string
       example: "60"
-    BlockData:
-      type: string
-      example:
-        "{\"type\"...}"
     BlockHash:
       type: string
       example: "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72"
