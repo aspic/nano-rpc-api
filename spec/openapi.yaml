@@ -720,6 +720,8 @@ components:
         include_trend:
           description: |
             Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
           type: boolean
     AvailableSupplyRequest:
       type: object
@@ -797,6 +799,10 @@ components:
           type: string
           enum:
             - "blocks_info"
+        json_block:
+          description: Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
         hashes:
           type: array
           items:
@@ -821,7 +827,7 @@ components:
           enum: 
             - "block_create"
         json_block:
-          description: If "true", "block" must contain a JSON subtree instead of a JSON string.
+          description: Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.
           allOf:
             - $ref: '#/components/schemas/Boolean'
         "type":
@@ -855,7 +861,7 @@ components:
           enum:
             - "block_info"
         json_block:
-          description: If "true", "block" must contain a JSON subtree instead of a JSON string.
+          description: Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.
           allOf:
             - $ref: '#/components/schemas/Boolean'
         block:
@@ -871,7 +877,7 @@ components:
           enum:
             - "block_info"
         json_block:
-          description: If "true", "block" must contain a JSON subtree instead of a JSON string.
+          description: Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.
           allOf:
             - $ref: '#/components/schemas/Boolean'
         hash:
@@ -884,7 +890,7 @@ components:
           enum:
             - "process"
         json_block:
-          description: If "true", "block" must contain a JSON subtree instead of a JSON string.
+          description: Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.
           allOf:
             - $ref: '#/components/schemas/Boolean'
         block:
