@@ -416,7 +416,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BlockCreateRequest' 
+              $ref: '#/components/schemas/BlockCreateRequest'
       responses:
         '200':
           description: The response of a state block
@@ -424,6 +424,25 @@ paths:
             application/json:
              schema:
                 $ref: '#/components/schemas/BlockCreateResponse'
+  /#block_hash:
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_hash
+      description: |
+        Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockHashRequest'
+      responses:
+        '200':
+          description: The hashed representation of a block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockHashResponse'
   /#block_info:
     post:
       tags:
@@ -826,6 +845,23 @@ components:
           $ref: '#/components/schemas/Wallet'
         account:
           $ref: '#/components/schemas/Account'
+    BlockHashRequest:
+      type: object
+      required:
+        - action
+        - block
+      properties:
+        action:
+          type: string
+          enum:
+            - "block_info"
+        json_block:
+          description: If "true", "block" must contain a JSON subtree instead of a JSON string.
+          default: "false"
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        block:
+          $ref: '#/components/schemas/BlockDataJson'
     BlockInfoRequest:
       type: object
       required:
@@ -837,7 +873,10 @@ components:
           enum:
             - "block_info"
         json_block:
-          $ref: '#/components/schemas/Boolean'
+          description: If "true", "block" must contain a JSON subtree instead of a JSON string.
+          default: "false"
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
         hash:
           $ref: '#/components/schemas/BlockHash'
     ProcessRequest:
@@ -1113,6 +1152,11 @@ components:
           $ref: '#/components/schemas/BlockHash'
         block:
           $ref: '#/components/schemas/BlockDataJson'
+    BlockHashResponse:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/BlockHash'
     BlockInfoResponse:
       type: object
       properties:
