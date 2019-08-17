@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * AvailableSupplyResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:08:44.524+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
 public class AvailableSupplyResponse {
   public static final String SERIALIZED_NAME_AVAILABLE = "available";
   @SerializedName(SERIALIZED_NAME_AVAILABLE)

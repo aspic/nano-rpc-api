@@ -28,7 +28,7 @@ import org.openapitools.client.model.ModelBoolean;
 /**
  * BlockInfoRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:08:44.524+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
 public class BlockInfoRequest {
   /**
    * Gets or Sets action
@@ -111,10 +111,10 @@ public class BlockInfoRequest {
   }
 
    /**
-   * If \&quot;true\&quot;, \&quot;block\&quot; must contain a JSON subtree instead of a JSON string.
+   * Defaults to &#x60;\&quot;false\&quot;&#x60;. If &#x60;\&quot;true\&quot;&#x60;, &#x60;\&quot;block\&quot;&#x60; contains a JSON subtree instead of a JSON string.
    * @return jsonBlock
   **/
-  @ApiModelProperty(value = "If \"true\", \"block\" must contain a JSON subtree instead of a JSON string.")
+  @ApiModelProperty(value = "Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.")
   public ModelBoolean getJsonBlock() {
     return jsonBlock;
   }

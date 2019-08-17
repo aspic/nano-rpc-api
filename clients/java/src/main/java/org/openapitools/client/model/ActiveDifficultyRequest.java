@@ -23,11 +23,12 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.openapitools.client.model.ModelBoolean;
 
 /**
  * ActiveDifficultyRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:08:44.524+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
 public class ActiveDifficultyRequest {
   /**
    * Gets or Sets action
@@ -80,7 +81,7 @@ public class ActiveDifficultyRequest {
 
   public static final String SERIALIZED_NAME_INCLUDE_TREND = "include_trend";
   @SerializedName(SERIALIZED_NAME_INCLUDE_TREND)
-  private Boolean includeTrend;
+  private ModelBoolean includeTrend;
 
   public ActiveDifficultyRequest action(ActionEnum action) {
     this.action = action;
@@ -100,7 +101,7 @@ public class ActiveDifficultyRequest {
     this.action = action;
   }
 
-  public ActiveDifficultyRequest includeTrend(Boolean includeTrend) {
+  public ActiveDifficultyRequest includeTrend(ModelBoolean includeTrend) {
     this.includeTrend = includeTrend;
     return this;
   }
@@ -110,11 +111,11 @@ public class ActiveDifficultyRequest {
    * @return includeTrend
   **/
   @ApiModelProperty(value = "Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample. ")
-  public Boolean getIncludeTrend() {
+  public ModelBoolean getIncludeTrend() {
     return includeTrend;
   }
 
-  public void setIncludeTrend(Boolean includeTrend) {
+  public void setIncludeTrend(ModelBoolean includeTrend) {
     this.includeTrend = includeTrend;
   }
 

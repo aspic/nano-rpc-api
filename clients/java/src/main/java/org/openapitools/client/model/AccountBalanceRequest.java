@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * AccountBalanceRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:08:44.524+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
 public class AccountBalanceRequest {
   /**
    * Gets or Sets action

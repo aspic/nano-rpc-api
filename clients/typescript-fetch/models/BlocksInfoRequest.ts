@@ -12,6 +12,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ModelBoolean,
+    ModelBooleanFromJSON,
+    ModelBooleanToJSON,
+} from './';
+
 /**
  * 
  * @export
@@ -25,6 +31,12 @@ export interface BlocksInfoRequest {
      */
     action: BlocksInfoRequestActionEnum;
     /**
+     * Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.
+     * @type {ModelBoolean}
+     * @memberof BlocksInfoRequest
+     */
+    jsonBlock?: ModelBoolean;
+    /**
      * 
      * @type {Array<string>}
      * @memberof BlocksInfoRequest
@@ -35,6 +47,7 @@ export interface BlocksInfoRequest {
 export function BlocksInfoRequestFromJSON(json: any): BlocksInfoRequest {
     return {
         'action': json['action'],
+        'jsonBlock': !exists(json, 'json_block') ? undefined : ModelBooleanFromJSON(json['json_block']),
         'hashes': !exists(json, 'hashes') ? undefined : json['hashes'],
     };
 }
@@ -45,6 +58,7 @@ export function BlocksInfoRequestToJSON(value?: BlocksInfoRequest): any {
     }
     return {
         'action': value.action,
+        'json_block': ModelBooleanToJSON(value.jsonBlock),
         'hashes': value.hashes,
     };
 }

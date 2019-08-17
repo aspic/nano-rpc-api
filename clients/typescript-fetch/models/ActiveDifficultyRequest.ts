@@ -12,6 +12,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ModelBoolean,
+    ModelBooleanFromJSON,
+    ModelBooleanToJSON,
+} from './';
+
 /**
  * 
  * @export
@@ -26,16 +32,16 @@ export interface ActiveDifficultyRequest {
     action: ActiveDifficultyRequestActionEnum;
     /**
      * Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample. 
-     * @type {boolean}
+     * @type {ModelBoolean}
      * @memberof ActiveDifficultyRequest
      */
-    includeTrend?: boolean;
+    includeTrend?: ModelBoolean;
 }
 
 export function ActiveDifficultyRequestFromJSON(json: any): ActiveDifficultyRequest {
     return {
         'action': json['action'],
-        'includeTrend': !exists(json, 'include_trend') ? undefined : json['include_trend'],
+        'includeTrend': !exists(json, 'include_trend') ? undefined : ModelBooleanFromJSON(json['include_trend']),
     };
 }
 
@@ -45,7 +51,7 @@ export function ActiveDifficultyRequestToJSON(value?: ActiveDifficultyRequest): 
     }
     return {
         'action': value.action,
-        'include_trend': value.includeTrend,
+        'include_trend': ModelBooleanToJSON(value.includeTrend),
     };
 }
 

@@ -25,11 +25,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.client.model.ModelBoolean;
 
 /**
  * BlocksInfoRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:08:44.524+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
 public class BlocksInfoRequest {
   /**
    * Gets or Sets action
@@ -80,6 +81,10 @@ public class BlocksInfoRequest {
   @SerializedName(SERIALIZED_NAME_ACTION)
   private ActionEnum action;
 
+  public static final String SERIALIZED_NAME_JSON_BLOCK = "json_block";
+  @SerializedName(SERIALIZED_NAME_JSON_BLOCK)
+  private ModelBoolean jsonBlock = null;
+
   public static final String SERIALIZED_NAME_HASHES = "hashes";
   @SerializedName(SERIALIZED_NAME_HASHES)
   private List<String> hashes = new ArrayList<String>();
@@ -100,6 +105,24 @@ public class BlocksInfoRequest {
 
   public void setAction(ActionEnum action) {
     this.action = action;
+  }
+
+  public BlocksInfoRequest jsonBlock(ModelBoolean jsonBlock) {
+    this.jsonBlock = jsonBlock;
+    return this;
+  }
+
+   /**
+   * Defaults to &#x60;\&quot;false\&quot;&#x60;. If &#x60;\&quot;true\&quot;&#x60;, &#x60;\&quot;block\&quot;&#x60; contains a JSON subtree instead of a JSON string.
+   * @return jsonBlock
+  **/
+  @ApiModelProperty(value = "Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.")
+  public ModelBoolean getJsonBlock() {
+    return jsonBlock;
+  }
+
+  public void setJsonBlock(ModelBoolean jsonBlock) {
+    this.jsonBlock = jsonBlock;
   }
 
   public BlocksInfoRequest hashes(List<String> hashes) {
@@ -139,12 +162,13 @@ public class BlocksInfoRequest {
     }
     BlocksInfoRequest blocksInfoRequest = (BlocksInfoRequest) o;
     return Objects.equals(this.action, blocksInfoRequest.action) &&
+        Objects.equals(this.jsonBlock, blocksInfoRequest.jsonBlock) &&
         Objects.equals(this.hashes, blocksInfoRequest.hashes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(action, hashes);
+    return Objects.hash(action, jsonBlock, hashes);
   }
 
 
@@ -153,6 +177,7 @@ public class BlocksInfoRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class BlocksInfoRequest {\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
+    sb.append("    jsonBlock: ").append(toIndentedString(jsonBlock)).append("\n");
     sb.append("    hashes: ").append(toIndentedString(hashes)).append("\n");
     sb.append("}");
     return sb.toString();

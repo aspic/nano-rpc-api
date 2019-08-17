@@ -34,7 +34,7 @@ export interface ProcessRequest {
      */
     action?: ProcessRequestActionEnum;
     /**
-     * If \"true\", \"block\" must contain a JSON subtree instead of a JSON string.
+     * Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.
      * @type {ModelBoolean}
      * @memberof ProcessRequest
      */
