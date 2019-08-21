@@ -405,6 +405,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BootstrapResponse'
+  /#bootstrap_any:
+    post:
+      tags:
+        - Node RPCs
+      operationId: bootstrap_any
+      description: |
+        Initialize multi-connection bootstrap to random peers. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BootstrapAnyRequest'
+      responses:
+        '200':
+          description: A success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapAnyResponse'
   /#work_generate:
     post:
       tags:
@@ -838,6 +857,15 @@ components:
           $ref: '#/components/schemas/IPv6'
         port:
           $ref: '#/components/schemas/Port'
+    BootstrapAnyRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "bootstrap_any"
     WorkGenerateRequest:
       type: object
       properties:
@@ -1159,8 +1187,12 @@ components:
       type: object
       properties:
         success:
-          type: string
-          example: ""
+          $ref: '#/components/schemas/EmptySuccess'
+    BootstrapAnyResponse:
+      type: object
+      properties:
+        success:
+          $ref: '#/components/schemas/EmptySuccess'
     AccountsPendingResponse:
       type: object
       properties:
@@ -1408,3 +1440,6 @@ components:
     Port:
       type: integer
       example: 7075
+    EmptySuccess:
+      type: string
+      example: ""
