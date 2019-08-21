@@ -467,6 +467,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChainResponse'
+  /#confirmation_active:
+    post:
+      tags:
+        - Node RPCs
+      operationId: confirmation_active
+      description: |
+        _version 16.0+_
+
+        Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with confirmation_info
+
+        The roots provided are two parts and differ between the first account block and subsequent blocks:
+
+        * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key
+        * Other blocks: previous hash + previous hash
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmationActiveRequest'
+      responses:
+        '200':
+          description: The confirmations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationActiveResponse'
   /#work_generate:
     post:
       tags:
@@ -956,6 +982,20 @@ components:
             to frontier, from older blocks to newer). Equal to [successors](https://docs.nano.org/commands/rpc-protocol/#successors)
           allOf:
             - $ref: '#/components/schemas/Boolean'
+    ConfirmationActiveRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "confirmation_active"
+        announcements:
+          description: |
+            Number, 0 by default. Returns only active elections with equal or higher announcements count. Useful to find long running elections
+          type: string
+          example: "1"
     WorkGenerateRequest:
       type: object
       properties:
@@ -1296,6 +1336,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BlockHash'
+    ConfirmationActiveResponse:
+      type: object
+      properties:
+        confirmations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ElectionRoot'
     AccountsPendingResponse:
       type: object
       properties:
@@ -1546,3 +1593,6 @@ components:
     EmptySuccess:
       type: string
       example: ""
+    ElectionRoot:
+      type: string
+      example: "8031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B28031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B2"
