@@ -385,6 +385,113 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlocksInfoResponse'
+  '/#bootstrap':
+    post:
+      tags:
+        - Node RPCs
+      operationId: bootstrap
+      description: |
+        Initialize bootstrap to specific **IP address** and **port**. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BootstrapRequest'
+      responses:
+        '200':
+          description: A success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapResponse'
+  '/#bootstrap_any':
+    post:
+      tags:
+        - Node RPCs
+      operationId: bootstrap_any
+      description: |
+        Initialize multi-connection bootstrap to random peers. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BootstrapAnyRequest'
+      responses:
+        '200':
+          description: A success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapAnyResponse'
+  '/#bootstrap_lazy':
+    post:
+      tags:
+        - Node RPCs
+      operationId: bootstrap_lazy
+      description: |
+        _version 17.0+_
+
+        Initialize lazy bootstrap with given block hash. Not compatible with launch flag [--disable_lazy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_lazy_bootstrap)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BootstrapLazyRequest'
+      responses:
+        '200':
+          description: Whether bootstrap was started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapLazyResponse'
+  '/#chain':
+    post:
+      tags:
+        - Node RPCs
+      operationId: chain
+      description: |
+        Returns a consecutive list of block hashes in the account chain starting at **block**
+        back to **count** (direction from frontier back to open block, from newer blocks to older).
+        Will list all blocks back to the open block of this chain when count is set to "-1".
+        The requested block hash is included in the answer.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChainRequest'
+      responses:
+        '200':
+          description: The block hashes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChainResponse'
+  '/#confirmation_active':
+    post:
+      tags:
+        - Node RPCs
+      operationId: confirmation_active
+      description: |
+        _version 16.0+_
+
+        Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with confirmation_info
+
+        The roots provided are two parts and differ between the first account block and subsequent blocks:
+
+        * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key
+        * Other blocks: previous hash + previous hash
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmationActiveRequest'
+      responses:
+        '200':
+          description: The confirmations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationActiveResponse'
   '/#work_generate':
     post:
       tags:
@@ -723,7 +830,6 @@ components:
             Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample.
           allOf:
             - $ref: '#/components/schemas/Boolean'
-          type: boolean
     AvailableSupplyRequest:
       type: object
       required:
@@ -808,6 +914,89 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BlockHash'
+    BootstrapRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - bootstrap
+        address:
+          $ref: '#/components/schemas/IPv6'
+        port:
+          $ref: '#/components/schemas/Port'
+    BootstrapAnyRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - bootstrap_any
+    BootstrapLazyRequest:
+      type: object
+      required:
+        - action
+        - hash
+      properties:
+        action:
+          type: string
+          enum:
+            - bootstrap_any
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+        force:
+          description: |
+            Boolean, false by default. Manually force closing of all current bootstraps.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+    ChainRequest:
+      type: object
+      required:
+        - action
+        - block
+        - count
+      properties:
+        action:
+          type: string
+          enum:
+            - chain
+        block:
+          $ref: '#/components/schemas/BlockHash'
+        count:
+          $ref: '#/components/schemas/BlockCount'
+        offset:
+          description: |
+            _version 18.0+_
+
+            Number, 0 by default. Return the account chain block hashes offset by the specified number of blocks
+          allOf:
+            - $ref: '#/components/schemas/BlockCount'
+        reverse:
+          description: |
+            _version 18.0+_
+
+            Boolean, false by default. Returns a list of block hashes in the account chain starting at block up to count (direction from open block up
+            to frontier, from older blocks to newer). Equal to [successors](https://docs.nano.org/commands/rpc-protocol/#successors)
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+    ConfirmationActiveRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - confirmation_active
+        announcements:
+          description: |
+            Number, 0 by default. Returns only active elections with equal or higher announcements count. Useful to find long running elections
+          type: string
+          example: '1'
     WorkGenerateRequest:
       type: object
       properties:
@@ -1115,6 +1304,36 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/BlockInfo'
+    BootstrapResponse:
+      type: object
+      properties:
+        success:
+          $ref: '#/components/schemas/EmptySuccess'
+    BootstrapAnyResponse:
+      type: object
+      properties:
+        success:
+          $ref: '#/components/schemas/EmptySuccess'
+    BootstrapLazyResponse:
+      type: object
+      properties:
+        started:
+          type: string
+          example: '1'
+    ChainResponse:
+      type: object
+      properties:
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockHash'
+    ConfirmationActiveResponse:
+      type: object
+      properties:
+        confirmations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ElectionRoot'
     AccountsPendingResponse:
       type: object
       properties:
@@ -1353,3 +1572,15 @@ components:
     Signature:
       type: string
       example: 82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501
+    IPv6:
+      type: string
+      example: '::ffff:138.201.94.249'
+    Port:
+      type: integer
+      example: 7075
+    EmptySuccess:
+      type: string
+      example: ''
+    ElectionRoot:
+      type: string
+      example: 8031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B28031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B2
