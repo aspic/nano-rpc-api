@@ -386,6 +386,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlocksInfoResponse'
+  /#bootstrap:
+    post:
+      tags:
+        - Node RPCs
+      operationId: bootstrap
+      description: |
+        Initialize bootstrap to specific **IP address** and **port**. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BootstrapRequest'
+      responses:
+        '200':
+          description: A success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapResponse'
   /#work_generate:
     post:
       tags:
@@ -806,6 +825,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BlockHash'
+    BootstrapRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "bootstrap"
+        address:
+          $ref: '#/components/schemas/IPv6'
+        port:
+          $ref: '#/components/schemas/Port'
     WorkGenerateRequest:
       type: object
       properties:
@@ -1123,6 +1155,12 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/BlockInfo'
+    BootstrapResponse:
+      type: object
+      properties:
+        success:
+          type: string
+          example: ""
     AccountsPendingResponse:
       type: object
       properties:
@@ -1361,7 +1399,12 @@ components:
           $ref: '#/components/schemas/Signature'
         work:
           $ref: '#/components/schemas/Work'
-
     Signature:
       type: string
       example: "82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501"
+    IPv6:
+      type: string
+      example: "::ffff:138.201.94.249"
+    Port:
+      type: integer
+      example: 7075
