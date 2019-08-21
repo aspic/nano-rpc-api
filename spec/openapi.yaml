@@ -1588,8 +1588,8 @@ components:
       type: string
       example: "::ffff:138.201.94.249"
     Port:
-      type: integer
-      example: 7075
+      type: string
+      example: "7075"
     EmptySuccess:
       type: string
       example: ""
