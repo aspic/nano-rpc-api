@@ -424,6 +424,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BootstrapAnyResponse'
+  /#bootstrap_lazy:
+    post:
+      tags:
+        - Node RPCs
+      operationId: bootstrap_lazy
+      description: |
+        _version 17.0+_
+        Initialize lazy bootstrap with given block hash. Not compatible with launch flag [--disable_lazy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_lazy_bootstrap)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BootstrapLazyRequest'
+      responses:
+        '200':
+          description: Whether bootstrap was started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapLazyResponse'
   /#work_generate:
     post:
       tags:
@@ -866,6 +886,23 @@ components:
           type: string
           enum:
             - "bootstrap_any"
+    BootstrapLazyRequest:
+      type: object
+      required:
+        - action
+        - hash
+      properties:
+        action:
+          type: string
+          enum:
+            - "bootstrap_any"
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+        force:
+          description: |
+            Boolean, false by default. Manually force closing of all current bootstraps.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
     WorkGenerateRequest:
       type: object
       properties:
@@ -1193,6 +1230,12 @@ components:
       properties:
         success:
           $ref: '#/components/schemas/EmptySuccess'
+    BootstrapLazyResponse:
+      type: object
+      properties:
+        started:
+          type: string
+          example: "1"
     AccountsPendingResponse:
       type: object
       properties:
