@@ -70,7 +70,7 @@ Nano donations happily received 😍 ↓
     ☑ bootstrap_any
     ☑ bootstrap_lazy
       bootstrap_status
-      chain
+    ☑ chain
       confirmation_active
       confirmation_height_currently_processing
       confirmation_history

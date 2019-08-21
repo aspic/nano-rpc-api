@@ -431,6 +431,7 @@ paths:
       operationId: bootstrap_lazy
       description: |
         _version 17.0+_
+
         Initialize lazy bootstrap with given block hash. Not compatible with launch flag [--disable_lazy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_lazy_bootstrap)
       requestBody:
         content:
@@ -444,6 +445,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BootstrapLazyResponse'
+  /#chain:
+    post:
+      tags:
+        - Node RPCs
+      operationId: chain
+      description: |
+        Returns a consecutive list of block hashes in the account chain starting at **block**
+        back to **count** (direction from frontier back to open block, from newer blocks to older).
+        Will list all blocks back to the open block of this chain when count is set to "-1".
+        The requested block hash is included in the answer.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChainRequest'
+      responses:
+        '200':
+          description: The block hashes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChainResponse'
   /#work_generate:
     post:
       tags:
@@ -903,6 +926,36 @@ components:
             Boolean, false by default. Manually force closing of all current bootstraps.
           allOf:
             - $ref: '#/components/schemas/Boolean'
+    ChainRequest:
+      type: object
+      required:
+        - action
+        - block
+        - count
+      properties:
+        action:
+          type: string
+          enum:
+            - "chain"
+        block:
+          $ref: '#/components/schemas/BlockHash'
+        count:
+          $ref: '#/components/schemas/BlockCount'
+        offset:
+          description: |
+            _version 18.0+_
+
+            Number, 0 by default. Return the account chain block hashes offset by the specified number of blocks
+          allOf:
+            - $ref: '#/components/schemas/BlockCount'
+        reverse:
+          description: |
+            _version 18.0+_
+
+            Boolean, false by default. Returns a list of block hashes in the account chain starting at block up to count (direction from open block up
+            to frontier, from older blocks to newer). Equal to [successors](https://docs.nano.org/commands/rpc-protocol/#successors)
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
     WorkGenerateRequest:
       type: object
       properties:
@@ -1236,6 +1289,13 @@ components:
         started:
           type: string
           example: "1"
+    ChainResponse:
+      type: object
+      properties:
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockHash'
     AccountsPendingResponse:
       type: object
       properties:
