@@ -747,6 +747,67 @@
         }
       }
     },
+    "/#confirmation_height_currently_processing": {
+      "post": {
+        "tags": [
+          "Node RPCs",
+          "debug"
+        ],
+        "operationId": "confirmation_height_currently_processing",
+        "description": "_version 19.0+_\n\nReturns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must\nconfirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which\nblock was the original being confirmed.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmationHeightCurrentlyProcessingRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Hash of the block which is having the confirmation height set for.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfirmationHeightCurrentlyProcessingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/#confirmation_history": {
+      "post": {
+        "tags": [
+          "Node RPCs"
+        ],
+        "operationId": "confirmation_history",
+        "description": "_version 12.0+_\n_duration, time, confirmation_stats: version 17.0+_\n\nReturns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns\nstats: count of elections in history (limited to 2048) & average duration time\n\nWith version 19.0+ `confirmation_history_size` can be managed in [config.json](https://docs.nano.org/running-a-node/configuration/#example-file)\nto adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit\nwill return all confirmations up to traffic levels of  approximately 56 confirmations/sec. To properly track levels above this, increase\nthis value or use the confirmation subscription through the [websocket](https://docs.nano.org/integration-guides/advanced/#websocket-support) instead.\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmationHistoryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Hash of the block which is having the confirmation height set for.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfirmationHistoryResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/#work_generate": {
       "post": {
         "tags": [
@@ -1516,6 +1577,34 @@
           }
         }
       },
+      "ConfirmationHeightCurrentlyProcessingRequest": {
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "confirmation_height_currently_processing"
+            ]
+          }
+        }
+      },
+      "ConfirmationHistoryRequest": {
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "confirmation_history"
+            ]
+          }
+        }
+      },
       "WorkGenerateRequest": {
         "type": "object",
         "properties": {
@@ -2025,6 +2114,36 @@
           }
         }
       },
+      "ConfirmationHeightCurrentlyProcessingResponse": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "$ref": "#/components/schemas/BlockHash"
+          }
+        }
+      },
+      "ConfirmationHistoryResponse": {
+        "type": "object",
+        "properties": {
+          "confirmation_stats": {
+            "type": "object",
+            "properties": {
+              "count": {
+                "$ref": "#/components/schemas/BlockCount"
+              },
+              "average": {
+                "$ref": "#/components/schemas/DurationMS"
+              }
+            }
+          },
+          "confirmations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Confirmation"
+            }
+          }
+        }
+      },
       "AccountsPendingResponse": {
         "type": "object",
         "properties": {
@@ -2254,6 +2373,11 @@
         "type": "string",
         "example": "1"
       },
+      "DurationMS": {
+        "type": "string",
+        "example": "5000",
+        "description": "Duration in milliseconds."
+      },
       "BlockHeight": {
         "type": "string",
         "example": "60"
@@ -2271,6 +2395,23 @@
       "ConfirmationHeight": {
         "type": "string",
         "example": "28"
+      },
+      "Confirmation": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "$ref": "#/components/schemas/BlockHash"
+          },
+          "duration": {
+            "$ref": "#/components/schemas/DurationMS"
+          },
+          "time": {
+            "$ref": "#/components/schemas/LocalTimestamp"
+          },
+          "tally": {
+            "$ref": "#/components/schemas/Raw"
+          }
+        }
       },
       "BlockConfirmCount": {
         "type": "string",
