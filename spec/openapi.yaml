@@ -493,6 +493,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConfirmationActiveResponse'
+  /#confirmation_height_currently_processing:
+    post:
+      tags:
+        - Node RPCs
+        - debug
+      operationId: confirmation_height_currently_processing
+      description: |
+        _version 19.0+_
+
+        Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must
+        confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which
+        block was the original being confirmed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmationHeightCurrentlyProcessingRequest'
+      responses:
+        '200':
+          description: The hash
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationHeightCurrentlyProcessingResponse'
   /#work_generate:
     post:
       tags:
@@ -996,6 +1020,15 @@ components:
             Number, 0 by default. Returns only active elections with equal or higher announcements count. Useful to find long running elections
           type: string
           example: "1"
+    ConfirmationHeightCurrentlyProcessingRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "confirmation_height_currently_processing"
     WorkGenerateRequest:
       type: object
       properties:
@@ -1343,6 +1376,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ElectionRoot'
+    ConfirmationHeightCurrentlyProcessingResponse:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/BlockHash'
     AccountsPendingResponse:
       type: object
       properties:

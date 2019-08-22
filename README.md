@@ -72,7 +72,7 @@ Nano donations happily received 😍 ↓
       bootstrap_status
     ☑ chain
     ☑ confirmation_active
-      confirmation_height_currently_processing
+    ☑ confirmation_height_currently_processing
       confirmation_history
       confirmation_info
       confirmation_quorum
