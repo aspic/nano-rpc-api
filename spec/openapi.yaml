@@ -512,11 +512,39 @@ paths:
               $ref: '#/components/schemas/ConfirmationHeightCurrentlyProcessingRequest'
       responses:
         '200':
-          description: The hash
+          description: Hash of the block which is having the confirmation height set for.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConfirmationHeightCurrentlyProcessingResponse'
+  /#confirmation_history:
+    post:
+      tags:
+        - Node RPCs
+      operationId: confirmation_history
+      description: |
+        _version 12.0+_
+        _duration, time, confirmation_stats: version 17.0+_
+
+        Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns
+        stats: count of elections in history (limited to 2048) & average duration time
+
+        With version 19.0+ `confirmation_history_size` can be managed in [config.json](https://docs.nano.org/running-a-node/configuration/#example-file)
+        to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit
+        will return all confirmations up to traffic levels of  approximately 56 confirmations/sec. To properly track levels above this, increase
+        this value or use the confirmation subscription through the [websocket](https://docs.nano.org/integration-guides/advanced/#websocket-support) instead.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmationHistoryRequest'
+      responses:
+        '200':
+          description: Hash of the block which is having the confirmation height set for.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationHistoryResponse'
   /#work_generate:
     post:
       tags:
@@ -1029,6 +1057,15 @@ components:
           type: string
           enum:
             - "confirmation_height_currently_processing"
+    ConfirmationHistoryRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "confirmation_history"
     WorkGenerateRequest:
       type: object
       properties:
@@ -1381,6 +1418,21 @@ components:
       properties:
         hash:
           $ref: '#/components/schemas/BlockHash'
+    ConfirmationHistoryResponse:
+      type: object
+      properties:
+        confirmation_stats:
+          type: object
+          properties:
+            count:
+              $ref: '#/components/schemas/BlockCount'
+            average:
+              $ref: '#/components/schemas/DurationMS'
+        confirmations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Confirmation'
+
     AccountsPendingResponse:
       type: object
       properties:
@@ -1545,6 +1597,10 @@ components:
     BlockCount:
       type: string
       example: "1"
+    DurationMS:
+      type: string
+      example: "5000"
+      description: Duration in milliseconds.
     BlockHeight:
       type: string
       example: "60"
@@ -1558,6 +1614,17 @@ components:
     ConfirmationHeight:
       type: string
       example: "28"
+    Confirmation:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+        duration:
+          $ref: '#/components/schemas/DurationMS'
+        time:
+          $ref: '#/components/schemas/LocalTimestamp'
+        tally:
+          $ref: '#/components/schemas/Raw'
     BlockConfirmCount:
       type: string
       example: "1"
