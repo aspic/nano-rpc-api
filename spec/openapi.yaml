@@ -545,6 +545,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConfirmationHistoryResponse'
+  /#confirmation_info:
+    post:
+      tags:
+        - Node RPCs
+      operationId: confirmation_info
+      description: |
+        _version 16.0+_
+
+        Returns info about active election by *root*. Including announcements count, last winner (initially local ledger block), total tally of voted
+        representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
+
+        The roots provided are two parts and differ between the first account block and subsequent blocks:
+
+        * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key
+        * Other blocks: previous hash + previous hash
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmationInfoRequest'
+      responses:
+        '200':
+          description: The confirmation information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationInfoResponse'
   /#work_generate:
     post:
       tags:
@@ -1066,6 +1093,27 @@ components:
           type: string
           enum:
             - "confirmation_history"
+    ConfirmationInfoRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - "confirmation_info"
+        json_block:
+          description: Defaults to `"false"`. If `"true"`, `"contents"` contains a JSON subtree instead of a JSON string.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        contents:
+          description: Defaults to `"true"`. If `"false"`, disables contents for each block.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        representatives:
+          description: Defaults to `"false"`. If `"true"`, returns a list of votes representatives & its weights for each block.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
     WorkGenerateRequest:
       type: object
       properties:
@@ -1432,7 +1480,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Confirmation'
-
+    ConfirmationInfoResponse:
+      type: object
+      properties:
+        announcements:
+          $ref: '#/components/schemas/AnnouncementsCount'
+        last_winner:
+          $ref: '#/components/schemas/BlockHash'
+        total_tally:
+          $ref: '#/components/schemas/Raw'
+        blocks:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ConfirmationInfo'
+          example:
+            "B94C505029F04BC057A0486ADA8BD07981B4A8736AE6581F2E98C6D18498146F": {
+              "tally": "51145880360832646375807054724596663794",
+              "contents": {
+                "type": "state",
+                "account": "nano_3fihmbtuod33s4nrbqfczhk9zy9ddqimwjshzg4c3857es8c9631i5rg6h9p",
+                "previous": "EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44",
+                "representative": "nano_3o7uzba8b9e1wqu5ziwpruteyrs3scyqr761x7ke6w1xctohxfh5du75qgaj",
+                "balance": "218195000000000000000000000000",
+                "link": "0000000000000000000000000000000000000000000000000000000000000000",
+                "link_as_account": "nano_1111111111111111111111111111111111111111111111111111hifc8npp",
+                "signature": "B1BD285235C612C5A141FA61793D7C6C762D3F104A85102DED5FBD6B4514971C4D044ACD3EC8C06A9495D8E83B6941B54F8DABA825ADF799412ED9E2C86D7A0C",
+                "work": "05bb28cd8acbe71d"
+              }
+            }
     AccountsPendingResponse:
       type: object
       properties:
@@ -1597,6 +1672,16 @@ components:
     BlockCount:
       type: string
       example: "1"
+    AnnouncementsCount:
+      type: string
+      example: "2"
+    ConfirmationInfo:
+      type: object
+      properties:
+        tally:
+          $ref: '#/components/schemas/Raw'
+        contents:
+          $ref: '#/components/schemas/BlockDataJson'
     DurationMS:
       type: string
       example: "5000"

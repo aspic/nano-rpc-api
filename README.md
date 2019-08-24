@@ -74,7 +74,7 @@ Nano donations happily received 😍 ↓
     ☑ confirmation_active
     ☑ confirmation_height_currently_processing
     ☑ confirmation_history
-      confirmation_info
+    ☑ confirmation_info
       confirmation_quorum
       database_txn_tracker
       delegators
