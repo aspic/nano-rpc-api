@@ -1,0 +1,1774 @@
+openapi: 3.0.0
+info:
+  version: 19.0.0-alpha
+  title: nano-rpc-api
+  description: |
+    API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol)
+servers:
+  - url: 'http://localhost:7076'
+tags:
+  - name: Node RPCs
+    description: For interacting with the node and ledger.
+    externalDocs:
+      url: 'https://docs.nano.org/commands/rpc-protocol/#node-rpcs'
+  - name: Wallet
+    description: |
+      For interacting with the built-in, QT-based node wallet. **NOTE: This wallet is only recommended for development and testing.**
+    externalDocs:
+      url: 'https://docs.nano.org/commands/rpc-protocol/#node-rpcs'
+paths:
+  '/#account_balance':
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_balance
+      description: |
+        Returns how many RAW is owned and how many have not yet been received by **account**
+        > This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountBalanceRequest'
+      responses:
+        '200':
+          description: Returns balance and pending
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBalanceResponse'
+  '/#account_block_count':
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_block_count
+      description: Get number of blocks for a specific account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountBlockCountRequest'
+      responses:
+        '200':
+          description: The number of blocks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBlockCountResponse'
+  '/#account_get':
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_get
+      description: Get account for the public key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountGetRequest'
+      responses:
+        '200':
+          description: the account for a public key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountGetResponse'
+  '/#account_history':
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_history
+      description: |
+        Gets the account history. Reports send/receive information for an account.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountHistoryRequest'
+      responses:
+        '200':
+          description: the account history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountHistoryResponse'
+  '/#account_info':
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_info
+      description: |
+        Returns frontier, open block, change representative block, balance, last modified timestamp from local database &
+        block count for **account**. Only works for accounts that have an entry on the ledger, will return _Account not
+        found_ otherwise.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountInfoRequest'
+      responses:
+        '200':
+          description: the account information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountInfoResponse'
+  '/#account_key':
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_key
+      description: |
+        Get the public key for **account**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountKeyRequest'
+      responses:
+        '200':
+          description: the public key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountKeyResponse'
+  '/#account_representative':
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_representative
+      description: |
+        Returns the representative for **account**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRepresentativeRequest'
+      responses:
+        '200':
+          description: the public key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRepresentativeResponse'
+  '/#account_weight':
+    post:
+      tags:
+        - Node RPCs
+      operationId: account_weight
+      description: |
+        Returns the voting weight for **account**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountWeightRequest'
+      responses:
+        '200':
+          description: voting weight in raw
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountWeightResponse'
+  '/#accounts_balances':
+    post:
+      tags:
+        - Node RPCs
+      operationId: accounts_balances
+      description: |
+        Returns how many RAW is owned and how many have not yet been received by **accounts list**
+
+        This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountsBalancesRequest'
+      responses:
+        '200':
+          description: balance and pending for each account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsBalancesResponse'
+  '/#accounts_frontiers':
+    post:
+      tags:
+        - Node RPCs
+      operationId: accounts_frontiers
+      description: |
+        Returns a list of pairs of account and block hash representing the head block for **accounts list**
+
+        This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountsFrontiersRequest'
+      responses:
+        '200':
+          description: 'The frontiers for each account, keyed on account'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsFrontiersResponse'
+  '/#accounts_pending':
+    post:
+      tags:
+        - Node RPCs
+      operationId: accounts_pending
+      description: Returns a list of block hashes which have not yet been received by these accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountsPendingRequest'
+      responses:
+        '200':
+          description: Block hashes which have not yet been received
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsPendingResponse'
+  '/#active_difficulty':
+    post:
+      tags:
+        - Node RPCs
+      operationId: active_difficulty
+      description: |
+        Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (network_minimum) as well as the current active difficulty seen on the network (network_current, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the network_current from the base difficulty of network_minimum is also provided for comparison.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActiveDifficultyRequest'
+      responses:
+        '200':
+          description: Block hashes which have not yet been received
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveDifficultyResponse'
+  '/#available_supply':
+    post:
+      tags:
+        - Node RPCs
+      operationId: available_supply
+      description: |
+        Returns how many raw are in the public supply
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvailableSupplyRequest'
+      responses:
+        '200':
+          description: Available supply in RAW
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableSupplyResponse'
+  '/#block_account':
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_account
+      description: |
+        Returns the account containing block
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockAccountRequest'
+      responses:
+        '200':
+          description: The account containing block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockAccountResponse'
+  '/#block_confirm':
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_confirm
+      description: |
+        Request confirmation for **block** from known online representative nodes. Check results with confirmation history.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockConfirmRequest'
+      responses:
+        '200':
+          description: The account containing block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockConfirmResponse'
+  '/#block_count':
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_count
+      description: |
+        Reports the number of blocks in the ledger and unchecked synchronizing blocks.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockCountRequest'
+      responses:
+        '200':
+          description: The count and unchecked blocks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockCountResponse'
+  '/#block_count_type':
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_count_type
+      description: |
+        Reports the number of blocks in the ledger by type (send, receive, open, change, state with version)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockCountTypeRequest'
+      responses:
+        '200':
+          description: The number of blocks in the ledger.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockCountTypeResponse'
+  '/#blocks':
+    post:
+      tags:
+        - Node RPCs
+      operationId: blocks
+      description: |
+        Retrieves a json representations of **blocks**.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlocksRequest'
+      responses:
+        '200':
+          description: 'The json representation, keyd on block hash.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlocksResponse'
+  '/#blocks_info':
+    post:
+      tags:
+        - Node RPCs
+      operationId: blocks_info
+      description: |
+        Retrieves a json representations of blocks in contents along with:
+
+        * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification  timestamp
+        * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`, `change` or `epoch`
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlocksInfoRequest'
+      responses:
+        '200':
+          description: 'Blocks info response, keyed on the block hash.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlocksInfoResponse'
+  '/#bootstrap':
+    post:
+      tags:
+        - Node RPCs
+      operationId: bootstrap
+      description: |
+        Initialize bootstrap to specific **IP address** and **port**. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BootstrapRequest'
+      responses:
+        '200':
+          description: A success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapResponse'
+  '/#bootstrap_any':
+    post:
+      tags:
+        - Node RPCs
+      operationId: bootstrap_any
+      description: |
+        Initialize multi-connection bootstrap to random peers. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BootstrapAnyRequest'
+      responses:
+        '200':
+          description: A success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapAnyResponse'
+  '/#bootstrap_lazy':
+    post:
+      tags:
+        - Node RPCs
+      operationId: bootstrap_lazy
+      description: |
+        _version 17.0+_
+
+        Initialize lazy bootstrap with given block hash. Not compatible with launch flag [--disable_lazy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_lazy_bootstrap)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BootstrapLazyRequest'
+      responses:
+        '200':
+          description: Whether bootstrap was started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapLazyResponse'
+  '/#chain':
+    post:
+      tags:
+        - Node RPCs
+      operationId: chain
+      description: |
+        Returns a consecutive list of block hashes in the account chain starting at **block**
+        back to **count** (direction from frontier back to open block, from newer blocks to older).
+        Will list all blocks back to the open block of this chain when count is set to "-1".
+        The requested block hash is included in the answer.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChainRequest'
+      responses:
+        '200':
+          description: The block hashes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChainResponse'
+  '/#confirmation_active':
+    post:
+      tags:
+        - Node RPCs
+      operationId: confirmation_active
+      description: |
+        _version 16.0+_
+
+        Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with confirmation_info
+
+        The roots provided are two parts and differ between the first account block and subsequent blocks:
+
+        * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key
+        * Other blocks: previous hash + previous hash
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmationActiveRequest'
+      responses:
+        '200':
+          description: The confirmations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationActiveResponse'
+  '/#confirmation_height_currently_processing':
+    post:
+      tags:
+        - Node RPCs
+        - debug
+      operationId: confirmation_height_currently_processing
+      description: |
+        _version 19.0+_
+
+        Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must
+        confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which
+        block was the original being confirmed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmationHeightCurrentlyProcessingRequest'
+      responses:
+        '200':
+          description: Hash of the block which is having the confirmation height set for.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationHeightCurrentlyProcessingResponse'
+  '/#confirmation_history':
+    post:
+      tags:
+        - Node RPCs
+      operationId: confirmation_history
+      description: |
+        _version 12.0+_
+        _duration, time, confirmation_stats: version 17.0+_
+
+        Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns
+        stats: count of elections in history (limited to 2048) & average duration time
+
+        With version 19.0+ `confirmation_history_size` can be managed in [config.json](https://docs.nano.org/running-a-node/configuration/#example-file)
+        to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit
+        will return all confirmations up to traffic levels of  approximately 56 confirmations/sec. To properly track levels above this, increase
+        this value or use the confirmation subscription through the [websocket](https://docs.nano.org/integration-guides/advanced/#websocket-support) instead.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmationHistoryRequest'
+      responses:
+        '200':
+          description: Hash of the block which is having the confirmation height set for.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationHistoryResponse'
+  '/#confirmation_info':
+    post:
+      tags:
+        - Node RPCs
+      operationId: confirmation_info
+      description: |
+        _version 16.0+_
+
+        Returns info about active election by *root*. Including announcements count, last winner (initially local ledger block), total tally of voted
+        representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.
+
+        The roots provided are two parts and differ between the first account block and subsequent blocks:
+
+        * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key
+        * Other blocks: previous hash + previous hash
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmationInfoRequest'
+      responses:
+        '200':
+          description: The confirmation information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmationInfoResponse'
+  '/#work_generate':
+    post:
+      tags:
+        - Node RPCs
+      operationId: work_generate
+      description: |
+        Generates work for block. hash is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with account_key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkGenerateRequest'
+      responses:
+        '200':
+          description: The resulting work hash
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkGenerateResponse'
+  '/#block_create':
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_create
+      description: |
+        Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockCreateRequest'
+      responses:
+        '200':
+          description: The response of a state block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockCreateResponse'
+  '/#block_hash':
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_hash
+      description: |
+        Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockHashRequest'
+      responses:
+        '200':
+          description: The hashed representation of a block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockHashResponse'
+  '/#block_info':
+    post:
+      tags:
+        - Node RPCs
+      operationId: block_info
+      description: |
+        Retrieves a json representation of the block in `contents` along with:
+
+        * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp`
+        * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`,  `change` or `epoch`
+
+        Using the optional `json_block` is recommended since v19.0.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockInfoRequest'
+      responses:
+        '200':
+          description: The response of a state block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockInfoResponse'
+  '/#process':
+    post:
+      tags:
+        - Node RPCs
+      operationId: process
+      description: Publish block to the network
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessRequest'
+      responses:
+        '200':
+          description: Hash of the processed block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessResponse'
+  '/#key_create':
+    post:
+      tags:
+        - Node RPCs
+      operationId: key_create
+      description: |
+        Generates an **adhoc random** keypair
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyCreateRequest'
+      responses:
+        '200':
+          description: created key pair
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyCreateResponse'
+  '/#key_expand':
+    post:
+      tags:
+        - Node RPCs
+      operationId: key_expand
+      description: |
+        Derive public key and account number from **private key**
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyExpandRequest'
+      responses:
+        '200':
+          description: the public key and an account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyExpandResponse'
+  '/#accounts_create':
+    post:
+      tags:
+        - Wallet
+      operationId: accounts_create
+      summary: 'Creates new accounts, insert next deterministic keys in wallet up to count'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountsCreateRequest'
+      responses:
+        '200':
+          description: a list of the created accounts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountsCreateResponse'
+  '/#receive':
+    post:
+      tags:
+        - Wallet
+      operationId: receive
+      summary: Receive pending block for account in wallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReceiveRequest'
+      responses:
+        '200':
+          description: the eventually received block
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReceiveResponse'
+  '/#wallet_create':
+    post:
+      tags:
+        - Wallet
+      operationId: wallet_create
+      summary: Creates a new random wallet id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletCreateRequest'
+      responses:
+        '200':
+          description: The created wallet id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletCreateResponse'
+components:
+  schemas:
+    AccountBalanceRequest:
+      type: object
+      required:
+        - action
+        - account
+      properties:
+        action:
+          type: string
+          enum:
+            - account_balance
+        account:
+          $ref: '#/components/schemas/Account'
+    AccountBlockCountRequest:
+      type: object
+      required:
+        - action
+        - account
+      properties:
+        action:
+          type: string
+          enum:
+            - account_block_count
+        account:
+          $ref: '#/components/schemas/Account'
+    AccountGetRequest:
+      type: object
+      required:
+        - action
+        - key
+      properties:
+        action:
+          type: string
+          enum:
+            - account_get
+        key:
+          $ref: '#/components/schemas/PublicKey'
+    AccountHistoryRequest:
+      type: object
+      required:
+        - action
+        - key
+      properties:
+        action:
+          type: string
+          enum:
+            - account_history
+        account:
+          $ref: '#/components/schemas/Account'
+        count:
+          $ref: '#/components/schemas/BlockCount'
+    AccountInfoRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - account_info
+        account:
+          $ref: '#/components/schemas/Account'
+    AccountKeyRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - account_key
+        account:
+          $ref: '#/components/schemas/Account'
+    AccountRepresentativeRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - account_representative
+        account:
+          $ref: '#/components/schemas/Account'
+    AccountWeightRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - account_weight
+        account:
+          $ref: '#/components/schemas/Account'
+    AccountsBalancesRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - accounts_balances
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+          example:
+            - nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000
+            - nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7
+    AccountsFrontiersRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - accounts_frontiers
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+          example:
+            - nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000
+            - nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7
+    AccountsPendingRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - accounts_pending
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        count:
+          $ref: '#/components/schemas/BlockCount'
+        include_active:
+          type: boolean
+        source:
+          type: boolean
+    ActiveDifficultyRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - active_difficulty
+        include_trend:
+          description: |
+            Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+    AvailableSupplyRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - available_supply
+    BlockAccountRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - block_account
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+    BlockConfirmRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - block_confirm
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+    BlockCountRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - block_count
+        include_cemented:
+          type: boolean
+          description: |
+            _enable_control required, version 19.0+_
+            Default "false". If "true", "cemented" in the response will contain the number of cemented blocks.
+    BlockCountTypeRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - block_count_type
+    BlocksRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - blocks
+        hashes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockHash'
+    BlocksInfoRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - blocks_info
+        json_block:
+          description: 'Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        hashes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockHash'
+    BootstrapRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - bootstrap
+        address:
+          $ref: '#/components/schemas/IPv6'
+        port:
+          $ref: '#/components/schemas/Port'
+    BootstrapAnyRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - bootstrap_any
+    BootstrapLazyRequest:
+      type: object
+      required:
+        - action
+        - hash
+      properties:
+        action:
+          type: string
+          enum:
+            - bootstrap_any
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+        force:
+          description: |
+            Boolean, false by default. Manually force closing of all current bootstraps.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+    ChainRequest:
+      type: object
+      required:
+        - action
+        - block
+        - count
+      properties:
+        action:
+          type: string
+          enum:
+            - chain
+        block:
+          $ref: '#/components/schemas/BlockHash'
+        count:
+          $ref: '#/components/schemas/BlockCount'
+        offset:
+          description: |
+            _version 18.0+_
+
+            Number, 0 by default. Return the account chain block hashes offset by the specified number of blocks
+          allOf:
+            - $ref: '#/components/schemas/BlockCount'
+        reverse:
+          description: |
+            _version 18.0+_
+
+            Boolean, false by default. Returns a list of block hashes in the account chain starting at block up to count (direction from open block up
+            to frontier, from older blocks to newer). Equal to [successors](https://docs.nano.org/commands/rpc-protocol/#successors)
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+    ConfirmationActiveRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - confirmation_active
+        announcements:
+          description: |
+            Number, 0 by default. Returns only active elections with equal or higher announcements count. Useful to find long running elections
+          type: string
+          example: '1'
+    ConfirmationHeightCurrentlyProcessingRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - confirmation_height_currently_processing
+    ConfirmationHistoryRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - confirmation_history
+    ConfirmationInfoRequest:
+      type: object
+      required:
+        - action
+      properties:
+        action:
+          type: string
+          enum:
+            - confirmation_info
+        json_block:
+          description: 'Defaults to `"false"`. If `"true"`, `"contents"` contains a JSON subtree instead of a JSON string.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        contents:
+          description: 'Defaults to `"true"`. If `"false"`, disables contents for each block.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        representatives:
+          description: 'Defaults to `"false"`. If `"true"`, returns a list of votes representatives & its weights for each block.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+    WorkGenerateRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - work_generate
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+        difficulty:
+          $ref: '#/components/schemas/WorkDifficulty'
+    BlockCreateRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - block_create
+        json_block:
+          description: 'Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        type:
+          type: string
+          enum:
+            - state
+        balance:
+          $ref: '#/components/schemas/Raw'
+        key:
+          $ref: '#/components/schemas/PrivateKey'
+        representative:
+          $ref: '#/components/schemas/Account'
+        link:
+          type: string
+        work:
+          $ref: '#/components/schemas/Work'
+        previous:
+          $ref: '#/components/schemas/BlockHash'
+        wallet:
+          $ref: '#/components/schemas/Wallet'
+        account:
+          $ref: '#/components/schemas/Account'
+    BlockHashRequest:
+      type: object
+      required:
+        - action
+        - block
+      properties:
+        action:
+          type: string
+          enum:
+            - block_info
+        json_block:
+          description: 'Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        block:
+          $ref: '#/components/schemas/BlockDataJson'
+    BlockInfoRequest:
+      type: object
+      required:
+        - action
+        - hash
+      properties:
+        action:
+          type: string
+          enum:
+            - block_info
+        json_block:
+          description: 'Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+    ProcessRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - process
+        json_block:
+          description: 'Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.'
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        block:
+          $ref: '#/components/schemas/BlockDataJson'
+    KeyCreateRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - key_create
+    KeyExpandRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - key_expand
+        key:
+          $ref: '#/components/schemas/PrivateKey'
+    WalletCreateRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - wallet_create
+    AccountsCreateRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - accounts_create
+        wallet:
+          $ref: '#/components/schemas/Wallet'
+        count:
+          $ref: '#/components/schemas/AccountCount'
+    ReceiveRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - receive
+        wallet:
+          $ref: '#/components/schemas/Wallet'
+        account:
+          $ref: '#/components/schemas/Account'
+        block:
+          $ref: '#/components/schemas/BlockHash'
+    AccountBalanceResponse:
+      type: object
+      properties:
+        balance:
+          $ref: '#/components/schemas/Raw'
+        pending:
+          $ref: '#/components/schemas/Raw'
+    AccountBlockCountResponse:
+      type: object
+      properties:
+        block_count:
+          $ref: '#/components/schemas/BlockCount'
+    AccountGetResponse:
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/Account'
+    AccountHistoryResponse:
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/Account'
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/Block'
+        previous:
+          $ref: '#/components/schemas/BlockHash'
+    AccountInfoResponse:
+      type: object
+      properties:
+        frontier:
+          type: string
+        open_block:
+          $ref: '#/components/schemas/BlockHash'
+        representative_block:
+          $ref: '#/components/schemas/BlockHash'
+        balance:
+          $ref: '#/components/schemas/Raw'
+        modified_timestamp:
+          $ref: '#/components/schemas/LocalTimestamp'
+        block_count:
+          $ref: '#/components/schemas/BlockCount'
+        confirmation_height:
+          $ref: '#/components/schemas/ConfirmationHeight'
+        account_version:
+          $ref: '#/components/schemas/AccountVersion'
+    AccountKeyResponse:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/PublicKey'
+    AccountRepresentativeResponse:
+      type: object
+      properties:
+        representative:
+          $ref: '#/components/schemas/Account'
+    AccountWeightResponse:
+      type: object
+      properties:
+        weight:
+          $ref: '#/components/schemas/Raw'
+    AccountsBalancesResponse:
+      type: object
+      properties:
+        balances:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AccountBalanceResponse'
+          example:
+            nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000:
+              balance: '10000'
+              pending: '10000'
+            nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7:
+              balance: '10000000'
+              pending: '0'
+    AccountsFrontiersResponse:
+      type: object
+      properties:
+        frontiers:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/BlockHash'
+          example:
+            nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3: 791AF413173EEE674A6FCF633B5DFC0F3C33F397F0DA08E987D9E0741D40D81A
+            nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7: 6A32397F4E95AF025DE29D9BF1ACE864D5404362258E06489FABDBA9DCCC046F
+    ActiveDifficultyResponse:
+      type: object
+      properties:
+        network_minimum:
+          $ref: '#/components/schemas/Work'
+        network_current:
+          $ref: '#/components/schemas/Work'
+        multiplier:
+          $ref: '#/components/schemas/WorkMultiplier'
+    AvailableSupplyResponse:
+      type: object
+      properties:
+        available:
+          $ref: '#/components/schemas/Raw'
+    BlockAccountResponse:
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/Account'
+    BlockConfirmResponse:
+      type: object
+      properties:
+        started:
+          $ref: '#/components/schemas/BlockConfirmCount'
+    BlockCountResponse:
+      type: object
+      required:
+        - count
+        - unchecked
+      properties:
+        count:
+          $ref: '#/components/schemas/BlockCount'
+        unchecked:
+          $ref: '#/components/schemas/BlockCount'
+        cemented:
+          $ref: '#/components/schemas/BlockCount'
+    BlockCountTypeResponse:
+      type: object
+      required:
+        - send
+        - receive
+        - open
+        - change
+        - state_v0
+        - state_v1
+        - state
+      properties:
+        send:
+          $ref: '#/components/schemas/BlockCount'
+        receive:
+          $ref: '#/components/schemas/BlockCount'
+        open:
+          $ref: '#/components/schemas/BlockCount'
+        change:
+          $ref: '#/components/schemas/BlockCount'
+        state_v0:
+          $ref: '#/components/schemas/BlockCount'
+        state_v1:
+          $ref: '#/components/schemas/BlockCount'
+        state:
+          $ref: '#/components/schemas/BlockCount'
+    BlocksResponse:
+      type: object
+      properties:
+        blocks:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/HashedBlock'
+      example:
+        87434F8041869A01C8F6F263B87972D7BA443A72E0A97D7A3FD0CCC2358FD6F9: |
+          {
+           "type": "state", "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+           "previous": "CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E",
+           "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+           "balance": "5606157000000000000000000000000000000",
+           "link": "5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5",
+           "link_as_account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
+           "signature": "82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501",
+           "work": "8a142e07a10996d5"
+           }
+    BlocksInfoResponse:
+      type: object
+      properties:
+        blocks:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/BlockInfo'
+    BootstrapResponse:
+      type: object
+      properties:
+        success:
+          $ref: '#/components/schemas/EmptySuccess'
+    BootstrapAnyResponse:
+      type: object
+      properties:
+        success:
+          $ref: '#/components/schemas/EmptySuccess'
+    BootstrapLazyResponse:
+      type: object
+      properties:
+        started:
+          type: string
+          example: '1'
+    ChainResponse:
+      type: object
+      properties:
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockHash'
+    ConfirmationActiveResponse:
+      type: object
+      properties:
+        confirmations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ElectionRoot'
+    ConfirmationHeightCurrentlyProcessingResponse:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+    ConfirmationHistoryResponse:
+      type: object
+      properties:
+        confirmation_stats:
+          type: object
+          properties:
+            count:
+              $ref: '#/components/schemas/BlockCount'
+            average:
+              $ref: '#/components/schemas/DurationMS'
+        confirmations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Confirmation'
+    ConfirmationInfoResponse:
+      type: object
+      properties:
+        announcements:
+          $ref: '#/components/schemas/AnnouncementsCount'
+        last_winner:
+          $ref: '#/components/schemas/BlockHash'
+        total_tally:
+          $ref: '#/components/schemas/Raw'
+        blocks:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ConfirmationInfo'
+          example:
+            B94C505029F04BC057A0486ADA8BD07981B4A8736AE6581F2E98C6D18498146F:
+              tally: '51145880360832646375807054724596663794'
+              contents:
+                type: state
+                account: nano_3fihmbtuod33s4nrbqfczhk9zy9ddqimwjshzg4c3857es8c9631i5rg6h9p
+                previous: EE125B1B1D85D3C24636B3590E1642D9F21B166C0C6CD99C9C6087A1224A0C44
+                representative: nano_3o7uzba8b9e1wqu5ziwpruteyrs3scyqr761x7ke6w1xctohxfh5du75qgaj
+                balance: '218195000000000000000000000000'
+                link: '0000000000000000000000000000000000000000000000000000000000000000'
+                link_as_account: nano_1111111111111111111111111111111111111111111111111111hifc8npp
+                signature: B1BD285235C612C5A141FA61793D7C6C762D3F104A85102DED5FBD6B4514971C4D044ACD3EC8C06A9495D8E83B6941B54F8DABA825ADF799412ED9E2C86D7A0C
+                work: 05bb28cd8acbe71d
+    AccountsPendingResponse:
+      type: object
+      properties:
+        blocks:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AccountPending'
+          example:
+            nano_1111111111111111111111111111111111111111111111111117353trpda:
+              142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D:
+                amount: '6000000000000000000000000000000'
+                source: nano_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr
+    WorkGenerateResponse:
+      type: object
+      properties:
+        work:
+          $ref: '#/components/schemas/Work'
+        difficulty:
+          $ref: '#/components/schemas/WorkDifficulty'
+        multiplier:
+          $ref: '#/components/schemas/WorkMultiplier'
+    BlockCreateResponse:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+        block:
+          $ref: '#/components/schemas/BlockDataJson'
+    BlockHashResponse:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+    BlockInfoResponse:
+      type: object
+      properties:
+        block_account:
+          $ref: '#/components/schemas/Account'
+        amount:
+          $ref: '#/components/schemas/Raw'
+        balance:
+          $ref: '#/components/schemas/Raw'
+        height:
+          $ref: '#/components/schemas/BlockHeight'
+        local_timestamp:
+          $ref: '#/components/schemas/LocalTimestamp'
+        confirmed:
+          $ref: '#/components/schemas/Boolean'
+        contents:
+          $ref: '#/components/schemas/BlockDataJson'
+        subType:
+          $ref: '#/components/schemas/SubType'
+    ProcessResponse:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+    KeyCreateResponse:
+      type: object
+      properties:
+        private:
+          $ref: '#/components/schemas/PrivateKey'
+        public:
+          $ref: '#/components/schemas/PublicKey'
+        account:
+          $ref: '#/components/schemas/Account'
+    KeyExpandResponse:
+      type: object
+      properties:
+        private:
+          $ref: '#/components/schemas/PrivateKey'
+        public:
+          $ref: '#/components/schemas/PublicKey'
+        account:
+          $ref: '#/components/schemas/Account'
+    WalletCreateResponse:
+      type: object
+      properties:
+        wallet:
+          $ref: '#/components/schemas/Wallet'
+    AccountsCreateResponse:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+    ReceiveResponse:
+      type: object
+      properties:
+        block:
+          $ref: '#/components/schemas/BlockHash'
+    Wallet:
+      type: string
+      example: 000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F
+    AccountCount:
+      type: string
+      example: '2'
+    Account:
+      type: string
+      example: nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8
+    AccountPending:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/PendingBlock'
+    HashedBlock:
+      type: string
+      example: |
+        {
+         "type": "state", "account": "nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est",
+         "previous": "CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E",
+         "representative": "nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou",
+         "balance": "5606157000000000000000000000000000000",
+         "link": "5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5",
+         "link_as_account": "nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z",
+         "signature": "82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501",
+         "work": "8a142e07a10996d5"
+         }
+    BlockInfo:
+      type: object
+      properties:
+        block_account:
+          $ref: '#/components/schemas/Account'
+        amount:
+          $ref: '#/components/schemas/Raw'
+        balance:
+          $ref: '#/components/schemas/Raw'
+        height:
+          $ref: '#/components/schemas/BlockHeight'
+        local_timestamp:
+          $ref: '#/components/schemas/LocalTimestamp'
+        confirmed:
+          $ref: '#/components/schemas/Boolean'
+        contents:
+          $ref: '#/components/schemas/HashedBlock'
+        subtype:
+          $ref: '#/components/schemas/SubType'
+    SubType:
+      type: string
+      enum:
+        - send
+    PendingBlock:
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/BlockHash'
+        source:
+          $ref: '#/components/schemas/Account'
+    PublicKey:
+      type: string
+      example: 3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039
+    PrivateKey:
+      type: string
+      example: 3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039
+    Raw:
+      type: number
+      description: '1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.'
+      example: '1000000000000000000000000000000'
+    BlockCount:
+      type: string
+      example: '1'
+    AnnouncementsCount:
+      type: string
+      example: '2'
+    ConfirmationInfo:
+      type: object
+      properties:
+        tally:
+          $ref: '#/components/schemas/Raw'
+        contents:
+          $ref: '#/components/schemas/BlockDataJson'
+    DurationMS:
+      type: string
+      example: '5000'
+      description: Duration in milliseconds.
+    BlockHeight:
+      type: string
+      example: '60'
+    BlockHash:
+      type: string
+      example: 8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72
+    BlockState:
+      type: string
+      enum:
+        - send
+    ConfirmationHeight:
+      type: string
+      example: '28'
+    Confirmation:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+        duration:
+          $ref: '#/components/schemas/DurationMS'
+        time:
+          $ref: '#/components/schemas/LocalTimestamp'
+        tally:
+          $ref: '#/components/schemas/Raw'
+    BlockConfirmCount:
+      type: string
+      example: '1'
+    LocalTimestamp:
+      type: string
+      example: '1551532723'
+    WorkDifficulty:
+      type: string
+      example: ffffffd21c3933f3
+    Work:
+      type: string
+      example: 2bf29ef00786a6bc
+    AccountVersion:
+      type: string
+      example: '1'
+    WorkMultiplier:
+      type: string
+      example: '1.273557846739298'
+    Boolean:
+      type: string
+      enum:
+        - 'true'
+        - 'false'
+    Block:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/BlockState'
+        account:
+          $ref: '#/components/schemas/Account'
+        amount:
+          $ref: '#/components/schemas/Raw'
+        local_timestamp:
+          $ref: '#/components/schemas/LocalTimestamp'
+        height:
+          $ref: '#/components/schemas/BlockHeight'
+        hash:
+          $ref: '#/components/schemas/BlockHash'
+    BlockDataJson:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - state
+        account:
+          $ref: '#/components/schemas/Account'
+        previous:
+          $ref: '#/components/schemas/BlockHash'
+        representative:
+          $ref: '#/components/schemas/Account'
+        balance:
+          $ref: '#/components/schemas/Raw'
+        link:
+          $ref: '#/components/schemas/PublicKey'
+        link_as_account:
+          $ref: '#/components/schemas/Account'
+        signature:
+          $ref: '#/components/schemas/Signature'
+        work:
+          $ref: '#/components/schemas/Work'
+    Signature:
+      type: string
+      example: 82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501
+    IPv6:
+      type: string
+      example: '::ffff:138.201.94.249'
+    Port:
+      type: string
+      example: '7075'
+    EmptySuccess:
+      type: string
+      example: ''
+    ElectionRoot:
+      type: string
+      example: 8031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B28031B600827C5CC05FDC911C28BBAC12A0E096CCB30FA8324F56C123676281B2
