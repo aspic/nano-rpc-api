@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -27,16 +28,28 @@ export interface BlockHashResponse {
 }
 
 export function BlockHashResponseFromJSON(json: any): BlockHashResponse {
+    return BlockHashResponseFromJSONTyped(json, false);
+}
+
+export function BlockHashResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): BlockHashResponse {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'hash': !exists(json, 'hash') ? undefined : json['hash'],
     };
 }
 
-export function BlockHashResponseToJSON(value?: BlockHashResponse): any {
+export function BlockHashResponseToJSON(value?: BlockHashResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'hash': value.hash,
     };
 }

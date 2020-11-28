@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -21,10 +22,14 @@ export enum BlockState {
 }
 
 export function BlockStateFromJSON(json: any): BlockState {
+    return BlockStateFromJSONTyped(json, false);
+}
+
+export function BlockStateFromJSONTyped(json: any, ignoreDiscriminator: boolean): BlockState {
     return json as BlockState;
 }
 
-export function BlockStateToJSON(value?: BlockState): any {
+export function BlockStateToJSON(value?: BlockState | null): any {
     return value as any;
 }
 

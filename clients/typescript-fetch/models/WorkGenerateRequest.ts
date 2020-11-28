@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -39,18 +40,30 @@ export interface WorkGenerateRequest {
 }
 
 export function WorkGenerateRequestFromJSON(json: any): WorkGenerateRequest {
+    return WorkGenerateRequestFromJSONTyped(json, false);
+}
+
+export function WorkGenerateRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkGenerateRequest {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'action': !exists(json, 'action') ? undefined : json['action'],
         'hash': !exists(json, 'hash') ? undefined : json['hash'],
         'difficulty': !exists(json, 'difficulty') ? undefined : json['difficulty'],
     };
 }
 
-export function WorkGenerateRequestToJSON(value?: WorkGenerateRequest): any {
+export function WorkGenerateRequestToJSON(value?: WorkGenerateRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'action': value.action,
         'hash': value.hash,
         'difficulty': value.difficulty,

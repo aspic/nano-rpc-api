@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -45,7 +46,15 @@ export interface ReceiveRequest {
 }
 
 export function ReceiveRequestFromJSON(json: any): ReceiveRequest {
+    return ReceiveRequestFromJSONTyped(json, false);
+}
+
+export function ReceiveRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReceiveRequest {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'action': !exists(json, 'action') ? undefined : json['action'],
         'wallet': !exists(json, 'wallet') ? undefined : json['wallet'],
         'account': !exists(json, 'account') ? undefined : json['account'],
@@ -53,11 +62,15 @@ export function ReceiveRequestFromJSON(json: any): ReceiveRequest {
     };
 }
 
-export function ReceiveRequestToJSON(value?: ReceiveRequest): any {
+export function ReceiveRequestToJSON(value?: ReceiveRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'action': value.action,
         'wallet': value.wallet,
         'account': value.account,

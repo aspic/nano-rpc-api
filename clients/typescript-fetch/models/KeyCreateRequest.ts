@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -27,16 +28,28 @@ export interface KeyCreateRequest {
 }
 
 export function KeyCreateRequestFromJSON(json: any): KeyCreateRequest {
+    return KeyCreateRequestFromJSONTyped(json, false);
+}
+
+export function KeyCreateRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): KeyCreateRequest {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'action': !exists(json, 'action') ? undefined : json['action'],
     };
 }
 
-export function KeyCreateRequestToJSON(value?: KeyCreateRequest): any {
+export function KeyCreateRequestToJSON(value?: KeyCreateRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'action': value.action,
     };
 }

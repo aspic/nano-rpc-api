@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -25,7 +26,8 @@ export interface BlockCountRequest {
      */
     action: BlockCountRequestActionEnum;
     /**
-     * _enable_control required, version 19.0+_ Default \"false\". If \"true\", \"cemented\" in the response will contain the number of cemented blocks. 
+     * _enable_control required, version 19.0+_
+     * Default "false". If "true", "cemented" in the response will contain the number of cemented blocks.
      * @type {boolean}
      * @memberof BlockCountRequest
      */
@@ -33,17 +35,29 @@ export interface BlockCountRequest {
 }
 
 export function BlockCountRequestFromJSON(json: any): BlockCountRequest {
+    return BlockCountRequestFromJSONTyped(json, false);
+}
+
+export function BlockCountRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BlockCountRequest {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'action': json['action'],
         'includeCemented': !exists(json, 'include_cemented') ? undefined : json['include_cemented'],
     };
 }
 
-export function BlockCountRequestToJSON(value?: BlockCountRequest): any {
+export function BlockCountRequestToJSON(value?: BlockCountRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'action': value.action,
         'include_cemented': value.includeCemented,
     };

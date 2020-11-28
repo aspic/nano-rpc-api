@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -21,10 +22,14 @@ export enum SubType {
 }
 
 export function SubTypeFromJSON(json: any): SubType {
+    return SubTypeFromJSONTyped(json, false);
+}
+
+export function SubTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): SubType {
     return json as SubType;
 }
 
-export function SubTypeToJSON(value?: SubType): any {
+export function SubTypeToJSON(value?: SubType | null): any {
     return value as any;
 }
 

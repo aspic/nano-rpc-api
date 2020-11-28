@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -22,10 +23,14 @@ export enum ModelBoolean {
 }
 
 export function ModelBooleanFromJSON(json: any): ModelBoolean {
+    return ModelBooleanFromJSONTyped(json, false);
+}
+
+export function ModelBooleanFromJSONTyped(json: any, ignoreDiscriminator: boolean): ModelBoolean {
     return json as ModelBoolean;
 }
 
-export function ModelBooleanToJSON(value?: ModelBoolean): any {
+export function ModelBooleanToJSON(value?: ModelBoolean | null): any {
     return value as any;
 }
 

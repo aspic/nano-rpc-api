@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -15,6 +16,7 @@ import { exists, mapValues } from '../runtime';
 import {
     ModelBoolean,
     ModelBooleanFromJSON,
+    ModelBooleanFromJSONTyped,
     ModelBooleanToJSON,
 } from './';
 
@@ -31,7 +33,7 @@ export interface BlockCreateRequest {
      */
     action?: BlockCreateRequestActionEnum;
     /**
-     * Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.
+     * Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.
      * @type {ModelBoolean}
      * @memberof BlockCreateRequest
      */
@@ -93,7 +95,15 @@ export interface BlockCreateRequest {
 }
 
 export function BlockCreateRequestFromJSON(json: any): BlockCreateRequest {
+    return BlockCreateRequestFromJSONTyped(json, false);
+}
+
+export function BlockCreateRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BlockCreateRequest {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'action': !exists(json, 'action') ? undefined : json['action'],
         'jsonBlock': !exists(json, 'json_block') ? undefined : ModelBooleanFromJSON(json['json_block']),
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -108,11 +118,15 @@ export function BlockCreateRequestFromJSON(json: any): BlockCreateRequest {
     };
 }
 
-export function BlockCreateRequestToJSON(value?: BlockCreateRequest): any {
+export function BlockCreateRequestToJSON(value?: BlockCreateRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'action': value.action,
         'json_block': ModelBooleanToJSON(value.jsonBlock),
         'type': value.type,

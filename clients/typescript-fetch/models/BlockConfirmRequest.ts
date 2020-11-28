@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -33,17 +34,29 @@ export interface BlockConfirmRequest {
 }
 
 export function BlockConfirmRequestFromJSON(json: any): BlockConfirmRequest {
+    return BlockConfirmRequestFromJSONTyped(json, false);
+}
+
+export function BlockConfirmRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BlockConfirmRequest {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'action': json['action'],
         'hash': !exists(json, 'hash') ? undefined : json['hash'],
     };
 }
 
-export function BlockConfirmRequestToJSON(value?: BlockConfirmRequest): any {
+export function BlockConfirmRequestToJSON(value?: BlockConfirmRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'action': value.action,
         'hash': value.hash,
     };

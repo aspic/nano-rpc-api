@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -15,6 +16,7 @@ import { exists, mapValues } from '../runtime';
 import {
     ModelBoolean,
     ModelBooleanFromJSON,
+    ModelBooleanFromJSONTyped,
     ModelBooleanToJSON,
 } from './';
 
@@ -31,7 +33,7 @@ export interface ActiveDifficultyRequest {
      */
     action: ActiveDifficultyRequestActionEnum;
     /**
-     * Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample. 
+     * Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample.
      * @type {ModelBoolean}
      * @memberof ActiveDifficultyRequest
      */
@@ -39,17 +41,29 @@ export interface ActiveDifficultyRequest {
 }
 
 export function ActiveDifficultyRequestFromJSON(json: any): ActiveDifficultyRequest {
+    return ActiveDifficultyRequestFromJSONTyped(json, false);
+}
+
+export function ActiveDifficultyRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ActiveDifficultyRequest {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'action': json['action'],
         'includeTrend': !exists(json, 'include_trend') ? undefined : ModelBooleanFromJSON(json['include_trend']),
     };
 }
 
-export function ActiveDifficultyRequestToJSON(value?: ActiveDifficultyRequest): any {
+export function ActiveDifficultyRequestToJSON(value?: ActiveDifficultyRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'action': value.action,
         'include_trend': ModelBooleanToJSON(value.includeTrend),
     };

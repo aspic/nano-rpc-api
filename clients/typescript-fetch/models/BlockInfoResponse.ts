@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -15,12 +16,15 @@ import { exists, mapValues } from '../runtime';
 import {
     BlockDataJson,
     BlockDataJsonFromJSON,
+    BlockDataJsonFromJSONTyped,
     BlockDataJsonToJSON,
     ModelBoolean,
     ModelBooleanFromJSON,
+    ModelBooleanFromJSONTyped,
     ModelBooleanToJSON,
     SubType,
     SubTypeFromJSON,
+    SubTypeFromJSONTyped,
     SubTypeToJSON,
 } from './';
 
@@ -81,7 +85,15 @@ export interface BlockInfoResponse {
 }
 
 export function BlockInfoResponseFromJSON(json: any): BlockInfoResponse {
+    return BlockInfoResponseFromJSONTyped(json, false);
+}
+
+export function BlockInfoResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): BlockInfoResponse {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'blockAccount': !exists(json, 'block_account') ? undefined : json['block_account'],
         'amount': !exists(json, 'amount') ? undefined : json['amount'],
         'balance': !exists(json, 'balance') ? undefined : json['balance'],
@@ -93,11 +105,15 @@ export function BlockInfoResponseFromJSON(json: any): BlockInfoResponse {
     };
 }
 
-export function BlockInfoResponseToJSON(value?: BlockInfoResponse): any {
+export function BlockInfoResponseToJSON(value?: BlockInfoResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'block_account': value.blockAccount,
         'amount': value.amount,
         'balance': value.balance,

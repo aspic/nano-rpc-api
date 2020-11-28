@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -146,6 +147,54 @@ import {
     BlocksResponse,
     BlocksResponseFromJSON,
     BlocksResponseToJSON,
+    BootstrapAnyRequest,
+    BootstrapAnyRequestFromJSON,
+    BootstrapAnyRequestToJSON,
+    BootstrapAnyResponse,
+    BootstrapAnyResponseFromJSON,
+    BootstrapAnyResponseToJSON,
+    BootstrapLazyRequest,
+    BootstrapLazyRequestFromJSON,
+    BootstrapLazyRequestToJSON,
+    BootstrapLazyResponse,
+    BootstrapLazyResponseFromJSON,
+    BootstrapLazyResponseToJSON,
+    BootstrapRequest,
+    BootstrapRequestFromJSON,
+    BootstrapRequestToJSON,
+    BootstrapResponse,
+    BootstrapResponseFromJSON,
+    BootstrapResponseToJSON,
+    ChainRequest,
+    ChainRequestFromJSON,
+    ChainRequestToJSON,
+    ChainResponse,
+    ChainResponseFromJSON,
+    ChainResponseToJSON,
+    ConfirmationActiveRequest,
+    ConfirmationActiveRequestFromJSON,
+    ConfirmationActiveRequestToJSON,
+    ConfirmationActiveResponse,
+    ConfirmationActiveResponseFromJSON,
+    ConfirmationActiveResponseToJSON,
+    ConfirmationHeightCurrentlyProcessingRequest,
+    ConfirmationHeightCurrentlyProcessingRequestFromJSON,
+    ConfirmationHeightCurrentlyProcessingRequestToJSON,
+    ConfirmationHeightCurrentlyProcessingResponse,
+    ConfirmationHeightCurrentlyProcessingResponseFromJSON,
+    ConfirmationHeightCurrentlyProcessingResponseToJSON,
+    ConfirmationHistoryRequest,
+    ConfirmationHistoryRequestFromJSON,
+    ConfirmationHistoryRequestToJSON,
+    ConfirmationHistoryResponse,
+    ConfirmationHistoryResponseFromJSON,
+    ConfirmationHistoryResponseToJSON,
+    ConfirmationInfoRequest,
+    ConfirmationInfoRequestFromJSON,
+    ConfirmationInfoRequestToJSON,
+    ConfirmationInfoResponse,
+    ConfirmationInfoResponseFromJSON,
+    ConfirmationInfoResponseToJSON,
     KeyCreateRequest,
     KeyCreateRequestFromJSON,
     KeyCreateRequestToJSON,
@@ -172,119 +221,151 @@ import {
     WorkGenerateResponseToJSON,
 } from '../models';
 
-export interface AccountBalanceRequest {
+export interface AccountBalanceOperationRequest {
     accountBalanceRequest?: AccountBalanceRequest;
 }
 
-export interface AccountBlockCountRequest {
+export interface AccountBlockCountOperationRequest {
     accountBlockCountRequest?: AccountBlockCountRequest;
 }
 
-export interface AccountGetRequest {
+export interface AccountGetOperationRequest {
     accountGetRequest?: AccountGetRequest;
 }
 
-export interface AccountHistoryRequest {
+export interface AccountHistoryOperationRequest {
     accountHistoryRequest?: AccountHistoryRequest;
 }
 
-export interface AccountInfoRequest {
+export interface AccountInfoOperationRequest {
     accountInfoRequest?: AccountInfoRequest;
 }
 
-export interface AccountKeyRequest {
+export interface AccountKeyOperationRequest {
     accountKeyRequest?: AccountKeyRequest;
 }
 
-export interface AccountRepresentativeRequest {
+export interface AccountRepresentativeOperationRequest {
     accountRepresentativeRequest?: AccountRepresentativeRequest;
 }
 
-export interface AccountWeightRequest {
+export interface AccountWeightOperationRequest {
     accountWeightRequest?: AccountWeightRequest;
 }
 
-export interface AccountsBalancesRequest {
+export interface AccountsBalancesOperationRequest {
     accountsBalancesRequest?: AccountsBalancesRequest;
 }
 
-export interface AccountsFrontiersRequest {
+export interface AccountsFrontiersOperationRequest {
     accountsFrontiersRequest?: AccountsFrontiersRequest;
 }
 
-export interface AccountsPendingRequest {
+export interface AccountsPendingOperationRequest {
     accountsPendingRequest?: AccountsPendingRequest;
 }
 
-export interface ActiveDifficultyRequest {
+export interface ActiveDifficultyOperationRequest {
     activeDifficultyRequest?: ActiveDifficultyRequest;
 }
 
-export interface AvailableSupplyRequest {
+export interface AvailableSupplyOperationRequest {
     availableSupplyRequest?: AvailableSupplyRequest;
 }
 
-export interface BlockAccountRequest {
+export interface BlockAccountOperationRequest {
     blockAccountRequest?: BlockAccountRequest;
 }
 
-export interface BlockConfirmRequest {
+export interface BlockConfirmOperationRequest {
     blockConfirmRequest?: BlockConfirmRequest;
 }
 
-export interface BlockCountRequest {
+export interface BlockCountOperationRequest {
     blockCountRequest?: BlockCountRequest;
 }
 
-export interface BlockCountTypeRequest {
+export interface BlockCountTypeOperationRequest {
     blockCountTypeRequest?: BlockCountTypeRequest;
 }
 
-export interface BlockCreateRequest {
+export interface BlockCreateOperationRequest {
     blockCreateRequest?: BlockCreateRequest;
 }
 
-export interface BlockHashRequest {
+export interface BlockHashOperationRequest {
     blockHashRequest?: BlockHashRequest;
 }
 
-export interface BlockInfoRequest {
+export interface BlockInfoOperationRequest {
     blockInfoRequest?: BlockInfoRequest;
 }
 
-export interface BlocksRequest {
+export interface BlocksOperationRequest {
     blocksRequest?: BlocksRequest;
 }
 
-export interface BlocksInfoRequest {
+export interface BlocksInfoOperationRequest {
     blocksInfoRequest?: BlocksInfoRequest;
 }
 
-export interface KeyCreateRequest {
+export interface BootstrapOperationRequest {
+    bootstrapRequest?: BootstrapRequest;
+}
+
+export interface BootstrapAnyOperationRequest {
+    bootstrapAnyRequest?: BootstrapAnyRequest;
+}
+
+export interface BootstrapLazyOperationRequest {
+    bootstrapLazyRequest?: BootstrapLazyRequest;
+}
+
+export interface ChainOperationRequest {
+    chainRequest?: ChainRequest;
+}
+
+export interface ConfirmationActiveOperationRequest {
+    confirmationActiveRequest?: ConfirmationActiveRequest;
+}
+
+export interface ConfirmationHeightCurrentlyProcessingOperationRequest {
+    confirmationHeightCurrentlyProcessingRequest?: ConfirmationHeightCurrentlyProcessingRequest;
+}
+
+export interface ConfirmationHistoryOperationRequest {
+    confirmationHistoryRequest?: ConfirmationHistoryRequest;
+}
+
+export interface ConfirmationInfoOperationRequest {
+    confirmationInfoRequest?: ConfirmationInfoRequest;
+}
+
+export interface KeyCreateOperationRequest {
     keyCreateRequest?: KeyCreateRequest;
 }
 
-export interface KeyExpandRequest {
+export interface KeyExpandOperationRequest {
     keyExpandRequest?: KeyExpandRequest;
 }
 
-export interface ProcessRequest {
+export interface ProcessOperationRequest {
     processRequest?: ProcessRequest;
 }
 
-export interface WorkGenerateRequest {
+export interface WorkGenerateOperationRequest {
     workGenerateRequest?: WorkGenerateRequest;
 }
 
 /**
- * no description
+ * 
  */
 export class NodeRPCsApi extends runtime.BaseAPI {
 
     /**
      * Returns how many RAW is owned and how many have not yet been received by **account** > This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
      */
-    async accountBalanceRaw(requestParameters: AccountBalanceRequest): Promise<runtime.ApiResponse<AccountBalanceResponse>> {
+    async accountBalanceRaw(requestParameters: AccountBalanceOperationRequest): Promise<runtime.ApiResponse<AccountBalanceResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -305,7 +386,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns how many RAW is owned and how many have not yet been received by **account** > This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
      */
-    async accountBalance(requestParameters: AccountBalanceRequest): Promise<AccountBalanceResponse> {
+    async accountBalance(requestParameters: AccountBalanceOperationRequest): Promise<AccountBalanceResponse> {
         const response = await this.accountBalanceRaw(requestParameters);
         return await response.value();
     }
@@ -313,7 +394,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Get number of blocks for a specific account
      */
-    async accountBlockCountRaw(requestParameters: AccountBlockCountRequest): Promise<runtime.ApiResponse<AccountBlockCountResponse>> {
+    async accountBlockCountRaw(requestParameters: AccountBlockCountOperationRequest): Promise<runtime.ApiResponse<AccountBlockCountResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -334,7 +415,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Get number of blocks for a specific account
      */
-    async accountBlockCount(requestParameters: AccountBlockCountRequest): Promise<AccountBlockCountResponse> {
+    async accountBlockCount(requestParameters: AccountBlockCountOperationRequest): Promise<AccountBlockCountResponse> {
         const response = await this.accountBlockCountRaw(requestParameters);
         return await response.value();
     }
@@ -342,7 +423,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Get account for the public key
      */
-    async accountGetRaw(requestParameters: AccountGetRequest): Promise<runtime.ApiResponse<AccountGetResponse>> {
+    async accountGetRaw(requestParameters: AccountGetOperationRequest): Promise<runtime.ApiResponse<AccountGetResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -363,7 +444,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Get account for the public key
      */
-    async accountGet(requestParameters: AccountGetRequest): Promise<AccountGetResponse> {
+    async accountGet(requestParameters: AccountGetOperationRequest): Promise<AccountGetResponse> {
         const response = await this.accountGetRaw(requestParameters);
         return await response.value();
     }
@@ -371,7 +452,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Gets the account history. Reports send/receive information for an account. 
      */
-    async accountHistoryRaw(requestParameters: AccountHistoryRequest): Promise<runtime.ApiResponse<AccountHistoryResponse>> {
+    async accountHistoryRaw(requestParameters: AccountHistoryOperationRequest): Promise<runtime.ApiResponse<AccountHistoryResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -392,7 +473,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Gets the account history. Reports send/receive information for an account. 
      */
-    async accountHistory(requestParameters: AccountHistoryRequest): Promise<AccountHistoryResponse> {
+    async accountHistory(requestParameters: AccountHistoryOperationRequest): Promise<AccountHistoryResponse> {
         const response = await this.accountHistoryRaw(requestParameters);
         return await response.value();
     }
@@ -400,7 +481,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for **account**. Only works for accounts that have an entry on the ledger, will return _Account not found_ otherwise. 
      */
-    async accountInfoRaw(requestParameters: AccountInfoRequest): Promise<runtime.ApiResponse<AccountInfoResponse>> {
+    async accountInfoRaw(requestParameters: AccountInfoOperationRequest): Promise<runtime.ApiResponse<AccountInfoResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -421,7 +502,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for **account**. Only works for accounts that have an entry on the ledger, will return _Account not found_ otherwise. 
      */
-    async accountInfo(requestParameters: AccountInfoRequest): Promise<AccountInfoResponse> {
+    async accountInfo(requestParameters: AccountInfoOperationRequest): Promise<AccountInfoResponse> {
         const response = await this.accountInfoRaw(requestParameters);
         return await response.value();
     }
@@ -429,7 +510,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Get the public key for **account** 
      */
-    async accountKeyRaw(requestParameters: AccountKeyRequest): Promise<runtime.ApiResponse<AccountKeyResponse>> {
+    async accountKeyRaw(requestParameters: AccountKeyOperationRequest): Promise<runtime.ApiResponse<AccountKeyResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -450,7 +531,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Get the public key for **account** 
      */
-    async accountKey(requestParameters: AccountKeyRequest): Promise<AccountKeyResponse> {
+    async accountKey(requestParameters: AccountKeyOperationRequest): Promise<AccountKeyResponse> {
         const response = await this.accountKeyRaw(requestParameters);
         return await response.value();
     }
@@ -458,7 +539,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns the representative for **account** 
      */
-    async accountRepresentativeRaw(requestParameters: AccountRepresentativeRequest): Promise<runtime.ApiResponse<AccountRepresentativeResponse>> {
+    async accountRepresentativeRaw(requestParameters: AccountRepresentativeOperationRequest): Promise<runtime.ApiResponse<AccountRepresentativeResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -479,7 +560,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns the representative for **account** 
      */
-    async accountRepresentative(requestParameters: AccountRepresentativeRequest): Promise<AccountRepresentativeResponse> {
+    async accountRepresentative(requestParameters: AccountRepresentativeOperationRequest): Promise<AccountRepresentativeResponse> {
         const response = await this.accountRepresentativeRaw(requestParameters);
         return await response.value();
     }
@@ -487,7 +568,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns the voting weight for **account** 
      */
-    async accountWeightRaw(requestParameters: AccountWeightRequest): Promise<runtime.ApiResponse<AccountWeightResponse>> {
+    async accountWeightRaw(requestParameters: AccountWeightOperationRequest): Promise<runtime.ApiResponse<AccountWeightResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -508,7 +589,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns the voting weight for **account** 
      */
-    async accountWeight(requestParameters: AccountWeightRequest): Promise<AccountWeightResponse> {
+    async accountWeight(requestParameters: AccountWeightOperationRequest): Promise<AccountWeightResponse> {
         const response = await this.accountWeightRaw(requestParameters);
         return await response.value();
     }
@@ -516,7 +597,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns how many RAW is owned and how many have not yet been received by **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
      */
-    async accountsBalancesRaw(requestParameters: AccountsBalancesRequest): Promise<runtime.ApiResponse<AccountsBalancesResponse>> {
+    async accountsBalancesRaw(requestParameters: AccountsBalancesOperationRequest): Promise<runtime.ApiResponse<AccountsBalancesResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -537,7 +618,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns how many RAW is owned and how many have not yet been received by **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
      */
-    async accountsBalances(requestParameters: AccountsBalancesRequest): Promise<AccountsBalancesResponse> {
+    async accountsBalances(requestParameters: AccountsBalancesOperationRequest): Promise<AccountsBalancesResponse> {
         const response = await this.accountsBalancesRaw(requestParameters);
         return await response.value();
     }
@@ -545,7 +626,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns a list of pairs of account and block hash representing the head block for **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
      */
-    async accountsFrontiersRaw(requestParameters: AccountsFrontiersRequest): Promise<runtime.ApiResponse<AccountsFrontiersResponse>> {
+    async accountsFrontiersRaw(requestParameters: AccountsFrontiersOperationRequest): Promise<runtime.ApiResponse<AccountsFrontiersResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -566,7 +647,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns a list of pairs of account and block hash representing the head block for **accounts list**  This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network. 
      */
-    async accountsFrontiers(requestParameters: AccountsFrontiersRequest): Promise<AccountsFrontiersResponse> {
+    async accountsFrontiers(requestParameters: AccountsFrontiersOperationRequest): Promise<AccountsFrontiersResponse> {
         const response = await this.accountsFrontiersRaw(requestParameters);
         return await response.value();
     }
@@ -574,7 +655,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns a list of block hashes which have not yet been received by these accounts
      */
-    async accountsPendingRaw(requestParameters: AccountsPendingRequest): Promise<runtime.ApiResponse<AccountsPendingResponse>> {
+    async accountsPendingRaw(requestParameters: AccountsPendingOperationRequest): Promise<runtime.ApiResponse<AccountsPendingResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -595,7 +676,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns a list of block hashes which have not yet been received by these accounts
      */
-    async accountsPending(requestParameters: AccountsPendingRequest): Promise<AccountsPendingResponse> {
+    async accountsPending(requestParameters: AccountsPendingOperationRequest): Promise<AccountsPendingResponse> {
         const response = await this.accountsPendingRaw(requestParameters);
         return await response.value();
     }
@@ -603,7 +684,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (network_minimum) as well as the current active difficulty seen on the network (network_current, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the network_current from the base difficulty of network_minimum is also provided for comparison. 
      */
-    async activeDifficultyRaw(requestParameters: ActiveDifficultyRequest): Promise<runtime.ApiResponse<ActiveDifficultyResponse>> {
+    async activeDifficultyRaw(requestParameters: ActiveDifficultyOperationRequest): Promise<runtime.ApiResponse<ActiveDifficultyResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -624,7 +705,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns the difficulty values (16 hexadecimal digits string, 64 bit) for the minimum required on the network (network_minimum) as well as the current active difficulty seen on the network (network_current, 5 minute trended average of adjusted difficulty seen on confirmed transactions) which can be used to perform rework for better prioritization of transaction processing. A multiplier of the network_current from the base difficulty of network_minimum is also provided for comparison. 
      */
-    async activeDifficulty(requestParameters: ActiveDifficultyRequest): Promise<ActiveDifficultyResponse> {
+    async activeDifficulty(requestParameters: ActiveDifficultyOperationRequest): Promise<ActiveDifficultyResponse> {
         const response = await this.activeDifficultyRaw(requestParameters);
         return await response.value();
     }
@@ -632,7 +713,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns how many raw are in the public supply 
      */
-    async availableSupplyRaw(requestParameters: AvailableSupplyRequest): Promise<runtime.ApiResponse<AvailableSupplyResponse>> {
+    async availableSupplyRaw(requestParameters: AvailableSupplyOperationRequest): Promise<runtime.ApiResponse<AvailableSupplyResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -653,7 +734,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns how many raw are in the public supply 
      */
-    async availableSupply(requestParameters: AvailableSupplyRequest): Promise<AvailableSupplyResponse> {
+    async availableSupply(requestParameters: AvailableSupplyOperationRequest): Promise<AvailableSupplyResponse> {
         const response = await this.availableSupplyRaw(requestParameters);
         return await response.value();
     }
@@ -661,7 +742,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns the account containing block 
      */
-    async blockAccountRaw(requestParameters: BlockAccountRequest): Promise<runtime.ApiResponse<BlockAccountResponse>> {
+    async blockAccountRaw(requestParameters: BlockAccountOperationRequest): Promise<runtime.ApiResponse<BlockAccountResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -682,7 +763,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returns the account containing block 
      */
-    async blockAccount(requestParameters: BlockAccountRequest): Promise<BlockAccountResponse> {
+    async blockAccount(requestParameters: BlockAccountOperationRequest): Promise<BlockAccountResponse> {
         const response = await this.blockAccountRaw(requestParameters);
         return await response.value();
     }
@@ -690,7 +771,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Request confirmation for **block** from known online representative nodes. Check results with confirmation history. 
      */
-    async blockConfirmRaw(requestParameters: BlockConfirmRequest): Promise<runtime.ApiResponse<BlockConfirmResponse>> {
+    async blockConfirmRaw(requestParameters: BlockConfirmOperationRequest): Promise<runtime.ApiResponse<BlockConfirmResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -711,7 +792,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Request confirmation for **block** from known online representative nodes. Check results with confirmation history. 
      */
-    async blockConfirm(requestParameters: BlockConfirmRequest): Promise<BlockConfirmResponse> {
+    async blockConfirm(requestParameters: BlockConfirmOperationRequest): Promise<BlockConfirmResponse> {
         const response = await this.blockConfirmRaw(requestParameters);
         return await response.value();
     }
@@ -719,7 +800,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Reports the number of blocks in the ledger and unchecked synchronizing blocks. 
      */
-    async blockCountRaw(requestParameters: BlockCountRequest): Promise<runtime.ApiResponse<BlockCountResponse>> {
+    async blockCountRaw(requestParameters: BlockCountOperationRequest): Promise<runtime.ApiResponse<BlockCountResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -740,7 +821,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Reports the number of blocks in the ledger and unchecked synchronizing blocks. 
      */
-    async blockCount(requestParameters: BlockCountRequest): Promise<BlockCountResponse> {
+    async blockCount(requestParameters: BlockCountOperationRequest): Promise<BlockCountResponse> {
         const response = await this.blockCountRaw(requestParameters);
         return await response.value();
     }
@@ -748,7 +829,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Reports the number of blocks in the ledger by type (send, receive, open, change, state with version) 
      */
-    async blockCountTypeRaw(requestParameters: BlockCountTypeRequest): Promise<runtime.ApiResponse<BlockCountTypeResponse>> {
+    async blockCountTypeRaw(requestParameters: BlockCountTypeOperationRequest): Promise<runtime.ApiResponse<BlockCountTypeResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -769,7 +850,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Reports the number of blocks in the ledger by type (send, receive, open, change, state with version) 
      */
-    async blockCountType(requestParameters: BlockCountTypeRequest): Promise<BlockCountTypeResponse> {
+    async blockCountType(requestParameters: BlockCountTypeOperationRequest): Promise<BlockCountTypeResponse> {
         const response = await this.blockCountTypeRaw(requestParameters);
         return await response.value();
     }
@@ -777,7 +858,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing. 
      */
-    async blockCreateRaw(requestParameters: BlockCreateRequest): Promise<runtime.ApiResponse<BlockCreateResponse>> {
+    async blockCreateRaw(requestParameters: BlockCreateOperationRequest): Promise<runtime.ApiResponse<BlockCreateResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -798,7 +879,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Creates a json representations of new block based on input data & signed with **private key** or **account** in **wallet**. Use for offline signing. 
      */
-    async blockCreate(requestParameters: BlockCreateRequest): Promise<BlockCreateResponse> {
+    async blockCreate(requestParameters: BlockCreateOperationRequest): Promise<BlockCreateResponse> {
         const response = await this.blockCreateRaw(requestParameters);
         return await response.value();
     }
@@ -806,7 +887,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0. 
      */
-    async blockHashRaw(requestParameters: BlockHashRequest): Promise<runtime.ApiResponse<BlockHashResponse>> {
+    async blockHashRaw(requestParameters: BlockHashOperationRequest): Promise<runtime.ApiResponse<BlockHashResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -827,7 +908,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Returning block hash for given block content. Using the optional **json_block** is recommended since v19.0. 
      */
-    async blockHash(requestParameters: BlockHashRequest): Promise<BlockHashResponse> {
+    async blockHash(requestParameters: BlockHashOperationRequest): Promise<BlockHashResponse> {
         const response = await this.blockHashRaw(requestParameters);
         return await response.value();
     }
@@ -835,7 +916,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Retrieves a json representation of the block in `contents` along with:  * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp` * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`,  `change` or `epoch`  Using the optional `json_block` is recommended since v19.0. 
      */
-    async blockInfoRaw(requestParameters: BlockInfoRequest): Promise<runtime.ApiResponse<BlockInfoResponse>> {
+    async blockInfoRaw(requestParameters: BlockInfoOperationRequest): Promise<runtime.ApiResponse<BlockInfoResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -856,7 +937,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Retrieves a json representation of the block in `contents` along with:  * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification `timestamp` * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`,  `change` or `epoch`  Using the optional `json_block` is recommended since v19.0. 
      */
-    async blockInfo(requestParameters: BlockInfoRequest): Promise<BlockInfoResponse> {
+    async blockInfo(requestParameters: BlockInfoOperationRequest): Promise<BlockInfoResponse> {
         const response = await this.blockInfoRaw(requestParameters);
         return await response.value();
     }
@@ -864,7 +945,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Retrieves a json representations of **blocks**. 
      */
-    async blocksRaw(requestParameters: BlocksRequest): Promise<runtime.ApiResponse<BlocksResponse>> {
+    async blocksRaw(requestParameters: BlocksOperationRequest): Promise<runtime.ApiResponse<BlocksResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -885,7 +966,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Retrieves a json representations of **blocks**. 
      */
-    async blocks(requestParameters: BlocksRequest): Promise<BlocksResponse> {
+    async blocks(requestParameters: BlocksOperationRequest): Promise<BlocksResponse> {
         const response = await this.blocksRaw(requestParameters);
         return await response.value();
     }
@@ -893,7 +974,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Retrieves a json representations of blocks in contents along with:  * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification  timestamp * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`, `change` or `epoch` 
      */
-    async blocksInfoRaw(requestParameters: BlocksInfoRequest): Promise<runtime.ApiResponse<BlocksInfoResponse>> {
+    async blocksInfoRaw(requestParameters: BlocksInfoOperationRequest): Promise<runtime.ApiResponse<BlocksInfoResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -914,15 +995,247 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Retrieves a json representations of blocks in contents along with:  * _since version 18.0_: `block_account`, transaction `amount`, block `balance`, block `height` in account chain, block local modification  timestamp * _since version 19.0_: Whether block was `confirmed`, `subtype` (for state blocks) of `send`, `receive`, `change` or `epoch` 
      */
-    async blocksInfo(requestParameters: BlocksInfoRequest): Promise<BlocksInfoResponse> {
+    async blocksInfo(requestParameters: BlocksInfoOperationRequest): Promise<BlocksInfoResponse> {
         const response = await this.blocksInfoRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Initialize bootstrap to specific **IP address** and **port**. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap) 
+     */
+    async bootstrapRaw(requestParameters: BootstrapOperationRequest): Promise<runtime.ApiResponse<BootstrapResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#bootstrap`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BootstrapRequestToJSON(requestParameters.bootstrapRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BootstrapResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Initialize bootstrap to specific **IP address** and **port**. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap) 
+     */
+    async bootstrap(requestParameters: BootstrapOperationRequest): Promise<BootstrapResponse> {
+        const response = await this.bootstrapRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Initialize multi-connection bootstrap to random peers. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap) 
+     */
+    async bootstrapAnyRaw(requestParameters: BootstrapAnyOperationRequest): Promise<runtime.ApiResponse<BootstrapAnyResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#bootstrap_any`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BootstrapAnyRequestToJSON(requestParameters.bootstrapAnyRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BootstrapAnyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Initialize multi-connection bootstrap to random peers. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap) 
+     */
+    async bootstrapAny(requestParameters: BootstrapAnyOperationRequest): Promise<BootstrapAnyResponse> {
+        const response = await this.bootstrapAnyRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * _version 17.0+_  Initialize lazy bootstrap with given block hash. Not compatible with launch flag [--disable_lazy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_lazy_bootstrap) 
+     */
+    async bootstrapLazyRaw(requestParameters: BootstrapLazyOperationRequest): Promise<runtime.ApiResponse<BootstrapLazyResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#bootstrap_lazy`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BootstrapLazyRequestToJSON(requestParameters.bootstrapLazyRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BootstrapLazyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * _version 17.0+_  Initialize lazy bootstrap with given block hash. Not compatible with launch flag [--disable_lazy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_lazy_bootstrap) 
+     */
+    async bootstrapLazy(requestParameters: BootstrapLazyOperationRequest): Promise<BootstrapLazyResponse> {
+        const response = await this.bootstrapLazyRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Returns a consecutive list of block hashes in the account chain starting at **block** back to **count** (direction from frontier back to open block, from newer blocks to older). Will list all blocks back to the open block of this chain when count is set to \"-1\". The requested block hash is included in the answer. 
+     */
+    async chainRaw(requestParameters: ChainOperationRequest): Promise<runtime.ApiResponse<ChainResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#chain`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ChainRequestToJSON(requestParameters.chainRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChainResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns a consecutive list of block hashes in the account chain starting at **block** back to **count** (direction from frontier back to open block, from newer blocks to older). Will list all blocks back to the open block of this chain when count is set to \"-1\". The requested block hash is included in the answer. 
+     */
+    async chain(requestParameters: ChainOperationRequest): Promise<ChainResponse> {
+        const response = await this.chainRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * _version 16.0+_  Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with confirmation_info  The roots provided are two parts and differ between the first account block and subsequent blocks:  * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key * Other blocks: previous hash + previous hash 
+     */
+    async confirmationActiveRaw(requestParameters: ConfirmationActiveOperationRequest): Promise<runtime.ApiResponse<ConfirmationActiveResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#confirmation_active`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConfirmationActiveRequestToJSON(requestParameters.confirmationActiveRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConfirmationActiveResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * _version 16.0+_  Returns list of active elections roots (excluding stopped & aborted elections). Find info about specific root with confirmation_info  The roots provided are two parts and differ between the first account block and subsequent blocks:  * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key * Other blocks: previous hash + previous hash 
+     */
+    async confirmationActive(requestParameters: ConfirmationActiveOperationRequest): Promise<ConfirmationActiveResponse> {
+        const response = await this.confirmationActiveRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * _version 19.0+_  Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which block was the original being confirmed. 
+     */
+    async confirmationHeightCurrentlyProcessingRaw(requestParameters: ConfirmationHeightCurrentlyProcessingOperationRequest): Promise<runtime.ApiResponse<ConfirmationHeightCurrentlyProcessingResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#confirmation_height_currently_processing`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConfirmationHeightCurrentlyProcessingRequestToJSON(requestParameters.confirmationHeightCurrentlyProcessingRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConfirmationHeightCurrentlyProcessingResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * _version 19.0+_  Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which block was the original being confirmed. 
+     */
+    async confirmationHeightCurrentlyProcessing(requestParameters: ConfirmationHeightCurrentlyProcessingOperationRequest): Promise<ConfirmationHeightCurrentlyProcessingResponse> {
+        const response = await this.confirmationHeightCurrentlyProcessingRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * _version 12.0+_ _duration, time, confirmation_stats: version 17.0+_  Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns stats: count of elections in history (limited to 2048) & average duration time  With version 19.0+ `confirmation_history_size` can be managed in [config.json](https://docs.nano.org/running-a-node/configuration/#example-file) to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of  approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](https://docs.nano.org/integration-guides/advanced/#websocket-support) instead. 
+     */
+    async confirmationHistoryRaw(requestParameters: ConfirmationHistoryOperationRequest): Promise<runtime.ApiResponse<ConfirmationHistoryResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#confirmation_history`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConfirmationHistoryRequestToJSON(requestParameters.confirmationHistoryRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConfirmationHistoryResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * _version 12.0+_ _duration, time, confirmation_stats: version 17.0+_  Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns stats: count of elections in history (limited to 2048) & average duration time  With version 19.0+ `confirmation_history_size` can be managed in [config.json](https://docs.nano.org/running-a-node/configuration/#example-file) to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of  approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](https://docs.nano.org/integration-guides/advanced/#websocket-support) instead. 
+     */
+    async confirmationHistory(requestParameters: ConfirmationHistoryOperationRequest): Promise<ConfirmationHistoryResponse> {
+        const response = await this.confirmationHistoryRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * _version 16.0+_  Returns info about active election by *root*. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.  The roots provided are two parts and differ between the first account block and subsequent blocks:  * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key * Other blocks: previous hash + previous hash 
+     */
+    async confirmationInfoRaw(requestParameters: ConfirmationInfoOperationRequest): Promise<runtime.ApiResponse<ConfirmationInfoResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#confirmation_info`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConfirmationInfoRequestToJSON(requestParameters.confirmationInfoRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConfirmationInfoResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * _version 16.0+_  Returns info about active election by *root*. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally & block contents for each. Using the optional `json_block` is recommended since v19.0.  The roots provided are two parts and differ between the first account block and subsequent blocks:  * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key * Other blocks: previous hash + previous hash 
+     */
+    async confirmationInfo(requestParameters: ConfirmationInfoOperationRequest): Promise<ConfirmationInfoResponse> {
+        const response = await this.confirmationInfoRaw(requestParameters);
         return await response.value();
     }
 
     /**
      * Generates an **adhoc random** keypair 
      */
-    async keyCreateRaw(requestParameters: KeyCreateRequest): Promise<runtime.ApiResponse<KeyCreateResponse>> {
+    async keyCreateRaw(requestParameters: KeyCreateOperationRequest): Promise<runtime.ApiResponse<KeyCreateResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -943,7 +1256,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Generates an **adhoc random** keypair 
      */
-    async keyCreate(requestParameters: KeyCreateRequest): Promise<KeyCreateResponse> {
+    async keyCreate(requestParameters: KeyCreateOperationRequest): Promise<KeyCreateResponse> {
         const response = await this.keyCreateRaw(requestParameters);
         return await response.value();
     }
@@ -951,7 +1264,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Derive public key and account number from **private key** 
      */
-    async keyExpandRaw(requestParameters: KeyExpandRequest): Promise<runtime.ApiResponse<KeyExpandResponse>> {
+    async keyExpandRaw(requestParameters: KeyExpandOperationRequest): Promise<runtime.ApiResponse<KeyExpandResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -972,7 +1285,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Derive public key and account number from **private key** 
      */
-    async keyExpand(requestParameters: KeyExpandRequest): Promise<KeyExpandResponse> {
+    async keyExpand(requestParameters: KeyExpandOperationRequest): Promise<KeyExpandResponse> {
         const response = await this.keyExpandRaw(requestParameters);
         return await response.value();
     }
@@ -980,7 +1293,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Publish block to the network
      */
-    async processRaw(requestParameters: ProcessRequest): Promise<runtime.ApiResponse<ProcessResponse>> {
+    async processRaw(requestParameters: ProcessOperationRequest): Promise<runtime.ApiResponse<ProcessResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1001,7 +1314,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Publish block to the network
      */
-    async process(requestParameters: ProcessRequest): Promise<ProcessResponse> {
+    async process(requestParameters: ProcessOperationRequest): Promise<ProcessResponse> {
         const response = await this.processRaw(requestParameters);
         return await response.value();
     }
@@ -1009,7 +1322,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Generates work for block. hash is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with account_key 
      */
-    async workGenerateRaw(requestParameters: WorkGenerateRequest): Promise<runtime.ApiResponse<WorkGenerateResponse>> {
+    async workGenerateRaw(requestParameters: WorkGenerateOperationRequest): Promise<runtime.ApiResponse<WorkGenerateResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1030,7 +1343,7 @@ export class NodeRPCsApi extends runtime.BaseAPI {
     /**
      * Generates work for block. hash is the frontier of the account or in the case of an open block, the public key representation of the account which can be found with account_key 
      */
-    async workGenerate(requestParameters: WorkGenerateRequest): Promise<WorkGenerateResponse> {
+    async workGenerate(requestParameters: WorkGenerateOperationRequest): Promise<WorkGenerateResponse> {
         const response = await this.workGenerateRaw(requestParameters);
         return await response.value();
     }

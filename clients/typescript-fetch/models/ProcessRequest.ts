@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -15,9 +16,11 @@ import { exists, mapValues } from '../runtime';
 import {
     BlockDataJson,
     BlockDataJsonFromJSON,
+    BlockDataJsonFromJSONTyped,
     BlockDataJsonToJSON,
     ModelBoolean,
     ModelBooleanFromJSON,
+    ModelBooleanFromJSONTyped,
     ModelBooleanToJSON,
 } from './';
 
@@ -34,7 +37,7 @@ export interface ProcessRequest {
      */
     action?: ProcessRequestActionEnum;
     /**
-     * Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.
+     * Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.
      * @type {ModelBoolean}
      * @memberof ProcessRequest
      */
@@ -48,18 +51,30 @@ export interface ProcessRequest {
 }
 
 export function ProcessRequestFromJSON(json: any): ProcessRequest {
+    return ProcessRequestFromJSONTyped(json, false);
+}
+
+export function ProcessRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ProcessRequest {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'action': !exists(json, 'action') ? undefined : json['action'],
         'jsonBlock': !exists(json, 'json_block') ? undefined : ModelBooleanFromJSON(json['json_block']),
         'block': !exists(json, 'block') ? undefined : BlockDataJsonFromJSON(json['block']),
     };
 }
 
-export function ProcessRequestToJSON(value?: ProcessRequest): any {
+export function ProcessRequestToJSON(value?: ProcessRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'action': value.action,
         'json_block': ModelBooleanToJSON(value.jsonBlock),
         'block': BlockDataJsonToJSON(value.block),

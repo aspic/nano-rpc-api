@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -39,18 +40,30 @@ export interface ActiveDifficultyResponse {
 }
 
 export function ActiveDifficultyResponseFromJSON(json: any): ActiveDifficultyResponse {
+    return ActiveDifficultyResponseFromJSONTyped(json, false);
+}
+
+export function ActiveDifficultyResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ActiveDifficultyResponse {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'networkMinimum': !exists(json, 'network_minimum') ? undefined : json['network_minimum'],
         'networkCurrent': !exists(json, 'network_current') ? undefined : json['network_current'],
         'multiplier': !exists(json, 'multiplier') ? undefined : json['multiplier'],
     };
 }
 
-export function ActiveDifficultyResponseToJSON(value?: ActiveDifficultyResponse): any {
+export function ActiveDifficultyResponseToJSON(value?: ActiveDifficultyResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'network_minimum': value.networkMinimum,
         'network_current': value.networkCurrent,
         'multiplier': value.multiplier,

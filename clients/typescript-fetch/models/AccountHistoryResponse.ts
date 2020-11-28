@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -15,6 +16,7 @@ import { exists, mapValues } from '../runtime';
 import {
     Block,
     BlockFromJSON,
+    BlockFromJSONTyped,
     BlockToJSON,
 } from './';
 
@@ -45,20 +47,32 @@ export interface AccountHistoryResponse {
 }
 
 export function AccountHistoryResponseFromJSON(json: any): AccountHistoryResponse {
+    return AccountHistoryResponseFromJSONTyped(json, false);
+}
+
+export function AccountHistoryResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountHistoryResponse {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'account': !exists(json, 'account') ? undefined : json['account'],
-        'history': !exists(json, 'history') ? undefined : (json['history'] as Array<any>).map(BlockFromJSON),
+        'history': !exists(json, 'history') ? undefined : ((json['history'] as Array<any>).map(BlockFromJSON)),
         'previous': !exists(json, 'previous') ? undefined : json['previous'],
     };
 }
 
-export function AccountHistoryResponseToJSON(value?: AccountHistoryResponse): any {
+export function AccountHistoryResponseToJSON(value?: AccountHistoryResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'account': value.account,
-        'history': value.history === undefined ? undefined : (value.history as Array<any>).map(BlockToJSON),
+        'history': value.history === undefined ? undefined : ((value.history as Array<any>).map(BlockToJSON)),
         'previous': value.previous,
     };
 }

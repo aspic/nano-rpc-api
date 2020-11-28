@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -15,6 +16,7 @@ import { exists, mapValues } from '../runtime';
 import {
     ModelBoolean,
     ModelBooleanFromJSON,
+    ModelBooleanFromJSONTyped,
     ModelBooleanToJSON,
 } from './';
 
@@ -31,7 +33,7 @@ export interface BlocksInfoRequest {
      */
     action: BlocksInfoRequestActionEnum;
     /**
-     * Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.
+     * Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.
      * @type {ModelBoolean}
      * @memberof BlocksInfoRequest
      */
@@ -45,18 +47,30 @@ export interface BlocksInfoRequest {
 }
 
 export function BlocksInfoRequestFromJSON(json: any): BlocksInfoRequest {
+    return BlocksInfoRequestFromJSONTyped(json, false);
+}
+
+export function BlocksInfoRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BlocksInfoRequest {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'action': json['action'],
         'jsonBlock': !exists(json, 'json_block') ? undefined : ModelBooleanFromJSON(json['json_block']),
         'hashes': !exists(json, 'hashes') ? undefined : json['hashes'],
     };
 }
 
-export function BlocksInfoRequestToJSON(value?: BlocksInfoRequest): any {
+export function BlocksInfoRequestToJSON(value?: BlocksInfoRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'action': value.action,
         'json_block': ModelBooleanToJSON(value.jsonBlock),
         'hashes': value.hashes,

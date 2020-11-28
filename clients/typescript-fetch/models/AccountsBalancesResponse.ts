@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -15,6 +16,7 @@ import { exists, mapValues } from '../runtime';
 import {
     AccountBalanceResponse,
     AccountBalanceResponseFromJSON,
+    AccountBalanceResponseFromJSONTyped,
     AccountBalanceResponseToJSON,
 } from './';
 
@@ -33,17 +35,29 @@ export interface AccountsBalancesResponse {
 }
 
 export function AccountsBalancesResponseFromJSON(json: any): AccountsBalancesResponse {
+    return AccountsBalancesResponseFromJSONTyped(json, false);
+}
+
+export function AccountsBalancesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountsBalancesResponse {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
-        'balances': !exists(json, 'balances') ? undefined : mapValues(json['balances'], AccountBalanceResponseFromJSON),
+        
+        'balances': !exists(json, 'balances') ? undefined : (mapValues(json['balances'], AccountBalanceResponseFromJSON)),
     };
 }
 
-export function AccountsBalancesResponseToJSON(value?: AccountsBalancesResponse): any {
+export function AccountsBalancesResponseToJSON(value?: AccountsBalancesResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
-        'balances': value.balances === undefined ? undefined : mapValues(value.balances, AccountBalanceResponseToJSON),
+        
+        'balances': value.balances === undefined ? undefined : (mapValues(value.balances, AccountBalanceResponseToJSON)),
     };
 }
 

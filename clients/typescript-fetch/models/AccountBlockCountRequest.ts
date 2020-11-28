@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -33,17 +34,29 @@ export interface AccountBlockCountRequest {
 }
 
 export function AccountBlockCountRequestFromJSON(json: any): AccountBlockCountRequest {
+    return AccountBlockCountRequestFromJSONTyped(json, false);
+}
+
+export function AccountBlockCountRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountBlockCountRequest {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'action': json['action'],
         'account': json['account'],
     };
 }
 
-export function AccountBlockCountRequestToJSON(value?: AccountBlockCountRequest): any {
+export function AccountBlockCountRequestToJSON(value?: AccountBlockCountRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'action': value.action,
         'account': value.account,
     };

@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -15,6 +16,7 @@ import { exists, mapValues } from '../runtime';
 import {
     PendingBlock,
     PendingBlockFromJSON,
+    PendingBlockFromJSONTyped,
     PendingBlockToJSON,
 } from './';
 
@@ -26,23 +28,35 @@ import {
 export interface AccountsPendingResponse {
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {{ [key: string]: { [key: string]: PendingBlock; }; }}
      * @memberof AccountsPendingResponse
      */
-    blocks?: { [key: string]: any; };
+    blocks?: { [key: string]: { [key: string]: PendingBlock; }; };
 }
 
 export function AccountsPendingResponseFromJSON(json: any): AccountsPendingResponse {
+    return AccountsPendingResponseFromJSONTyped(json, false);
+}
+
+export function AccountsPendingResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountsPendingResponse {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'blocks': !exists(json, 'blocks') ? undefined : json['blocks'],
     };
 }
 
-export function AccountsPendingResponseToJSON(value?: AccountsPendingResponse): any {
+export function AccountsPendingResponseToJSON(value?: AccountsPendingResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'blocks': value.blocks,
     };
 }

@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -34,27 +35,27 @@ import {
     WalletCreateResponseToJSON,
 } from '../models';
 
-export interface AccountsCreateRequest {
+export interface AccountsCreateOperationRequest {
     accountsCreateRequest?: AccountsCreateRequest;
 }
 
-export interface ReceiveRequest {
+export interface ReceiveOperationRequest {
     receiveRequest?: ReceiveRequest;
 }
 
-export interface WalletCreateRequest {
+export interface WalletCreateOperationRequest {
     walletCreateRequest?: WalletCreateRequest;
 }
 
 /**
- * no description
+ * 
  */
 export class WalletApi extends runtime.BaseAPI {
 
     /**
      * Creates new accounts, insert next deterministic keys in wallet up to count
      */
-    async accountsCreateRaw(requestParameters: AccountsCreateRequest): Promise<runtime.ApiResponse<AccountsCreateResponse>> {
+    async accountsCreateRaw(requestParameters: AccountsCreateOperationRequest): Promise<runtime.ApiResponse<AccountsCreateResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -75,7 +76,7 @@ export class WalletApi extends runtime.BaseAPI {
     /**
      * Creates new accounts, insert next deterministic keys in wallet up to count
      */
-    async accountsCreate(requestParameters: AccountsCreateRequest): Promise<AccountsCreateResponse> {
+    async accountsCreate(requestParameters: AccountsCreateOperationRequest): Promise<AccountsCreateResponse> {
         const response = await this.accountsCreateRaw(requestParameters);
         return await response.value();
     }
@@ -83,7 +84,7 @@ export class WalletApi extends runtime.BaseAPI {
     /**
      * Receive pending block for account in wallet
      */
-    async receiveRaw(requestParameters: ReceiveRequest): Promise<runtime.ApiResponse<ReceiveResponse>> {
+    async receiveRaw(requestParameters: ReceiveOperationRequest): Promise<runtime.ApiResponse<ReceiveResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -104,7 +105,7 @@ export class WalletApi extends runtime.BaseAPI {
     /**
      * Receive pending block for account in wallet
      */
-    async receive(requestParameters: ReceiveRequest): Promise<ReceiveResponse> {
+    async receive(requestParameters: ReceiveOperationRequest): Promise<ReceiveResponse> {
         const response = await this.receiveRaw(requestParameters);
         return await response.value();
     }
@@ -112,7 +113,7 @@ export class WalletApi extends runtime.BaseAPI {
     /**
      * Creates a new random wallet id
      */
-    async walletCreateRaw(requestParameters: WalletCreateRequest): Promise<runtime.ApiResponse<WalletCreateResponse>> {
+    async walletCreateRaw(requestParameters: WalletCreateOperationRequest): Promise<runtime.ApiResponse<WalletCreateResponse>> {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -133,7 +134,7 @@ export class WalletApi extends runtime.BaseAPI {
     /**
      * Creates a new random wallet id
      */
-    async walletCreate(requestParameters: WalletCreateRequest): Promise<WalletCreateResponse> {
+    async walletCreate(requestParameters: WalletCreateOperationRequest): Promise<WalletCreateResponse> {
         const response = await this.walletCreateRaw(requestParameters);
         return await response.value();
     }

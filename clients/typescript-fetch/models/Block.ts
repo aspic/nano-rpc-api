@@ -1,4 +1,5 @@
-// tslint:disable
+/* tslint:disable */
+/* eslint-disable */
 /**
  * nano-rpc-api
  * API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol) 
@@ -15,6 +16,7 @@ import { exists, mapValues } from '../runtime';
 import {
     BlockState,
     BlockStateFromJSON,
+    BlockStateFromJSONTyped,
     BlockStateToJSON,
 } from './';
 
@@ -63,7 +65,15 @@ export interface Block {
 }
 
 export function BlockFromJSON(json: any): Block {
+    return BlockFromJSONTyped(json, false);
+}
+
+export function BlockFromJSONTyped(json: any, ignoreDiscriminator: boolean): Block {
+    if ((json === undefined) || (json === null)) {
+        return json;
+    }
     return {
+        
         'type': !exists(json, 'type') ? undefined : BlockStateFromJSON(json['type']),
         'account': !exists(json, 'account') ? undefined : json['account'],
         'amount': !exists(json, 'amount') ? undefined : json['amount'],
@@ -73,11 +83,15 @@ export function BlockFromJSON(json: any): Block {
     };
 }
 
-export function BlockToJSON(value?: Block): any {
+export function BlockToJSON(value?: Block | null): any {
     if (value === undefined) {
         return undefined;
     }
+    if (value === null) {
+        return null;
+    }
     return {
+        
         'type': BlockStateToJSON(value.type),
         'account': value.account,
         'amount': value.amount,
