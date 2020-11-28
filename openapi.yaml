@@ -17,7 +17,7 @@ tags:
     externalDocs:
       url: 'https://docs.nano.org/commands/rpc-protocol/#node-rpcs'
 paths:
-  '/#account_balance':
+  /#account_balance:
     post:
       tags:
         - Node RPCs
@@ -37,7 +37,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountBalanceResponse'
-  '/#account_block_count':
+  /#account_block_count:
     post:
       tags:
         - Node RPCs
@@ -55,7 +55,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountBlockCountResponse'
-  '/#account_get':
+  /#account_get:
     post:
       tags:
         - Node RPCs
@@ -73,7 +73,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountGetResponse'
-  '/#account_history':
+  /#account_history:
     post:
       tags:
         - Node RPCs
@@ -92,7 +92,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountHistoryResponse'
-  '/#account_info':
+  /#account_info:
     post:
       tags:
         - Node RPCs
@@ -113,7 +113,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountInfoResponse'
-  '/#account_key':
+  /#account_key:
     post:
       tags:
         - Node RPCs
@@ -132,7 +132,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountKeyResponse'
-  '/#account_representative':
+  /#account_representative:
     post:
       tags:
         - Node RPCs
@@ -151,7 +151,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountRepresentativeResponse'
-  '/#account_weight':
+  /#account_weight:
     post:
       tags:
         - Node RPCs
@@ -170,7 +170,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountWeightResponse'
-  '/#accounts_balances':
+  /#accounts_balances:
     post:
       tags:
         - Node RPCs
@@ -191,7 +191,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountsBalancesResponse'
-  '/#accounts_frontiers':
+  /#accounts_frontiers:
     post:
       tags:
         - Node RPCs
@@ -212,7 +212,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountsFrontiersResponse'
-  '/#accounts_pending':
+  /#accounts_pending:
     post:
       tags:
         - Node RPCs
@@ -230,7 +230,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountsPendingResponse'
-  '/#active_difficulty':
+  /#active_difficulty:
     post:
       tags:
         - Node RPCs
@@ -249,7 +249,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ActiveDifficultyResponse'
-  '/#available_supply':
+  /#available_supply:
     post:
       tags:
         - Node RPCs
@@ -268,7 +268,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AvailableSupplyResponse'
-  '/#block_account':
+  /#block_account:
     post:
       tags:
         - Node RPCs
@@ -287,7 +287,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockAccountResponse'
-  '/#block_confirm':
+  /#block_confirm:
     post:
       tags:
         - Node RPCs
@@ -306,7 +306,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockConfirmResponse'
-  '/#block_count':
+  /#block_count:
     post:
       tags:
         - Node RPCs
@@ -325,7 +325,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockCountResponse'
-  '/#block_count_type':
+  /#block_count_type:
     post:
       tags:
         - Node RPCs
@@ -344,7 +344,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockCountTypeResponse'
-  '/#blocks':
+  /#blocks:
     post:
       tags:
         - Node RPCs
@@ -363,7 +363,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlocksResponse'
-  '/#blocks_info':
+  /#blocks_info:
     post:
       tags:
         - Node RPCs
@@ -385,7 +385,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlocksInfoResponse'
-  '/#bootstrap':
+  /#bootstrap:
     post:
       tags:
         - Node RPCs
@@ -404,7 +404,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BootstrapResponse'
-  '/#bootstrap_any':
+  /#bootstrap_any:
     post:
       tags:
         - Node RPCs
@@ -423,7 +423,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BootstrapAnyResponse'
-  '/#bootstrap_lazy':
+  /#bootstrap_lazy:
     post:
       tags:
         - Node RPCs
@@ -444,7 +444,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BootstrapLazyResponse'
-  '/#chain':
+  /#chain:
     post:
       tags:
         - Node RPCs
@@ -466,7 +466,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChainResponse'
-  '/#confirmation_active':
+  /#confirmation_active:
     post:
       tags:
         - Node RPCs
@@ -492,7 +492,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConfirmationActiveResponse'
-  '/#confirmation_height_currently_processing':
+  /#confirmation_height_currently_processing:
     post:
       tags:
         - Node RPCs
@@ -516,7 +516,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConfirmationHeightCurrentlyProcessingResponse'
-  '/#confirmation_history':
+  /#confirmation_history:
     post:
       tags:
         - Node RPCs
@@ -544,7 +544,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConfirmationHistoryResponse'
-  '/#confirmation_info':
+  /#confirmation_info:
     post:
       tags:
         - Node RPCs
@@ -571,7 +571,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConfirmationInfoResponse'
-  '/#work_generate':
+  /#work_generate:
     post:
       tags:
         - Node RPCs
@@ -590,7 +590,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkGenerateResponse'
-  '/#block_create':
+  /#block_create:
     post:
       tags:
         - Node RPCs
@@ -609,7 +609,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockCreateResponse'
-  '/#block_hash':
+  /#block_hash:
     post:
       tags:
         - Node RPCs
@@ -628,7 +628,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockHashResponse'
-  '/#block_info':
+  /#block_info:
     post:
       tags:
         - Node RPCs
@@ -652,7 +652,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BlockInfoResponse'
-  '/#process':
+  /#process:
     post:
       tags:
         - Node RPCs
@@ -670,7 +670,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessResponse'
-  '/#key_create':
+  /#key_create:
     post:
       tags:
         - Node RPCs
@@ -689,7 +689,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeyCreateResponse'
-  '/#key_expand':
+  /#key_expand:
     post:
       tags:
         - Node RPCs
@@ -708,7 +708,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/KeyExpandResponse'
-  '/#accounts_create':
+  /#accounts_create:
     post:
       tags:
         - Wallet
@@ -726,7 +726,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountsCreateResponse'
-  '/#receive':
+  /#receive:
     post:
       tags:
         - Wallet
@@ -744,7 +744,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReceiveResponse'
-  '/#wallet_create':
+  /#wallet_create:
     post:
       tags:
         - Wallet
