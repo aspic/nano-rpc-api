@@ -27,13 +27,15 @@ import java.io.IOException;
 /**
  * AccountRepresentativeResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountRepresentativeResponse {
   public static final String SERIALIZED_NAME_REPRESENTATIVE = "representative";
   @SerializedName(SERIALIZED_NAME_REPRESENTATIVE)
   private String representative;
 
+
   public AccountRepresentativeResponse representative(String representative) {
+    
     this.representative = representative;
     return this;
   }
@@ -42,10 +44,13 @@ public class AccountRepresentativeResponse {
    * Get representative
    * @return representative
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getRepresentative() {
     return representative;
   }
+
 
   public void setRepresentative(String representative) {
     this.representative = representative;

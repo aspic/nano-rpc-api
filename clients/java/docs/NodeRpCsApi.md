@@ -26,6 +26,14 @@ Method | HTTP request | Description
 [**blockInfo**](NodeRpCsApi.md#blockInfo) | **POST** /#block_info | 
 [**blocks**](NodeRpCsApi.md#blocks) | **POST** /#blocks | 
 [**blocksInfo**](NodeRpCsApi.md#blocksInfo) | **POST** /#blocks_info | 
+[**bootstrap**](NodeRpCsApi.md#bootstrap) | **POST** /#bootstrap | 
+[**bootstrapAny**](NodeRpCsApi.md#bootstrapAny) | **POST** /#bootstrap_any | 
+[**bootstrapLazy**](NodeRpCsApi.md#bootstrapLazy) | **POST** /#bootstrap_lazy | 
+[**chain**](NodeRpCsApi.md#chain) | **POST** /#chain | 
+[**confirmationActive**](NodeRpCsApi.md#confirmationActive) | **POST** /#confirmation_active | 
+[**confirmationHeightCurrentlyProcessing**](NodeRpCsApi.md#confirmationHeightCurrentlyProcessing) | **POST** /#confirmation_height_currently_processing | 
+[**confirmationHistory**](NodeRpCsApi.md#confirmationHistory) | **POST** /#confirmation_history | 
+[**confirmationInfo**](NodeRpCsApi.md#confirmationInfo) | **POST** /#confirmation_info | 
 [**keyCreate**](NodeRpCsApi.md#keyCreate) | **POST** /#key_create | 
 [**keyExpand**](NodeRpCsApi.md#keyExpand) | **POST** /#key_expand | 
 [**process**](NodeRpCsApi.md#process) | **POST** /#process | 
@@ -1395,6 +1403,502 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Blocks info response, keyed on the block hash. |  -  |
+
+<a name="bootstrap"></a>
+# **bootstrap**
+> BootstrapResponse bootstrap(bootstrapRequest)
+
+
+
+Initialize bootstrap to specific **IP address** and **port**. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap) 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    BootstrapRequest bootstrapRequest = new BootstrapRequest(); // BootstrapRequest | 
+    try {
+      BootstrapResponse result = apiInstance.bootstrap(bootstrapRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#bootstrap");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bootstrapRequest** | [**BootstrapRequest**](BootstrapRequest.md)|  | [optional]
+
+### Return type
+
+[**BootstrapResponse**](BootstrapResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A success response |  -  |
+
+<a name="bootstrapAny"></a>
+# **bootstrapAny**
+> BootstrapAnyResponse bootstrapAny(bootstrapAnyRequest)
+
+
+
+Initialize multi-connection bootstrap to random peers. Not compatible with launch flag [--disable_legacy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_legacy_bootstrap) 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    BootstrapAnyRequest bootstrapAnyRequest = new BootstrapAnyRequest(); // BootstrapAnyRequest | 
+    try {
+      BootstrapAnyResponse result = apiInstance.bootstrapAny(bootstrapAnyRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#bootstrapAny");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bootstrapAnyRequest** | [**BootstrapAnyRequest**](BootstrapAnyRequest.md)|  | [optional]
+
+### Return type
+
+[**BootstrapAnyResponse**](BootstrapAnyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | A success response |  -  |
+
+<a name="bootstrapLazy"></a>
+# **bootstrapLazy**
+> BootstrapLazyResponse bootstrapLazy(bootstrapLazyRequest)
+
+
+
+_version 17.0+_  Initialize lazy bootstrap with given block hash. Not compatible with launch flag [--disable_lazy_bootstrap](https://docs.nano.org/commands/command-line-interface/#-disable_lazy_bootstrap) 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    BootstrapLazyRequest bootstrapLazyRequest = new BootstrapLazyRequest(); // BootstrapLazyRequest | 
+    try {
+      BootstrapLazyResponse result = apiInstance.bootstrapLazy(bootstrapLazyRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#bootstrapLazy");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bootstrapLazyRequest** | [**BootstrapLazyRequest**](BootstrapLazyRequest.md)|  | [optional]
+
+### Return type
+
+[**BootstrapLazyResponse**](BootstrapLazyResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Whether bootstrap was started |  -  |
+
+<a name="chain"></a>
+# **chain**
+> ChainResponse chain(chainRequest)
+
+
+
+Returns a consecutive list of block hashes in the account chain starting at **block** back to **count** (direction from frontier back to open block, from newer blocks to older). Will list all blocks back to the open block of this chain when count is set to \&quot;-1\&quot;. The requested block hash is included in the answer. 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    ChainRequest chainRequest = new ChainRequest(); // ChainRequest | 
+    try {
+      ChainResponse result = apiInstance.chain(chainRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#chain");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chainRequest** | [**ChainRequest**](ChainRequest.md)|  | [optional]
+
+### Return type
+
+[**ChainResponse**](ChainResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The block hashes. |  -  |
+
+<a name="confirmationActive"></a>
+# **confirmationActive**
+> ConfirmationActiveResponse confirmationActive(confirmationActiveRequest)
+
+
+
+_version 16.0+_  Returns list of active elections roots (excluding stopped &amp; aborted elections). Find info about specific root with confirmation_info  The roots provided are two parts and differ between the first account block and subsequent blocks:  * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key * Other blocks: previous hash + previous hash 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    ConfirmationActiveRequest confirmationActiveRequest = new ConfirmationActiveRequest(); // ConfirmationActiveRequest | 
+    try {
+      ConfirmationActiveResponse result = apiInstance.confirmationActive(confirmationActiveRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#confirmationActive");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **confirmationActiveRequest** | [**ConfirmationActiveRequest**](ConfirmationActiveRequest.md)|  | [optional]
+
+### Return type
+
+[**ConfirmationActiveResponse**](ConfirmationActiveResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The confirmations |  -  |
+
+<a name="confirmationHeightCurrentlyProcessing"></a>
+# **confirmationHeightCurrentlyProcessing**
+> ConfirmationHeightCurrentlyProcessingResponse confirmationHeightCurrentlyProcessing(confirmationHeightCurrentlyProcessingRequest)
+
+
+
+_version 19.0+_  Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which block was the original being confirmed. 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    ConfirmationHeightCurrentlyProcessingRequest confirmationHeightCurrentlyProcessingRequest = new ConfirmationHeightCurrentlyProcessingRequest(); // ConfirmationHeightCurrentlyProcessingRequest | 
+    try {
+      ConfirmationHeightCurrentlyProcessingResponse result = apiInstance.confirmationHeightCurrentlyProcessing(confirmationHeightCurrentlyProcessingRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#confirmationHeightCurrentlyProcessing");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **confirmationHeightCurrentlyProcessingRequest** | [**ConfirmationHeightCurrentlyProcessingRequest**](ConfirmationHeightCurrentlyProcessingRequest.md)|  | [optional]
+
+### Return type
+
+[**ConfirmationHeightCurrentlyProcessingResponse**](ConfirmationHeightCurrentlyProcessingResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Hash of the block which is having the confirmation height set for. |  -  |
+
+<a name="confirmationHistory"></a>
+# **confirmationHistory**
+> ConfirmationHistoryResponse confirmationHistory(confirmationHistoryRequest)
+
+
+
+_version 12.0+_ _duration, time, confirmation_stats: version 17.0+_  Returns hash, tally weight, election duration (in milliseconds), election confirmation timestamp for recent elections winners. Also returns stats: count of elections in history (limited to 2048) &amp; average duration time  With version 19.0+ &#x60;confirmation_history_size&#x60; can be managed in [config.json](https://docs.nano.org/running-a-node/configuration/#example-file) to adjust the number of elections to be kept in history and returned by this call. Due to timings inside the node, the default 2048 limit will return all confirmations up to traffic levels of  approximately 56 confirmations/sec. To properly track levels above this, increase this value or use the confirmation subscription through the [websocket](https://docs.nano.org/integration-guides/advanced/#websocket-support) instead. 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    ConfirmationHistoryRequest confirmationHistoryRequest = new ConfirmationHistoryRequest(); // ConfirmationHistoryRequest | 
+    try {
+      ConfirmationHistoryResponse result = apiInstance.confirmationHistory(confirmationHistoryRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#confirmationHistory");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **confirmationHistoryRequest** | [**ConfirmationHistoryRequest**](ConfirmationHistoryRequest.md)|  | [optional]
+
+### Return type
+
+[**ConfirmationHistoryResponse**](ConfirmationHistoryResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Hash of the block which is having the confirmation height set for. |  -  |
+
+<a name="confirmationInfo"></a>
+# **confirmationInfo**
+> ConfirmationInfoResponse confirmationInfo(confirmationInfoRequest)
+
+
+
+_version 16.0+_  Returns info about active election by *root*. Including announcements count, last winner (initially local ledger block), total tally of voted representatives, concurrent blocks with tally &amp; block contents for each. Using the optional &#x60;json_block&#x60; is recommended since v19.0.  The roots provided are two parts and differ between the first account block and subsequent blocks:  * First account block (open): 0000000000000000000000000000000000000000000000000000000000000000 + account public key * Other blocks: previous hash + previous hash 
+
+### Example
+```java
+// Import classes:
+import no.mehl.nano.ApiClient;
+import no.mehl.nano.ApiException;
+import no.mehl.nano.Configuration;
+import no.mehl.nano.models.*;
+import org.openapitools.client.api.NodeRpCsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost:7076");
+
+    NodeRpCsApi apiInstance = new NodeRpCsApi(defaultClient);
+    ConfirmationInfoRequest confirmationInfoRequest = new ConfirmationInfoRequest(); // ConfirmationInfoRequest | 
+    try {
+      ConfirmationInfoResponse result = apiInstance.confirmationInfo(confirmationInfoRequest);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling NodeRpCsApi#confirmationInfo");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **confirmationInfoRequest** | [**ConfirmationInfoRequest**](ConfirmationInfoRequest.md)|  | [optional]
+
+### Return type
+
+[**ConfirmationInfoResponse**](ConfirmationInfoResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The confirmation information. |  -  |
 
 <a name="keyCreate"></a>
 # **keyCreate**

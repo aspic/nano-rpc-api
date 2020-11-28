@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * PendingBlock
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class PendingBlock {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
@@ -37,7 +37,9 @@ public class PendingBlock {
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private String source;
 
+
   public PendingBlock amount(String amount) {
+    
     this.amount = amount;
     return this;
   }
@@ -46,16 +48,21 @@ public class PendingBlock {
    * Get amount
    * @return amount
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72", value = "")
+
   public String getAmount() {
     return amount;
   }
+
 
   public void setAmount(String amount) {
     this.amount = amount;
   }
 
+
   public PendingBlock source(String source) {
+    
     this.source = source;
     return this;
   }
@@ -64,10 +71,13 @@ public class PendingBlock {
    * Get source
    * @return source
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getSource() {
     return source;
   }
+
 
   public void setSource(String source) {
     this.source = source;

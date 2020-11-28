@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * BlocksRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlocksRequest {
   /**
    * Gets or Sets action
@@ -70,7 +70,7 @@ public class BlocksRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -82,9 +82,11 @@ public class BlocksRequest {
 
   public static final String SERIALIZED_NAME_HASHES = "hashes";
   @SerializedName(SERIALIZED_NAME_HASHES)
-  private List<String> hashes = new ArrayList<String>();
+  private List<String> hashes = null;
+
 
   public BlocksRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -94,15 +96,19 @@ public class BlocksRequest {
    * @return action
   **/
   @ApiModelProperty(required = true, value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public BlocksRequest hashes(List<String> hashes) {
+    
     this.hashes = hashes;
     return this;
   }
@@ -119,10 +125,13 @@ public class BlocksRequest {
    * Get hashes
    * @return hashes
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<String> getHashes() {
     return hashes;
   }
+
 
   public void setHashes(List<String> hashes) {
     this.hashes = hashes;

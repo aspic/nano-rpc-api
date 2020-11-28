@@ -28,7 +28,7 @@ import org.openapitools.client.model.ModelBoolean;
 /**
  * BlockInfoRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlockInfoRequest {
   /**
    * Gets or Sets action
@@ -69,7 +69,7 @@ public class BlockInfoRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -87,7 +87,9 @@ public class BlockInfoRequest {
   @SerializedName(SERIALIZED_NAME_HASH)
   private String hash;
 
+
   public BlockInfoRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -97,15 +99,19 @@ public class BlockInfoRequest {
    * @return action
   **/
   @ApiModelProperty(required = true, value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public BlockInfoRequest jsonBlock(ModelBoolean jsonBlock) {
+    
     this.jsonBlock = jsonBlock;
     return this;
   }
@@ -114,16 +120,21 @@ public class BlockInfoRequest {
    * Defaults to &#x60;\&quot;false\&quot;&#x60;. If &#x60;\&quot;true\&quot;&#x60;, &#x60;\&quot;block\&quot;&#x60; contains a JSON subtree instead of a JSON string.
    * @return jsonBlock
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.")
+
   public ModelBoolean getJsonBlock() {
     return jsonBlock;
   }
+
 
   public void setJsonBlock(ModelBoolean jsonBlock) {
     this.jsonBlock = jsonBlock;
   }
 
+
   public BlockInfoRequest hash(String hash) {
+    
     this.hash = hash;
     return this;
   }
@@ -133,9 +144,11 @@ public class BlockInfoRequest {
    * @return hash
   **/
   @ApiModelProperty(example = "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72", required = true, value = "")
+
   public String getHash() {
     return hash;
   }
+
 
   public void setHash(String hash) {
     this.hash = hash;

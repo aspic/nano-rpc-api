@@ -31,13 +31,15 @@ import org.openapitools.client.model.AccountBalanceResponse;
 /**
  * AccountsBalancesResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountsBalancesResponse {
   public static final String SERIALIZED_NAME_BALANCES = "balances";
   @SerializedName(SERIALIZED_NAME_BALANCES)
-  private Map<String, AccountBalanceResponse> balances = new HashMap<String, AccountBalanceResponse>();
+  private Map<String, AccountBalanceResponse> balances = null;
+
 
   public AccountsBalancesResponse balances(Map<String, AccountBalanceResponse> balances) {
+    
     this.balances = balances;
     return this;
   }
@@ -54,10 +56,13 @@ public class AccountsBalancesResponse {
    * Get balances
    * @return balances
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "{\"nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000\":{\"balance\":\"10000\",\"pending\":\"10000\"},\"nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7\":{\"balance\":\"10000000\",\"pending\":\"0\"}}", value = "")
+
   public Map<String, AccountBalanceResponse> getBalances() {
     return balances;
   }
+
 
   public void setBalances(Map<String, AccountBalanceResponse> balances) {
     this.balances = balances;

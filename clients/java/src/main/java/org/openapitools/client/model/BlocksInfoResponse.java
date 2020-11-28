@@ -31,13 +31,15 @@ import org.openapitools.client.model.BlockInfo;
 /**
  * BlocksInfoResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlocksInfoResponse {
   public static final String SERIALIZED_NAME_BLOCKS = "blocks";
   @SerializedName(SERIALIZED_NAME_BLOCKS)
-  private Map<String, BlockInfo> blocks = new HashMap<String, BlockInfo>();
+  private Map<String, BlockInfo> blocks = null;
+
 
   public BlocksInfoResponse blocks(Map<String, BlockInfo> blocks) {
+    
     this.blocks = blocks;
     return this;
   }
@@ -54,10 +56,13 @@ public class BlocksInfoResponse {
    * Get blocks
    * @return blocks
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public Map<String, BlockInfo> getBlocks() {
     return blocks;
   }
+
 
   public void setBlocks(Map<String, BlockInfo> blocks) {
     this.blocks = blocks;

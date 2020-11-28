@@ -29,7 +29,7 @@ import org.openapitools.client.model.ModelBoolean;
 /**
  * BlockCreateRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlockCreateRequest {
   /**
    * Gets or Sets action
@@ -70,7 +70,7 @@ public class BlockCreateRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -123,7 +123,7 @@ public class BlockCreateRequest {
 
       @Override
       public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return TypeEnum.fromValue(value);
       }
     }
@@ -165,7 +165,9 @@ public class BlockCreateRequest {
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
   private String account;
 
+
   public BlockCreateRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -174,16 +176,21 @@ public class BlockCreateRequest {
    * Get action
    * @return action
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public BlockCreateRequest jsonBlock(ModelBoolean jsonBlock) {
+    
     this.jsonBlock = jsonBlock;
     return this;
   }
@@ -192,16 +199,21 @@ public class BlockCreateRequest {
    * Defaults to &#x60;\&quot;false\&quot;&#x60;. If &#x60;\&quot;true\&quot;&#x60;, &#x60;\&quot;block\&quot;&#x60; contains a JSON subtree instead of a JSON string.
    * @return jsonBlock
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.")
+
   public ModelBoolean getJsonBlock() {
     return jsonBlock;
   }
+
 
   public void setJsonBlock(ModelBoolean jsonBlock) {
     this.jsonBlock = jsonBlock;
   }
 
+
   public BlockCreateRequest type(TypeEnum type) {
+    
     this.type = type;
     return this;
   }
@@ -210,16 +222,21 @@ public class BlockCreateRequest {
    * Get type
    * @return type
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public TypeEnum getType() {
     return type;
   }
+
 
   public void setType(TypeEnum type) {
     this.type = type;
   }
 
+
   public BlockCreateRequest balance(BigDecimal balance) {
+    
     this.balance = balance;
     return this;
   }
@@ -228,16 +245,21 @@ public class BlockCreateRequest {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return balance
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getBalance() {
     return balance;
   }
+
 
   public void setBalance(BigDecimal balance) {
     this.balance = balance;
   }
 
+
   public BlockCreateRequest key(String key) {
+    
     this.key = key;
     return this;
   }
@@ -246,16 +268,21 @@ public class BlockCreateRequest {
    * Get key
    * @return key
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039", value = "")
+
   public String getKey() {
     return key;
   }
+
 
   public void setKey(String key) {
     this.key = key;
   }
 
+
   public BlockCreateRequest representative(String representative) {
+    
     this.representative = representative;
     return this;
   }
@@ -264,16 +291,21 @@ public class BlockCreateRequest {
    * Get representative
    * @return representative
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getRepresentative() {
     return representative;
   }
+
 
   public void setRepresentative(String representative) {
     this.representative = representative;
   }
 
+
   public BlockCreateRequest link(String link) {
+    
     this.link = link;
     return this;
   }
@@ -282,16 +314,21 @@ public class BlockCreateRequest {
    * Get link
    * @return link
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public String getLink() {
     return link;
   }
+
 
   public void setLink(String link) {
     this.link = link;
   }
 
+
   public BlockCreateRequest work(String work) {
+    
     this.work = work;
     return this;
   }
@@ -300,16 +337,21 @@ public class BlockCreateRequest {
    * Get work
    * @return work
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "2bf29ef00786a6bc", value = "")
+
   public String getWork() {
     return work;
   }
+
 
   public void setWork(String work) {
     this.work = work;
   }
 
+
   public BlockCreateRequest previous(String previous) {
+    
     this.previous = previous;
     return this;
   }
@@ -318,16 +360,21 @@ public class BlockCreateRequest {
    * Get previous
    * @return previous
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72", value = "")
+
   public String getPrevious() {
     return previous;
   }
+
 
   public void setPrevious(String previous) {
     this.previous = previous;
   }
 
+
   public BlockCreateRequest wallet(String wallet) {
+    
     this.wallet = wallet;
     return this;
   }
@@ -336,16 +383,21 @@ public class BlockCreateRequest {
    * Get wallet
    * @return wallet
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F", value = "")
+
   public String getWallet() {
     return wallet;
   }
+
 
   public void setWallet(String wallet) {
     this.wallet = wallet;
   }
 
+
   public BlockCreateRequest account(String account) {
+    
     this.account = account;
     return this;
   }
@@ -354,10 +406,13 @@ public class BlockCreateRequest {
    * Get account
    * @return account
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getAccount() {
     return account;
   }
+
 
   public void setAccount(String account) {
     this.account = account;

@@ -30,7 +30,7 @@ import org.openapitools.client.model.SubType;
 /**
  * BlockInfo
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlockInfo {
   public static final String SERIALIZED_NAME_BLOCK_ACCOUNT = "block_account";
   @SerializedName(SERIALIZED_NAME_BLOCK_ACCOUNT)
@@ -64,7 +64,9 @@ public class BlockInfo {
   @SerializedName(SERIALIZED_NAME_SUBTYPE)
   private SubType subtype;
 
+
   public BlockInfo blockAccount(String blockAccount) {
+    
     this.blockAccount = blockAccount;
     return this;
   }
@@ -73,16 +75,21 @@ public class BlockInfo {
    * Get blockAccount
    * @return blockAccount
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getBlockAccount() {
     return blockAccount;
   }
+
 
   public void setBlockAccount(String blockAccount) {
     this.blockAccount = blockAccount;
   }
 
+
   public BlockInfo amount(BigDecimal amount) {
+    
     this.amount = amount;
     return this;
   }
@@ -91,16 +98,21 @@ public class BlockInfo {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return amount
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getAmount() {
     return amount;
   }
+
 
   public void setAmount(BigDecimal amount) {
     this.amount = amount;
   }
 
+
   public BlockInfo balance(BigDecimal balance) {
+    
     this.balance = balance;
     return this;
   }
@@ -109,16 +121,21 @@ public class BlockInfo {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return balance
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getBalance() {
     return balance;
   }
+
 
   public void setBalance(BigDecimal balance) {
     this.balance = balance;
   }
 
+
   public BlockInfo height(String height) {
+    
     this.height = height;
     return this;
   }
@@ -127,16 +144,21 @@ public class BlockInfo {
    * Get height
    * @return height
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "60", value = "")
+
   public String getHeight() {
     return height;
   }
+
 
   public void setHeight(String height) {
     this.height = height;
   }
 
+
   public BlockInfo localTimestamp(String localTimestamp) {
+    
     this.localTimestamp = localTimestamp;
     return this;
   }
@@ -145,16 +167,21 @@ public class BlockInfo {
    * Get localTimestamp
    * @return localTimestamp
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1551532723", value = "")
+
   public String getLocalTimestamp() {
     return localTimestamp;
   }
+
 
   public void setLocalTimestamp(String localTimestamp) {
     this.localTimestamp = localTimestamp;
   }
 
+
   public BlockInfo confirmed(ModelBoolean confirmed) {
+    
     this.confirmed = confirmed;
     return this;
   }
@@ -163,16 +190,21 @@ public class BlockInfo {
    * Get confirmed
    * @return confirmed
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ModelBoolean getConfirmed() {
     return confirmed;
   }
+
 
   public void setConfirmed(ModelBoolean confirmed) {
     this.confirmed = confirmed;
   }
 
+
   public BlockInfo contents(String contents) {
+    
     this.contents = contents;
     return this;
   }
@@ -181,16 +213,21 @@ public class BlockInfo {
    * Get contents
    * @return contents
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "{  \"type\": \"state\", \"account\": \"nano_1ipx847tk8o46pwxt5qjdbncjqcbwcc1rrmqnkztrfjy5k7z4imsrata9est\",  \"previous\": \"CE898C131AAEE25E05362F247760F8A3ACF34A9796A5AE0D9204E86B0637965E\",  \"representative\": \"nano_1stofnrxuz3cai7ze75o174bpm7scwj9jn3nxsn8ntzg784jf1gzn1jjdkou\",  \"balance\": \"5606157000000000000000000000000000000\",  \"link\": \"5D1AA8A45F8736519D707FCB375976A7F9AF795091021D7E9C7548D6F45DD8D5\",  \"link_as_account\": \"nano_1qato4k7z3spc8gq1zyd8xeqfbzsoxwo36a45ozbrxcatut7up8ohyardu1z\",  \"signature\": \"82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501\",  \"work\": \"8a142e07a10996d5\"  } ", value = "")
+
   public String getContents() {
     return contents;
   }
+
 
   public void setContents(String contents) {
     this.contents = contents;
   }
 
+
   public BlockInfo subtype(SubType subtype) {
+    
     this.subtype = subtype;
     return this;
   }
@@ -199,10 +236,13 @@ public class BlockInfo {
    * Get subtype
    * @return subtype
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public SubType getSubtype() {
     return subtype;
   }
+
 
   public void setSubtype(SubType subtype) {
     this.subtype = subtype;

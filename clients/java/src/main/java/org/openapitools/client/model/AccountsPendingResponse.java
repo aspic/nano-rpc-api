@@ -31,13 +31,15 @@ import org.openapitools.client.model.PendingBlock;
 /**
  * AccountsPendingResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountsPendingResponse {
   public static final String SERIALIZED_NAME_BLOCKS = "blocks";
   @SerializedName(SERIALIZED_NAME_BLOCKS)
-  private Map<String, Map> blocks = new HashMap<String, Map>();
+  private Map<String, Map<String, PendingBlock>> blocks = null;
 
-  public AccountsPendingResponse blocks(Map<String, Map> blocks) {
+
+  public AccountsPendingResponse blocks(Map<String, Map<String, PendingBlock>> blocks) {
+    
     this.blocks = blocks;
     return this;
   }
@@ -54,12 +56,15 @@ public class AccountsPendingResponse {
    * Get blocks
    * @return blocks
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "{\"nano_1111111111111111111111111111111111111111111111111117353trpda\":{\"142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D\":{\"amount\":\"6000000000000000000000000000000\",\"source\":\"nano_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr\"}}}", value = "")
-  public Map<String, Map> getBlocks() {
+
+  public Map<String, Map<String, PendingBlock>> getBlocks() {
     return blocks;
   }
 
-  public void setBlocks(Map<String, Map> blocks) {
+
+  public void setBlocks(Map<String, Map<String, PendingBlock>> blocks) {
     this.blocks = blocks;
   }
 

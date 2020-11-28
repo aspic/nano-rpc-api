@@ -29,7 +29,7 @@ import org.openapitools.client.model.ModelBoolean;
 /**
  * BlockHashRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlockHashRequest {
   /**
    * Gets or Sets action
@@ -70,7 +70,7 @@ public class BlockHashRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -86,9 +86,11 @@ public class BlockHashRequest {
 
   public static final String SERIALIZED_NAME_BLOCK = "block";
   @SerializedName(SERIALIZED_NAME_BLOCK)
-  private BlockDataJson block = null;
+  private BlockDataJson block;
+
 
   public BlockHashRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -98,15 +100,19 @@ public class BlockHashRequest {
    * @return action
   **/
   @ApiModelProperty(required = true, value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public BlockHashRequest jsonBlock(ModelBoolean jsonBlock) {
+    
     this.jsonBlock = jsonBlock;
     return this;
   }
@@ -115,16 +121,21 @@ public class BlockHashRequest {
    * Defaults to &#x60;\&quot;false\&quot;&#x60;. If &#x60;\&quot;true\&quot;&#x60;, &#x60;\&quot;block\&quot;&#x60; contains a JSON subtree instead of a JSON string.
    * @return jsonBlock
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "Defaults to `\"false\"`. If `\"true\"`, `\"block\"` contains a JSON subtree instead of a JSON string.")
+
   public ModelBoolean getJsonBlock() {
     return jsonBlock;
   }
+
 
   public void setJsonBlock(ModelBoolean jsonBlock) {
     this.jsonBlock = jsonBlock;
   }
 
+
   public BlockHashRequest block(BlockDataJson block) {
+    
     this.block = block;
     return this;
   }
@@ -134,9 +145,11 @@ public class BlockHashRequest {
    * @return block
   **/
   @ApiModelProperty(required = true, value = "")
+
   public BlockDataJson getBlock() {
     return block;
   }
+
 
   public void setBlock(BlockDataJson block) {
     this.block = block;

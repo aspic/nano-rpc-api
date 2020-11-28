@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * ActiveDifficultyResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class ActiveDifficultyResponse {
   public static final String SERIALIZED_NAME_NETWORK_MINIMUM = "network_minimum";
   @SerializedName(SERIALIZED_NAME_NETWORK_MINIMUM)
@@ -41,7 +41,9 @@ public class ActiveDifficultyResponse {
   @SerializedName(SERIALIZED_NAME_MULTIPLIER)
   private String multiplier;
 
+
   public ActiveDifficultyResponse networkMinimum(String networkMinimum) {
+    
     this.networkMinimum = networkMinimum;
     return this;
   }
@@ -50,16 +52,21 @@ public class ActiveDifficultyResponse {
    * Get networkMinimum
    * @return networkMinimum
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "2bf29ef00786a6bc", value = "")
+
   public String getNetworkMinimum() {
     return networkMinimum;
   }
+
 
   public void setNetworkMinimum(String networkMinimum) {
     this.networkMinimum = networkMinimum;
   }
 
+
   public ActiveDifficultyResponse networkCurrent(String networkCurrent) {
+    
     this.networkCurrent = networkCurrent;
     return this;
   }
@@ -68,16 +75,21 @@ public class ActiveDifficultyResponse {
    * Get networkCurrent
    * @return networkCurrent
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "2bf29ef00786a6bc", value = "")
+
   public String getNetworkCurrent() {
     return networkCurrent;
   }
+
 
   public void setNetworkCurrent(String networkCurrent) {
     this.networkCurrent = networkCurrent;
   }
 
+
   public ActiveDifficultyResponse multiplier(String multiplier) {
+    
     this.multiplier = multiplier;
     return this;
   }
@@ -86,10 +98,13 @@ public class ActiveDifficultyResponse {
    * Get multiplier
    * @return multiplier
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1.273557846739298", value = "")
+
   public String getMultiplier() {
     return multiplier;
   }
+
 
   public void setMultiplier(String multiplier) {
     this.multiplier = multiplier;

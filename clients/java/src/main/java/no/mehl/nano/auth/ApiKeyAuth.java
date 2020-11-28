@@ -18,7 +18,7 @@ import no.mehl.nano.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class ApiKeyAuth implements Authentication {
   private final String location;
   private final String paramName;
@@ -56,7 +56,7 @@ public class ApiKeyAuth implements Authentication {
   }
 
   @Override
-  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams) {
+  public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams) {
     if (apiKey == null) {
       return;
     }
@@ -70,6 +70,8 @@ public class ApiKeyAuth implements Authentication {
       queryParams.add(new Pair(paramName, value));
     } else if ("header".equals(location)) {
       headerParams.put(paramName, value);
+    } else if ("cookie".equals(location)) {
+      cookieParams.put(paramName, value);
     }
   }
 }

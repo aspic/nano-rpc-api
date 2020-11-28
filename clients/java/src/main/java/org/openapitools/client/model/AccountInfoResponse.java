@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * AccountInfoResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountInfoResponse {
   public static final String SERIALIZED_NAME_FRONTIER = "frontier";
   @SerializedName(SERIALIZED_NAME_FRONTIER)
@@ -62,7 +62,9 @@ public class AccountInfoResponse {
   @SerializedName(SERIALIZED_NAME_ACCOUNT_VERSION)
   private String accountVersion;
 
+
   public AccountInfoResponse frontier(String frontier) {
+    
     this.frontier = frontier;
     return this;
   }
@@ -71,16 +73,21 @@ public class AccountInfoResponse {
    * Get frontier
    * @return frontier
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public String getFrontier() {
     return frontier;
   }
+
 
   public void setFrontier(String frontier) {
     this.frontier = frontier;
   }
 
+
   public AccountInfoResponse openBlock(String openBlock) {
+    
     this.openBlock = openBlock;
     return this;
   }
@@ -89,16 +96,21 @@ public class AccountInfoResponse {
    * Get openBlock
    * @return openBlock
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72", value = "")
+
   public String getOpenBlock() {
     return openBlock;
   }
+
 
   public void setOpenBlock(String openBlock) {
     this.openBlock = openBlock;
   }
 
+
   public AccountInfoResponse representativeBlock(String representativeBlock) {
+    
     this.representativeBlock = representativeBlock;
     return this;
   }
@@ -107,16 +119,21 @@ public class AccountInfoResponse {
    * Get representativeBlock
    * @return representativeBlock
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72", value = "")
+
   public String getRepresentativeBlock() {
     return representativeBlock;
   }
+
 
   public void setRepresentativeBlock(String representativeBlock) {
     this.representativeBlock = representativeBlock;
   }
 
+
   public AccountInfoResponse balance(BigDecimal balance) {
+    
     this.balance = balance;
     return this;
   }
@@ -125,16 +142,21 @@ public class AccountInfoResponse {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return balance
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getBalance() {
     return balance;
   }
+
 
   public void setBalance(BigDecimal balance) {
     this.balance = balance;
   }
 
+
   public AccountInfoResponse modifiedTimestamp(String modifiedTimestamp) {
+    
     this.modifiedTimestamp = modifiedTimestamp;
     return this;
   }
@@ -143,16 +165,21 @@ public class AccountInfoResponse {
    * Get modifiedTimestamp
    * @return modifiedTimestamp
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1551532723", value = "")
+
   public String getModifiedTimestamp() {
     return modifiedTimestamp;
   }
+
 
   public void setModifiedTimestamp(String modifiedTimestamp) {
     this.modifiedTimestamp = modifiedTimestamp;
   }
 
+
   public AccountInfoResponse blockCount(String blockCount) {
+    
     this.blockCount = blockCount;
     return this;
   }
@@ -161,16 +188,21 @@ public class AccountInfoResponse {
    * Get blockCount
    * @return blockCount
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1", value = "")
+
   public String getBlockCount() {
     return blockCount;
   }
+
 
   public void setBlockCount(String blockCount) {
     this.blockCount = blockCount;
   }
 
+
   public AccountInfoResponse confirmationHeight(String confirmationHeight) {
+    
     this.confirmationHeight = confirmationHeight;
     return this;
   }
@@ -179,16 +211,21 @@ public class AccountInfoResponse {
    * Get confirmationHeight
    * @return confirmationHeight
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "28", value = "")
+
   public String getConfirmationHeight() {
     return confirmationHeight;
   }
+
 
   public void setConfirmationHeight(String confirmationHeight) {
     this.confirmationHeight = confirmationHeight;
   }
 
+
   public AccountInfoResponse accountVersion(String accountVersion) {
+    
     this.accountVersion = accountVersion;
     return this;
   }
@@ -197,10 +234,13 @@ public class AccountInfoResponse {
    * Get accountVersion
    * @return accountVersion
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1", value = "")
+
   public String getAccountVersion() {
     return accountVersion;
   }
+
 
   public void setAccountVersion(String accountVersion) {
     this.accountVersion = accountVersion;

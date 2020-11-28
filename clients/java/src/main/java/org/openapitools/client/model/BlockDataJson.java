@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * BlockDataJson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlockDataJson {
   /**
    * Gets or Sets type
@@ -69,7 +69,7 @@ public class BlockDataJson {
 
       @Override
       public TypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return TypeEnum.fromValue(value);
       }
     }
@@ -111,7 +111,9 @@ public class BlockDataJson {
   @SerializedName(SERIALIZED_NAME_WORK)
   private String work;
 
+
   public BlockDataJson type(TypeEnum type) {
+    
     this.type = type;
     return this;
   }
@@ -120,16 +122,21 @@ public class BlockDataJson {
    * Get type
    * @return type
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public TypeEnum getType() {
     return type;
   }
+
 
   public void setType(TypeEnum type) {
     this.type = type;
   }
 
+
   public BlockDataJson account(String account) {
+    
     this.account = account;
     return this;
   }
@@ -138,16 +145,21 @@ public class BlockDataJson {
    * Get account
    * @return account
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getAccount() {
     return account;
   }
+
 
   public void setAccount(String account) {
     this.account = account;
   }
 
+
   public BlockDataJson previous(String previous) {
+    
     this.previous = previous;
     return this;
   }
@@ -156,16 +168,21 @@ public class BlockDataJson {
    * Get previous
    * @return previous
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72", value = "")
+
   public String getPrevious() {
     return previous;
   }
+
 
   public void setPrevious(String previous) {
     this.previous = previous;
   }
 
+
   public BlockDataJson representative(String representative) {
+    
     this.representative = representative;
     return this;
   }
@@ -174,16 +191,21 @@ public class BlockDataJson {
    * Get representative
    * @return representative
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getRepresentative() {
     return representative;
   }
+
 
   public void setRepresentative(String representative) {
     this.representative = representative;
   }
 
+
   public BlockDataJson balance(BigDecimal balance) {
+    
     this.balance = balance;
     return this;
   }
@@ -192,16 +214,21 @@ public class BlockDataJson {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return balance
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getBalance() {
     return balance;
   }
+
 
   public void setBalance(BigDecimal balance) {
     this.balance = balance;
   }
 
+
   public BlockDataJson link(String link) {
+    
     this.link = link;
     return this;
   }
@@ -210,16 +237,21 @@ public class BlockDataJson {
    * Get link
    * @return link
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039", value = "")
+
   public String getLink() {
     return link;
   }
+
 
   public void setLink(String link) {
     this.link = link;
   }
 
+
   public BlockDataJson linkAsAccount(String linkAsAccount) {
+    
     this.linkAsAccount = linkAsAccount;
     return this;
   }
@@ -228,16 +260,21 @@ public class BlockDataJson {
    * Get linkAsAccount
    * @return linkAsAccount
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getLinkAsAccount() {
     return linkAsAccount;
   }
+
 
   public void setLinkAsAccount(String linkAsAccount) {
     this.linkAsAccount = linkAsAccount;
   }
 
+
   public BlockDataJson signature(String signature) {
+    
     this.signature = signature;
     return this;
   }
@@ -246,16 +283,21 @@ public class BlockDataJson {
    * Get signature
    * @return signature
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "82D41BC16F313E4B2243D14DFFA2FB04679C540C2095FEE7EAE0F2F26880AD56DD48D87A7CC5DD760C5B2D76EE2C205506AA557BF00B60D8DEE312EC7343A501", value = "")
+
   public String getSignature() {
     return signature;
   }
+
 
   public void setSignature(String signature) {
     this.signature = signature;
   }
 
+
   public BlockDataJson work(String work) {
+    
     this.work = work;
     return this;
   }
@@ -264,10 +306,13 @@ public class BlockDataJson {
    * Get work
    * @return work
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "2bf29ef00786a6bc", value = "")
+
   public String getWork() {
     return work;
   }
+
 
   public void setWork(String work) {
     this.work = work;

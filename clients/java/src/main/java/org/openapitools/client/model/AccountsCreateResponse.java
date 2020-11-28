@@ -29,13 +29,15 @@ import java.util.List;
 /**
  * AccountsCreateResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountsCreateResponse {
   public static final String SERIALIZED_NAME_ACCOUNTS = "accounts";
   @SerializedName(SERIALIZED_NAME_ACCOUNTS)
-  private List<String> accounts = new ArrayList<String>();
+  private List<String> accounts = null;
+
 
   public AccountsCreateResponse accounts(List<String> accounts) {
+    
     this.accounts = accounts;
     return this;
   }
@@ -52,10 +54,13 @@ public class AccountsCreateResponse {
    * Get accounts
    * @return accounts
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<String> getAccounts() {
     return accounts;
   }
+
 
   public void setAccounts(List<String> accounts) {
     this.accounts = accounts;

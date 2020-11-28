@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * AccountsCreateRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountsCreateRequest {
   /**
    * Gets or Sets action
@@ -68,7 +68,7 @@ public class AccountsCreateRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -86,7 +86,9 @@ public class AccountsCreateRequest {
   @SerializedName(SERIALIZED_NAME_COUNT)
   private String count;
 
+
   public AccountsCreateRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -95,16 +97,21 @@ public class AccountsCreateRequest {
    * Get action
    * @return action
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public AccountsCreateRequest wallet(String wallet) {
+    
     this.wallet = wallet;
     return this;
   }
@@ -113,16 +120,21 @@ public class AccountsCreateRequest {
    * Get wallet
    * @return wallet
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F", value = "")
+
   public String getWallet() {
     return wallet;
   }
+
 
   public void setWallet(String wallet) {
     this.wallet = wallet;
   }
 
+
   public AccountsCreateRequest count(String count) {
+    
     this.count = count;
     return this;
   }
@@ -131,10 +143,13 @@ public class AccountsCreateRequest {
    * Get count
    * @return count
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "2", value = "")
+
   public String getCount() {
     return count;
   }
+
 
   public void setCount(String count) {
     this.count = count;

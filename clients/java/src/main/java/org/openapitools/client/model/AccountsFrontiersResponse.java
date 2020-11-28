@@ -30,13 +30,15 @@ import java.util.Map;
 /**
  * AccountsFrontiersResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountsFrontiersResponse {
   public static final String SERIALIZED_NAME_FRONTIERS = "frontiers";
   @SerializedName(SERIALIZED_NAME_FRONTIERS)
-  private Map<String, String> frontiers = new HashMap<String, String>();
+  private Map<String, String> frontiers = null;
+
 
   public AccountsFrontiersResponse frontiers(Map<String, String> frontiers) {
+    
     this.frontiers = frontiers;
     return this;
   }
@@ -53,10 +55,13 @@ public class AccountsFrontiersResponse {
    * Get frontiers
    * @return frontiers
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "{\"nano_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3\":\"791AF413173EEE674A6FCF633B5DFC0F3C33F397F0DA08E987D9E0741D40D81A\",\"nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7\":\"6A32397F4E95AF025DE29D9BF1ACE864D5404362258E06489FABDBA9DCCC046F\"}", value = "")
+
   public Map<String, String> getFrontiers() {
     return frontiers;
   }
+
 
   public void setFrontiers(Map<String, String> frontiers) {
     this.frontiers = frontiers;

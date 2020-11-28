@@ -27,13 +27,15 @@ import java.io.IOException;
 /**
  * AccountBlockCountResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountBlockCountResponse {
   public static final String SERIALIZED_NAME_BLOCK_COUNT = "block_count";
   @SerializedName(SERIALIZED_NAME_BLOCK_COUNT)
   private String blockCount;
 
+
   public AccountBlockCountResponse blockCount(String blockCount) {
+    
     this.blockCount = blockCount;
     return this;
   }
@@ -42,10 +44,13 @@ public class AccountBlockCountResponse {
    * Get blockCount
    * @return blockCount
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1", value = "")
+
   public String getBlockCount() {
     return blockCount;
   }
+
 
   public void setBlockCount(String blockCount) {
     this.blockCount = blockCount;

@@ -27,13 +27,15 @@ import java.io.IOException;
 /**
  * AccountKeyResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountKeyResponse {
   public static final String SERIALIZED_NAME_KEY = "key";
   @SerializedName(SERIALIZED_NAME_KEY)
   private String key;
 
+
   public AccountKeyResponse key(String key) {
+    
     this.key = key;
     return this;
   }
@@ -42,10 +44,13 @@ public class AccountKeyResponse {
    * Get key
    * @return key
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039", value = "")
+
   public String getKey() {
     return key;
   }
+
 
   public void setKey(String key) {
     this.key = key;

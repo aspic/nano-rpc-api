@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * WorkGenerateResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class WorkGenerateResponse {
   public static final String SERIALIZED_NAME_WORK = "work";
   @SerializedName(SERIALIZED_NAME_WORK)
@@ -41,7 +41,9 @@ public class WorkGenerateResponse {
   @SerializedName(SERIALIZED_NAME_MULTIPLIER)
   private String multiplier;
 
+
   public WorkGenerateResponse work(String work) {
+    
     this.work = work;
     return this;
   }
@@ -50,16 +52,21 @@ public class WorkGenerateResponse {
    * Get work
    * @return work
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "2bf29ef00786a6bc", value = "")
+
   public String getWork() {
     return work;
   }
+
 
   public void setWork(String work) {
     this.work = work;
   }
 
+
   public WorkGenerateResponse difficulty(String difficulty) {
+    
     this.difficulty = difficulty;
     return this;
   }
@@ -68,16 +75,21 @@ public class WorkGenerateResponse {
    * Get difficulty
    * @return difficulty
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "ffffffd21c3933f3", value = "")
+
   public String getDifficulty() {
     return difficulty;
   }
+
 
   public void setDifficulty(String difficulty) {
     this.difficulty = difficulty;
   }
 
+
   public WorkGenerateResponse multiplier(String multiplier) {
+    
     this.multiplier = multiplier;
     return this;
   }
@@ -86,10 +98,13 @@ public class WorkGenerateResponse {
    * Get multiplier
    * @return multiplier
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1.273557846739298", value = "")
+
   public String getMultiplier() {
     return multiplier;
   }
+
 
   public void setMultiplier(String multiplier) {
     this.multiplier = multiplier;

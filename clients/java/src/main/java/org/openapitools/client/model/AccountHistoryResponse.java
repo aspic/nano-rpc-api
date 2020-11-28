@@ -30,7 +30,7 @@ import org.openapitools.client.model.Block;
 /**
  * AccountHistoryResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountHistoryResponse {
   public static final String SERIALIZED_NAME_ACCOUNT = "account";
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
@@ -38,13 +38,15 @@ public class AccountHistoryResponse {
 
   public static final String SERIALIZED_NAME_HISTORY = "history";
   @SerializedName(SERIALIZED_NAME_HISTORY)
-  private List<Block> history = new ArrayList<Block>();
+  private List<Block> history = null;
 
   public static final String SERIALIZED_NAME_PREVIOUS = "previous";
   @SerializedName(SERIALIZED_NAME_PREVIOUS)
   private String previous;
 
+
   public AccountHistoryResponse account(String account) {
+    
     this.account = account;
     return this;
   }
@@ -53,16 +55,21 @@ public class AccountHistoryResponse {
    * Get account
    * @return account
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getAccount() {
     return account;
   }
+
 
   public void setAccount(String account) {
     this.account = account;
   }
 
+
   public AccountHistoryResponse history(List<Block> history) {
+    
     this.history = history;
     return this;
   }
@@ -79,16 +86,21 @@ public class AccountHistoryResponse {
    * Get history
    * @return history
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<Block> getHistory() {
     return history;
   }
+
 
   public void setHistory(List<Block> history) {
     this.history = history;
   }
 
+
   public AccountHistoryResponse previous(String previous) {
+    
     this.previous = previous;
     return this;
   }
@@ -97,10 +109,13 @@ public class AccountHistoryResponse {
    * Get previous
    * @return previous
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72", value = "")
+
   public String getPrevious() {
     return previous;
   }
+
 
   public void setPrevious(String previous) {
     this.previous = previous;

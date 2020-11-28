@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * AccountHistoryRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountHistoryRequest {
   /**
    * Gets or Sets action
@@ -68,7 +68,7 @@ public class AccountHistoryRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -86,7 +86,9 @@ public class AccountHistoryRequest {
   @SerializedName(SERIALIZED_NAME_COUNT)
   private String count;
 
+
   public AccountHistoryRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -96,15 +98,19 @@ public class AccountHistoryRequest {
    * @return action
   **/
   @ApiModelProperty(required = true, value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public AccountHistoryRequest account(String account) {
+    
     this.account = account;
     return this;
   }
@@ -113,16 +119,21 @@ public class AccountHistoryRequest {
    * Get account
    * @return account
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getAccount() {
     return account;
   }
+
 
   public void setAccount(String account) {
     this.account = account;
   }
 
+
   public AccountHistoryRequest count(String count) {
+    
     this.count = count;
     return this;
   }
@@ -131,10 +142,13 @@ public class AccountHistoryRequest {
    * Get count
    * @return count
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1", value = "")
+
   public String getCount() {
     return count;
   }
+
 
   public void setCount(String count) {
     this.count = count;

@@ -31,7 +31,7 @@ import org.openapitools.client.model.SubType;
 /**
  * BlockInfoResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlockInfoResponse {
   public static final String SERIALIZED_NAME_BLOCK_ACCOUNT = "block_account";
   @SerializedName(SERIALIZED_NAME_BLOCK_ACCOUNT)
@@ -59,13 +59,15 @@ public class BlockInfoResponse {
 
   public static final String SERIALIZED_NAME_CONTENTS = "contents";
   @SerializedName(SERIALIZED_NAME_CONTENTS)
-  private BlockDataJson contents = null;
+  private BlockDataJson contents;
 
   public static final String SERIALIZED_NAME_SUB_TYPE = "subType";
   @SerializedName(SERIALIZED_NAME_SUB_TYPE)
   private SubType subType;
 
+
   public BlockInfoResponse blockAccount(String blockAccount) {
+    
     this.blockAccount = blockAccount;
     return this;
   }
@@ -74,16 +76,21 @@ public class BlockInfoResponse {
    * Get blockAccount
    * @return blockAccount
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getBlockAccount() {
     return blockAccount;
   }
+
 
   public void setBlockAccount(String blockAccount) {
     this.blockAccount = blockAccount;
   }
 
+
   public BlockInfoResponse amount(BigDecimal amount) {
+    
     this.amount = amount;
     return this;
   }
@@ -92,16 +99,21 @@ public class BlockInfoResponse {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return amount
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getAmount() {
     return amount;
   }
+
 
   public void setAmount(BigDecimal amount) {
     this.amount = amount;
   }
 
+
   public BlockInfoResponse balance(BigDecimal balance) {
+    
     this.balance = balance;
     return this;
   }
@@ -110,16 +122,21 @@ public class BlockInfoResponse {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return balance
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getBalance() {
     return balance;
   }
+
 
   public void setBalance(BigDecimal balance) {
     this.balance = balance;
   }
 
+
   public BlockInfoResponse height(String height) {
+    
     this.height = height;
     return this;
   }
@@ -128,16 +145,21 @@ public class BlockInfoResponse {
    * Get height
    * @return height
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "60", value = "")
+
   public String getHeight() {
     return height;
   }
+
 
   public void setHeight(String height) {
     this.height = height;
   }
 
+
   public BlockInfoResponse localTimestamp(String localTimestamp) {
+    
     this.localTimestamp = localTimestamp;
     return this;
   }
@@ -146,16 +168,21 @@ public class BlockInfoResponse {
    * Get localTimestamp
    * @return localTimestamp
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1551532723", value = "")
+
   public String getLocalTimestamp() {
     return localTimestamp;
   }
+
 
   public void setLocalTimestamp(String localTimestamp) {
     this.localTimestamp = localTimestamp;
   }
 
+
   public BlockInfoResponse confirmed(ModelBoolean confirmed) {
+    
     this.confirmed = confirmed;
     return this;
   }
@@ -164,16 +191,21 @@ public class BlockInfoResponse {
    * Get confirmed
    * @return confirmed
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ModelBoolean getConfirmed() {
     return confirmed;
   }
+
 
   public void setConfirmed(ModelBoolean confirmed) {
     this.confirmed = confirmed;
   }
 
+
   public BlockInfoResponse contents(BlockDataJson contents) {
+    
     this.contents = contents;
     return this;
   }
@@ -182,16 +214,21 @@ public class BlockInfoResponse {
    * Get contents
    * @return contents
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public BlockDataJson getContents() {
     return contents;
   }
+
 
   public void setContents(BlockDataJson contents) {
     this.contents = contents;
   }
 
+
   public BlockInfoResponse subType(SubType subType) {
+    
     this.subType = subType;
     return this;
   }
@@ -200,10 +237,13 @@ public class BlockInfoResponse {
    * Get subType
    * @return subType
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public SubType getSubType() {
     return subType;
   }
+
 
   public void setSubType(SubType subType) {
     this.subType = subType;

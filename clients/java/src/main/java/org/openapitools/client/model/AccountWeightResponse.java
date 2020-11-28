@@ -28,13 +28,15 @@ import java.math.BigDecimal;
 /**
  * AccountWeightResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountWeightResponse {
   public static final String SERIALIZED_NAME_WEIGHT = "weight";
   @SerializedName(SERIALIZED_NAME_WEIGHT)
   private BigDecimal weight;
 
+
   public AccountWeightResponse weight(BigDecimal weight) {
+    
     this.weight = weight;
     return this;
   }
@@ -43,10 +45,13 @@ public class AccountWeightResponse {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return weight
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getWeight() {
     return weight;
   }
+
 
   public void setWeight(BigDecimal weight) {
     this.weight = weight;

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * AccountGetRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountGetRequest {
   /**
    * Gets or Sets action
@@ -68,7 +68,7 @@ public class AccountGetRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -82,7 +82,9 @@ public class AccountGetRequest {
   @SerializedName(SERIALIZED_NAME_KEY)
   private String key;
 
+
   public AccountGetRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -92,15 +94,19 @@ public class AccountGetRequest {
    * @return action
   **/
   @ApiModelProperty(required = true, value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public AccountGetRequest key(String key) {
+    
     this.key = key;
     return this;
   }
@@ -110,9 +116,11 @@ public class AccountGetRequest {
    * @return key
   **/
   @ApiModelProperty(example = "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039", required = true, value = "")
+
   public String getKey() {
     return key;
   }
+
 
   public void setKey(String key) {
     this.key = key;

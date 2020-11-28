@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * AccountBalanceResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountBalanceResponse {
   public static final String SERIALIZED_NAME_BALANCE = "balance";
   @SerializedName(SERIALIZED_NAME_BALANCE)
@@ -38,7 +38,9 @@ public class AccountBalanceResponse {
   @SerializedName(SERIALIZED_NAME_PENDING)
   private BigDecimal pending;
 
+
   public AccountBalanceResponse balance(BigDecimal balance) {
+    
     this.balance = balance;
     return this;
   }
@@ -47,16 +49,21 @@ public class AccountBalanceResponse {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return balance
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getBalance() {
     return balance;
   }
+
 
   public void setBalance(BigDecimal balance) {
     this.balance = balance;
   }
 
+
   public AccountBalanceResponse pending(BigDecimal pending) {
+    
     this.pending = pending;
     return this;
   }
@@ -65,10 +72,13 @@ public class AccountBalanceResponse {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return pending
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getPending() {
     return pending;
   }
+
 
   public void setPending(BigDecimal pending) {
     this.pending = pending;

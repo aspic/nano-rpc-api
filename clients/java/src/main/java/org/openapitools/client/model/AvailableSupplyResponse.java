@@ -28,13 +28,15 @@ import java.math.BigDecimal;
 /**
  * AvailableSupplyResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AvailableSupplyResponse {
   public static final String SERIALIZED_NAME_AVAILABLE = "available";
   @SerializedName(SERIALIZED_NAME_AVAILABLE)
   private BigDecimal available;
 
+
   public AvailableSupplyResponse available(BigDecimal available) {
+    
     this.available = available;
     return this;
   }
@@ -43,10 +45,13 @@ public class AvailableSupplyResponse {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return available
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getAvailable() {
     return available;
   }
+
 
   public void setAvailable(BigDecimal available) {
     this.available = available;

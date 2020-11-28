@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * ReceiveRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class ReceiveRequest {
   /**
    * Gets or Sets action
@@ -68,7 +68,7 @@ public class ReceiveRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -90,7 +90,9 @@ public class ReceiveRequest {
   @SerializedName(SERIALIZED_NAME_BLOCK)
   private String block;
 
+
   public ReceiveRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -99,16 +101,21 @@ public class ReceiveRequest {
    * Get action
    * @return action
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public ReceiveRequest wallet(String wallet) {
+    
     this.wallet = wallet;
     return this;
   }
@@ -117,16 +124,21 @@ public class ReceiveRequest {
    * Get wallet
    * @return wallet
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "000D1BAEC8EC208142C99059B393051BAC8380F9B5A2E6B2489A277D81789F3F", value = "")
+
   public String getWallet() {
     return wallet;
   }
+
 
   public void setWallet(String wallet) {
     this.wallet = wallet;
   }
 
+
   public ReceiveRequest account(String account) {
+    
     this.account = account;
     return this;
   }
@@ -135,16 +147,21 @@ public class ReceiveRequest {
    * Get account
    * @return account
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getAccount() {
     return account;
   }
+
 
   public void setAccount(String account) {
     this.account = account;
   }
 
+
   public ReceiveRequest block(String block) {
+    
     this.block = block;
     return this;
   }
@@ -153,10 +170,13 @@ public class ReceiveRequest {
    * Get block
    * @return block
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72", value = "")
+
   public String getBlock() {
     return block;
   }
+
 
   public void setBlock(String block) {
     this.block = block;

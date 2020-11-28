@@ -28,7 +28,7 @@ import org.openapitools.client.model.ModelBoolean;
 /**
  * ActiveDifficultyRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class ActiveDifficultyRequest {
   /**
    * Gets or Sets action
@@ -69,7 +69,7 @@ public class ActiveDifficultyRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -81,9 +81,11 @@ public class ActiveDifficultyRequest {
 
   public static final String SERIALIZED_NAME_INCLUDE_TREND = "include_trend";
   @SerializedName(SERIALIZED_NAME_INCLUDE_TREND)
-  private ModelBoolean includeTrend;
+  private ModelBoolean includeTrend = null;
+
 
   public ActiveDifficultyRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -93,15 +95,19 @@ public class ActiveDifficultyRequest {
    * @return action
   **/
   @ApiModelProperty(required = true, value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public ActiveDifficultyRequest includeTrend(ModelBoolean includeTrend) {
+    
     this.includeTrend = includeTrend;
     return this;
   }
@@ -110,10 +116,13 @@ public class ActiveDifficultyRequest {
    * Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample. 
    * @return includeTrend
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "Boolean, false by default. Also returns the trend of difficulty seen on the network as a list of multipliers. Sampling occurs every 16 to 36 seconds. The list is ordered such that the first value is the most recent sample. ")
+
   public ModelBoolean getIncludeTrend() {
     return includeTrend;
   }
+
 
   public void setIncludeTrend(ModelBoolean includeTrend) {
     this.includeTrend = includeTrend;

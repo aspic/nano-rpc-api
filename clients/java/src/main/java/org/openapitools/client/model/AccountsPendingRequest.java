@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * AccountsPendingRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountsPendingRequest {
   /**
    * Gets or Sets action
@@ -70,7 +70,7 @@ public class AccountsPendingRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -82,7 +82,7 @@ public class AccountsPendingRequest {
 
   public static final String SERIALIZED_NAME_ACCOUNTS = "accounts";
   @SerializedName(SERIALIZED_NAME_ACCOUNTS)
-  private List<String> accounts = new ArrayList<String>();
+  private List<String> accounts = null;
 
   public static final String SERIALIZED_NAME_COUNT = "count";
   @SerializedName(SERIALIZED_NAME_COUNT)
@@ -96,7 +96,9 @@ public class AccountsPendingRequest {
   @SerializedName(SERIALIZED_NAME_SOURCE)
   private Boolean source;
 
+
   public AccountsPendingRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -105,16 +107,21 @@ public class AccountsPendingRequest {
    * Get action
    * @return action
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public AccountsPendingRequest accounts(List<String> accounts) {
+    
     this.accounts = accounts;
     return this;
   }
@@ -131,16 +138,21 @@ public class AccountsPendingRequest {
    * Get accounts
    * @return accounts
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public List<String> getAccounts() {
     return accounts;
   }
+
 
   public void setAccounts(List<String> accounts) {
     this.accounts = accounts;
   }
 
+
   public AccountsPendingRequest count(String count) {
+    
     this.count = count;
     return this;
   }
@@ -149,16 +161,21 @@ public class AccountsPendingRequest {
    * Get count
    * @return count
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1", value = "")
+
   public String getCount() {
     return count;
   }
+
 
   public void setCount(String count) {
     this.count = count;
   }
 
+
   public AccountsPendingRequest includeActive(Boolean includeActive) {
+    
     this.includeActive = includeActive;
     return this;
   }
@@ -167,16 +184,21 @@ public class AccountsPendingRequest {
    * Get includeActive
    * @return includeActive
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public Boolean getIncludeActive() {
     return includeActive;
   }
+
 
   public void setIncludeActive(Boolean includeActive) {
     this.includeActive = includeActive;
   }
 
+
   public AccountsPendingRequest source(Boolean source) {
+    
     this.source = source;
     return this;
   }
@@ -185,10 +207,13 @@ public class AccountsPendingRequest {
    * Get source
    * @return source
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public Boolean getSource() {
     return source;
   }
+
 
   public void setSource(Boolean source) {
     this.source = source;

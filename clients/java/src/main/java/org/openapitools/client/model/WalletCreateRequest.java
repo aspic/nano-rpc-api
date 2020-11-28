@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * WalletCreateRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class WalletCreateRequest {
   /**
    * Gets or Sets action
@@ -68,7 +68,7 @@ public class WalletCreateRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -78,7 +78,9 @@ public class WalletCreateRequest {
   @SerializedName(SERIALIZED_NAME_ACTION)
   private ActionEnum action;
 
+
   public WalletCreateRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -87,10 +89,13 @@ public class WalletCreateRequest {
    * Get action
    * @return action
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;

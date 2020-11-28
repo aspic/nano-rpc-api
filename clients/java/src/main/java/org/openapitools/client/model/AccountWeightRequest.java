@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * AccountWeightRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountWeightRequest {
   /**
    * Gets or Sets action
@@ -68,7 +68,7 @@ public class AccountWeightRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -82,7 +82,9 @@ public class AccountWeightRequest {
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
   private String account;
 
+
   public AccountWeightRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -91,16 +93,21 @@ public class AccountWeightRequest {
    * Get action
    * @return action
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public AccountWeightRequest account(String account) {
+    
     this.account = account;
     return this;
   }
@@ -109,10 +116,13 @@ public class AccountWeightRequest {
    * Get account
    * @return account
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getAccount() {
     return account;
   }
+
 
   public void setAccount(String account) {
     this.account = account;

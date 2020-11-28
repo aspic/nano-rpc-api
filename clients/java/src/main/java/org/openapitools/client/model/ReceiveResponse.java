@@ -27,13 +27,15 @@ import java.io.IOException;
 /**
  * ReceiveResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class ReceiveResponse {
   public static final String SERIALIZED_NAME_BLOCK = "block";
   @SerializedName(SERIALIZED_NAME_BLOCK)
   private String block;
 
+
   public ReceiveResponse block(String block) {
+    
     this.block = block;
     return this;
   }
@@ -42,10 +44,13 @@ public class ReceiveResponse {
    * Get block
    * @return block
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72", value = "")
+
   public String getBlock() {
     return block;
   }
+
 
   public void setBlock(String block) {
     this.block = block;

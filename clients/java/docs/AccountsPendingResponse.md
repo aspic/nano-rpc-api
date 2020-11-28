@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**blocks** | [**Map&lt;String, Map&gt;**](Map.md) |  |  [optional]
+**blocks** | [**Map&lt;String, Map&lt;String, PendingBlock&gt;&gt;**](Map.md) |  |  [optional]
 
 
 

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * BlockCountResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlockCountResponse {
   public static final String SERIALIZED_NAME_COUNT = "count";
   @SerializedName(SERIALIZED_NAME_COUNT)
@@ -41,7 +41,9 @@ public class BlockCountResponse {
   @SerializedName(SERIALIZED_NAME_CEMENTED)
   private String cemented;
 
+
   public BlockCountResponse count(String count) {
+    
     this.count = count;
     return this;
   }
@@ -51,15 +53,19 @@ public class BlockCountResponse {
    * @return count
   **/
   @ApiModelProperty(example = "1", required = true, value = "")
+
   public String getCount() {
     return count;
   }
+
 
   public void setCount(String count) {
     this.count = count;
   }
 
+
   public BlockCountResponse unchecked(String unchecked) {
+    
     this.unchecked = unchecked;
     return this;
   }
@@ -69,15 +75,19 @@ public class BlockCountResponse {
    * @return unchecked
   **/
   @ApiModelProperty(example = "1", required = true, value = "")
+
   public String getUnchecked() {
     return unchecked;
   }
+
 
   public void setUnchecked(String unchecked) {
     this.unchecked = unchecked;
   }
 
+
   public BlockCountResponse cemented(String cemented) {
+    
     this.cemented = cemented;
     return this;
   }
@@ -86,10 +96,13 @@ public class BlockCountResponse {
    * Get cemented
    * @return cemented
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1", value = "")
+
   public String getCemented() {
     return cemented;
   }
+
 
   public void setCemented(String cemented) {
     this.cemented = cemented;

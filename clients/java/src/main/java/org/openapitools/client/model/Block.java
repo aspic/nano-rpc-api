@@ -29,7 +29,7 @@ import org.openapitools.client.model.BlockState;
 /**
  * Block
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class Block {
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
@@ -55,7 +55,9 @@ public class Block {
   @SerializedName(SERIALIZED_NAME_HASH)
   private String hash;
 
+
   public Block type(BlockState type) {
+    
     this.type = type;
     return this;
   }
@@ -64,16 +66,21 @@ public class Block {
    * Get type
    * @return type
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public BlockState getType() {
     return type;
   }
+
 
   public void setType(BlockState type) {
     this.type = type;
   }
 
+
   public Block account(String account) {
+    
     this.account = account;
     return this;
   }
@@ -82,16 +89,21 @@ public class Block {
    * Get account
    * @return account
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
   public String getAccount() {
     return account;
   }
+
 
   public void setAccount(String account) {
     this.account = account;
   }
 
+
   public Block amount(BigDecimal amount) {
+    
     this.amount = amount;
     return this;
   }
@@ -100,16 +112,21 @@ public class Block {
    * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
    * @return amount
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
   public BigDecimal getAmount() {
     return amount;
   }
+
 
   public void setAmount(BigDecimal amount) {
     this.amount = amount;
   }
 
+
   public Block localTimestamp(String localTimestamp) {
+    
     this.localTimestamp = localTimestamp;
     return this;
   }
@@ -118,16 +135,21 @@ public class Block {
    * Get localTimestamp
    * @return localTimestamp
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1551532723", value = "")
+
   public String getLocalTimestamp() {
     return localTimestamp;
   }
+
 
   public void setLocalTimestamp(String localTimestamp) {
     this.localTimestamp = localTimestamp;
   }
 
+
   public Block height(String height) {
+    
     this.height = height;
     return this;
   }
@@ -136,16 +158,21 @@ public class Block {
    * Get height
    * @return height
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "60", value = "")
+
   public String getHeight() {
     return height;
   }
+
 
   public void setHeight(String height) {
     this.height = height;
   }
 
+
   public Block hash(String hash) {
+    
     this.hash = hash;
     return this;
   }
@@ -154,10 +181,13 @@ public class Block {
    * Get hash
    * @return hash
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72", value = "")
+
   public String getHash() {
     return hash;
   }
+
 
   public void setHash(String hash) {
     this.hash = hash;

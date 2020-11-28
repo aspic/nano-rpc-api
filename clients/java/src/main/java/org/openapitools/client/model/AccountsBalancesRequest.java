@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * AccountsBalancesRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class AccountsBalancesRequest {
   /**
    * Gets or Sets action
@@ -70,7 +70,7 @@ public class AccountsBalancesRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -82,9 +82,11 @@ public class AccountsBalancesRequest {
 
   public static final String SERIALIZED_NAME_ACCOUNTS = "accounts";
   @SerializedName(SERIALIZED_NAME_ACCOUNTS)
-  private List<String> accounts = new ArrayList<String>();
+  private List<String> accounts = null;
+
 
   public AccountsBalancesRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -93,16 +95,21 @@ public class AccountsBalancesRequest {
    * Get action
    * @return action
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public AccountsBalancesRequest accounts(List<String> accounts) {
+    
     this.accounts = accounts;
     return this;
   }
@@ -119,10 +126,13 @@ public class AccountsBalancesRequest {
    * Get accounts
    * @return accounts
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "[\"nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000\",\"nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7\"]", value = "")
+
   public List<String> getAccounts() {
     return accounts;
   }
+
 
   public void setAccounts(List<String> accounts) {
     this.accounts = accounts;

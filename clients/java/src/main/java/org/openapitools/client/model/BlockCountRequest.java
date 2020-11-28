@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * BlockCountRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlockCountRequest {
   /**
    * Gets or Sets action
@@ -68,7 +68,7 @@ public class BlockCountRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -82,7 +82,9 @@ public class BlockCountRequest {
   @SerializedName(SERIALIZED_NAME_INCLUDE_CEMENTED)
   private Boolean includeCemented;
 
+
   public BlockCountRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -92,15 +94,19 @@ public class BlockCountRequest {
    * @return action
   **/
   @ApiModelProperty(required = true, value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public BlockCountRequest includeCemented(Boolean includeCemented) {
+    
     this.includeCemented = includeCemented;
     return this;
   }
@@ -109,10 +115,13 @@ public class BlockCountRequest {
    * _enable_control required, version 19.0+_ Default \&quot;false\&quot;. If \&quot;true\&quot;, \&quot;cemented\&quot; in the response will contain the number of cemented blocks. 
    * @return includeCemented
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "_enable_control required, version 19.0+_ Default \"false\". If \"true\", \"cemented\" in the response will contain the number of cemented blocks. ")
+
   public Boolean getIncludeCemented() {
     return includeCemented;
   }
+
 
   public void setIncludeCemented(Boolean includeCemented) {
     this.includeCemented = includeCemented;

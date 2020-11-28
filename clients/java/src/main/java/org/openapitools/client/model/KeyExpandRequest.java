@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * KeyExpandRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class KeyExpandRequest {
   /**
    * Gets or Sets action
@@ -68,7 +68,7 @@ public class KeyExpandRequest {
 
       @Override
       public ActionEnum read(final JsonReader jsonReader) throws IOException {
-        String value = jsonReader.nextString();
+        String value =  jsonReader.nextString();
         return ActionEnum.fromValue(value);
       }
     }
@@ -82,7 +82,9 @@ public class KeyExpandRequest {
   @SerializedName(SERIALIZED_NAME_KEY)
   private String key;
 
+
   public KeyExpandRequest action(ActionEnum action) {
+    
     this.action = action;
     return this;
   }
@@ -91,16 +93,21 @@ public class KeyExpandRequest {
    * Get action
    * @return action
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(value = "")
+
   public ActionEnum getAction() {
     return action;
   }
+
 
   public void setAction(ActionEnum action) {
     this.action = action;
   }
 
+
   public KeyExpandRequest key(String key) {
+    
     this.key = key;
     return this;
   }
@@ -109,10 +116,13 @@ public class KeyExpandRequest {
    * Get key
    * @return key
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "3068BB1CA04525BB0E416C485FE6A67FD52540227D267CC8B6E8DA958A7FA039", value = "")
+
   public String getKey() {
     return key;
   }
+
 
   public void setKey(String key) {
     this.key = key;

@@ -27,13 +27,15 @@ import java.io.IOException;
 /**
  * BlockConfirmResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlockConfirmResponse {
   public static final String SERIALIZED_NAME_STARTED = "started";
   @SerializedName(SERIALIZED_NAME_STARTED)
   private String started;
 
+
   public BlockConfirmResponse started(String started) {
+    
     this.started = started;
     return this;
   }
@@ -42,10 +44,13 @@ public class BlockConfirmResponse {
    * Get started
    * @return started
   **/
+  @javax.annotation.Nullable
   @ApiModelProperty(example = "1", value = "")
+
   public String getStarted() {
     return started;
   }
+
 
   public void setStarted(String started) {
     this.started = started;

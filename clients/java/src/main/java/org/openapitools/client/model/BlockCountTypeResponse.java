@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * BlockCountTypeResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class BlockCountTypeResponse {
   public static final String SERIALIZED_NAME_SEND = "send";
   @SerializedName(SERIALIZED_NAME_SEND)
@@ -57,7 +57,9 @@ public class BlockCountTypeResponse {
   @SerializedName(SERIALIZED_NAME_STATE)
   private String state;
 
+
   public BlockCountTypeResponse send(String send) {
+    
     this.send = send;
     return this;
   }
@@ -67,15 +69,19 @@ public class BlockCountTypeResponse {
    * @return send
   **/
   @ApiModelProperty(example = "1", required = true, value = "")
+
   public String getSend() {
     return send;
   }
+
 
   public void setSend(String send) {
     this.send = send;
   }
 
+
   public BlockCountTypeResponse receive(String receive) {
+    
     this.receive = receive;
     return this;
   }
@@ -85,15 +91,19 @@ public class BlockCountTypeResponse {
    * @return receive
   **/
   @ApiModelProperty(example = "1", required = true, value = "")
+
   public String getReceive() {
     return receive;
   }
+
 
   public void setReceive(String receive) {
     this.receive = receive;
   }
 
+
   public BlockCountTypeResponse open(String open) {
+    
     this.open = open;
     return this;
   }
@@ -103,15 +113,19 @@ public class BlockCountTypeResponse {
    * @return open
   **/
   @ApiModelProperty(example = "1", required = true, value = "")
+
   public String getOpen() {
     return open;
   }
+
 
   public void setOpen(String open) {
     this.open = open;
   }
 
+
   public BlockCountTypeResponse change(String change) {
+    
     this.change = change;
     return this;
   }
@@ -121,15 +135,19 @@ public class BlockCountTypeResponse {
    * @return change
   **/
   @ApiModelProperty(example = "1", required = true, value = "")
+
   public String getChange() {
     return change;
   }
+
 
   public void setChange(String change) {
     this.change = change;
   }
 
+
   public BlockCountTypeResponse stateV0(String stateV0) {
+    
     this.stateV0 = stateV0;
     return this;
   }
@@ -139,15 +157,19 @@ public class BlockCountTypeResponse {
    * @return stateV0
   **/
   @ApiModelProperty(example = "1", required = true, value = "")
+
   public String getStateV0() {
     return stateV0;
   }
+
 
   public void setStateV0(String stateV0) {
     this.stateV0 = stateV0;
   }
 
+
   public BlockCountTypeResponse stateV1(String stateV1) {
+    
     this.stateV1 = stateV1;
     return this;
   }
@@ -157,15 +179,19 @@ public class BlockCountTypeResponse {
    * @return stateV1
   **/
   @ApiModelProperty(example = "1", required = true, value = "")
+
   public String getStateV1() {
     return stateV1;
   }
+
 
   public void setStateV1(String stateV1) {
     this.stateV1 = stateV1;
   }
 
+
   public BlockCountTypeResponse state(String state) {
+    
     this.state = state;
     return this;
   }
@@ -175,9 +201,11 @@ public class BlockCountTypeResponse {
    * @return state
   **/
   @ApiModelProperty(example = "1", required = true, value = "")
+
   public String getState() {
     return state;
   }
+
 
   public void setState(String state) {
     this.state = state;

@@ -13,7 +13,7 @@
 
 package no.mehl.nano;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-17T13:51:05.488+02:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
 public class StringUtil {
   /**
    * Check if the given array contains the given value (with case-insensitive comparison).
