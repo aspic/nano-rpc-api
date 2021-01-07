@@ -45,7 +45,15 @@ export interface PendingRequest {
      */
     count?: number;
     /**
-     * version 19.0+
+     * _version 19.0+_
+     * 
+     * Boolean, false by default. Additionally sorts the blocks by their amounts in descending order.
+     * @type {ModelBoolean}
+     * @memberof PendingRequest
+     */
+    sorting?: ModelBoolean;
+    /**
+     * _version 19.0+_
      * 
      * Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.
      * @type {ModelBoolean}
@@ -67,6 +75,7 @@ export function PendingRequestFromJSONTyped(json: any, ignoreDiscriminator: bool
         'action': json['action'],
         'account': json['account'],
         'count': !exists(json, 'count') ? undefined : json['count'],
+        'sorting': !exists(json, 'sorting') ? undefined : ModelBooleanFromJSON(json['sorting']),
         'includeOnlyConfirmed': !exists(json, 'include_only_confirmed') ? undefined : ModelBooleanFromJSON(json['include_only_confirmed']),
     };
 }
@@ -83,6 +92,7 @@ export function PendingRequestToJSON(value?: PendingRequest | null): any {
         'action': value.action,
         'account': value.account,
         'count': value.count,
+        'sorting': ModelBooleanToJSON(value.sorting),
         'include_only_confirmed': ModelBooleanToJSON(value.includeOnlyConfirmed),
     };
 }
