@@ -957,6 +957,36 @@
         }
       }
     },
+    "/#pending": {
+      "post": {
+        "tags": [
+          "Node RPCs"
+        ],
+        "operationId": "pending",
+        "description": "Returns a list of block hashes which have not yet been received by this account.\n\n**Optional `include_only_confirmed` recommended**:\n\nBy default this will return blocks not in active elections but unconfirmed (e.g., block was received but node was restarted, election was dropped, new ledger with reset confirmation height).\n\n**To avoid potential issues related to these situations setting the include_only_confirmed = true is recommended for most use cases.**\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PendingRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Hash of the processed block",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PendingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/#process": {
       "post": {
         "tags": [
@@ -1814,6 +1844,35 @@
           }
         }
       },
+      "PendingRequest": {
+        "type": "object",
+        "required": [
+          "action",
+          "account"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "pending"
+            ]
+          },
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "count": {
+            "type": "number"
+          },
+          "include_only_confirmed": {
+            "description": "version 19.0+\n\nBoolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.\n",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Boolean"
+              }
+            ]
+          }
+        }
+      },
       "ProcessRequest": {
         "type": "object",
         "required": [
@@ -2366,6 +2425,17 @@
           },
           "subType": {
             "$ref": "#/components/schemas/SubType"
+          }
+        }
+      },
+      "PendingResponse": {
+        "type": "object",
+        "properties": {
+          "blocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlockHash"
+            }
           }
         }
       },
