@@ -177,12 +177,6 @@ import {
     ConfirmationActiveResponse,
     ConfirmationActiveResponseFromJSON,
     ConfirmationActiveResponseToJSON,
-    ConfirmationHeightCurrentlyProcessingRequest,
-    ConfirmationHeightCurrentlyProcessingRequestFromJSON,
-    ConfirmationHeightCurrentlyProcessingRequestToJSON,
-    ConfirmationHeightCurrentlyProcessingResponse,
-    ConfirmationHeightCurrentlyProcessingResponseFromJSON,
-    ConfirmationHeightCurrentlyProcessingResponseToJSON,
     ConfirmationHistoryRequest,
     ConfirmationHistoryRequestFromJSON,
     ConfirmationHistoryRequestToJSON,
@@ -327,10 +321,6 @@ export interface ChainOperationRequest {
 
 export interface ConfirmationActiveOperationRequest {
     confirmationActiveRequest?: ConfirmationActiveRequest;
-}
-
-export interface ConfirmationHeightCurrentlyProcessingOperationRequest {
-    confirmationHeightCurrentlyProcessingRequest?: ConfirmationHeightCurrentlyProcessingRequest;
 }
 
 export interface ConfirmationHistoryOperationRequest {
@@ -1142,35 +1132,6 @@ export class NodeRPCsApi extends runtime.BaseAPI {
      */
     async confirmationActive(requestParameters: ConfirmationActiveOperationRequest): Promise<ConfirmationActiveResponse> {
         const response = await this.confirmationActiveRaw(requestParameters);
-        return await response.value();
-    }
-
-    /**
-     * _version 19.0+_  Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which block was the original being confirmed. 
-     */
-    async confirmationHeightCurrentlyProcessingRaw(requestParameters: ConfirmationHeightCurrentlyProcessingOperationRequest): Promise<runtime.ApiResponse<ConfirmationHeightCurrentlyProcessingResponse>> {
-        const queryParameters: runtime.HTTPQuery = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/#confirmation_height_currently_processing`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ConfirmationHeightCurrentlyProcessingRequestToJSON(requestParameters.confirmationHeightCurrentlyProcessingRequest),
-        });
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConfirmationHeightCurrentlyProcessingResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * _version 19.0+_  Returns the hash of the block which is having the confirmation height set for, error otherwise. When a block is being confirmed, it must confirm all blocks in the chain below and iteratively follow all receive blocks. This can take a long time, so it can be useful to find which block was the original being confirmed. 
-     */
-    async confirmationHeightCurrentlyProcessing(requestParameters: ConfirmationHeightCurrentlyProcessingOperationRequest): Promise<ConfirmationHeightCurrentlyProcessingResponse> {
-        const response = await this.confirmationHeightCurrentlyProcessingRaw(requestParameters);
         return await response.value();
     }
 
