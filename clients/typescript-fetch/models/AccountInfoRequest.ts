@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ModelBoolean,
+    ModelBooleanFromJSON,
+    ModelBooleanFromJSONTyped,
+    ModelBooleanToJSON,
+} from './';
+
 /**
  * 
  * @export
@@ -31,6 +38,24 @@ export interface AccountInfoRequest {
      * @memberof AccountInfoRequest
      */
     account?: string;
+    /**
+     * Boolean, false by default. Returns representative when set to true.
+     * @type {ModelBoolean}
+     * @memberof AccountInfoRequest
+     */
+    representative?: ModelBoolean;
+    /**
+     * Boolean, false by default. Returns weigth when set to true.
+     * @type {ModelBoolean}
+     * @memberof AccountInfoRequest
+     */
+    weight?: ModelBoolean;
+    /**
+     * Boolean, false by default. Returns pending when set to true.
+     * @type {ModelBoolean}
+     * @memberof AccountInfoRequest
+     */
+    pending?: ModelBoolean;
 }
 
 export function AccountInfoRequestFromJSON(json: any): AccountInfoRequest {
@@ -45,6 +70,9 @@ export function AccountInfoRequestFromJSONTyped(json: any, ignoreDiscriminator: 
         
         'action': !exists(json, 'action') ? undefined : json['action'],
         'account': !exists(json, 'account') ? undefined : json['account'],
+        'representative': !exists(json, 'representative') ? undefined : ModelBooleanFromJSON(json['representative']),
+        'weight': !exists(json, 'weight') ? undefined : ModelBooleanFromJSON(json['weight']),
+        'pending': !exists(json, 'pending') ? undefined : ModelBooleanFromJSON(json['pending']),
     };
 }
 
@@ -59,6 +87,9 @@ export function AccountInfoRequestToJSON(value?: AccountInfoRequest | null): any
         
         'action': value.action,
         'account': value.account,
+        'representative': ModelBooleanToJSON(value.representative),
+        'weight': ModelBooleanToJSON(value.weight),
+        'pending': ModelBooleanToJSON(value.pending),
     };
 }
 

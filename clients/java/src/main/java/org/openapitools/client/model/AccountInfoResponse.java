@@ -28,7 +28,7 @@ import java.math.BigDecimal;
 /**
  * AccountInfoResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-01-07T20:00:02.801+01:00[Europe/Oslo]")
 public class AccountInfoResponse {
   public static final String SERIALIZED_NAME_FRONTIER = "frontier";
   @SerializedName(SERIALIZED_NAME_FRONTIER)
@@ -61,6 +61,18 @@ public class AccountInfoResponse {
   public static final String SERIALIZED_NAME_ACCOUNT_VERSION = "account_version";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_VERSION)
   private String accountVersion;
+
+  public static final String SERIALIZED_NAME_REPRESENTATIVE = "representative";
+  @SerializedName(SERIALIZED_NAME_REPRESENTATIVE)
+  private String representative;
+
+  public static final String SERIALIZED_NAME_WEIGHT = "weight";
+  @SerializedName(SERIALIZED_NAME_WEIGHT)
+  private BigDecimal weight;
+
+  public static final String SERIALIZED_NAME_PENDING = "pending";
+  @SerializedName(SERIALIZED_NAME_PENDING)
+  private BigDecimal pending;
 
 
   public AccountInfoResponse frontier(String frontier) {
@@ -247,6 +259,75 @@ public class AccountInfoResponse {
   }
 
 
+  public AccountInfoResponse representative(String representative) {
+    
+    this.representative = representative;
+    return this;
+  }
+
+   /**
+   * Get representative
+   * @return representative
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8", value = "")
+
+  public String getRepresentative() {
+    return representative;
+  }
+
+
+  public void setRepresentative(String representative) {
+    this.representative = representative;
+  }
+
+
+  public AccountInfoResponse weight(BigDecimal weight) {
+    
+    this.weight = weight;
+    return this;
+  }
+
+   /**
+   * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
+   * @return weight
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
+  public BigDecimal getWeight() {
+    return weight;
+  }
+
+
+  public void setWeight(BigDecimal weight) {
+    this.weight = weight;
+  }
+
+
+  public AccountInfoResponse pending(BigDecimal pending) {
+    
+    this.pending = pending;
+    return this;
+  }
+
+   /**
+   * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
+   * @return pending
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "1000000000000000000000000000000", value = "1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.")
+
+  public BigDecimal getPending() {
+    return pending;
+  }
+
+
+  public void setPending(BigDecimal pending) {
+    this.pending = pending;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -263,12 +344,15 @@ public class AccountInfoResponse {
         Objects.equals(this.modifiedTimestamp, accountInfoResponse.modifiedTimestamp) &&
         Objects.equals(this.blockCount, accountInfoResponse.blockCount) &&
         Objects.equals(this.confirmationHeight, accountInfoResponse.confirmationHeight) &&
-        Objects.equals(this.accountVersion, accountInfoResponse.accountVersion);
+        Objects.equals(this.accountVersion, accountInfoResponse.accountVersion) &&
+        Objects.equals(this.representative, accountInfoResponse.representative) &&
+        Objects.equals(this.weight, accountInfoResponse.weight) &&
+        Objects.equals(this.pending, accountInfoResponse.pending);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(frontier, openBlock, representativeBlock, balance, modifiedTimestamp, blockCount, confirmationHeight, accountVersion);
+    return Objects.hash(frontier, openBlock, representativeBlock, balance, modifiedTimestamp, blockCount, confirmationHeight, accountVersion, representative, weight, pending);
   }
 
 
@@ -284,6 +368,9 @@ public class AccountInfoResponse {
     sb.append("    blockCount: ").append(toIndentedString(blockCount)).append("\n");
     sb.append("    confirmationHeight: ").append(toIndentedString(confirmationHeight)).append("\n");
     sb.append("    accountVersion: ").append(toIndentedString(accountVersion)).append("\n");
+    sb.append("    representative: ").append(toIndentedString(representative)).append("\n");
+    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+    sb.append("    pending: ").append(toIndentedString(pending)).append("\n");
     sb.append("}");
     return sb.toString();
   }

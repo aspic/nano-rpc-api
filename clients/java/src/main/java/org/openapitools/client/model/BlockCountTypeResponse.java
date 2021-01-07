@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * BlockCountTypeResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-01-07T20:00:02.801+01:00[Europe/Oslo]")
 public class BlockCountTypeResponse {
   public static final String SERIALIZED_NAME_SEND = "send";
   @SerializedName(SERIALIZED_NAME_SEND)

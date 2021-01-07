@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * BlocksResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-01-07T20:00:02.801+01:00[Europe/Oslo]")
 public class BlocksResponse {
   public static final String SERIALIZED_NAME_BLOCKS = "blocks";
   @SerializedName(SERIALIZED_NAME_BLOCKS)

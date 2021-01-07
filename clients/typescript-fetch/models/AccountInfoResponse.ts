@@ -67,6 +67,24 @@ export interface AccountInfoResponse {
      * @memberof AccountInfoResponse
      */
     accountVersion?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountInfoResponse
+     */
+    representative?: string;
+    /**
+     * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
+     * @type {number}
+     * @memberof AccountInfoResponse
+     */
+    weight?: number;
+    /**
+     * 1 raw is the smallest possible division and NANO/Nano (Mnano) is the current standard division used in most wallets, on exchanges, etc.
+     * @type {number}
+     * @memberof AccountInfoResponse
+     */
+    pending?: number;
 }
 
 export function AccountInfoResponseFromJSON(json: any): AccountInfoResponse {
@@ -87,6 +105,9 @@ export function AccountInfoResponseFromJSONTyped(json: any, ignoreDiscriminator:
         'blockCount': !exists(json, 'block_count') ? undefined : json['block_count'],
         'confirmationHeight': !exists(json, 'confirmation_height') ? undefined : json['confirmation_height'],
         'accountVersion': !exists(json, 'account_version') ? undefined : json['account_version'],
+        'representative': !exists(json, 'representative') ? undefined : json['representative'],
+        'weight': !exists(json, 'weight') ? undefined : json['weight'],
+        'pending': !exists(json, 'pending') ? undefined : json['pending'],
     };
 }
 
@@ -107,6 +128,9 @@ export function AccountInfoResponseToJSON(value?: AccountInfoResponse | null): a
         'block_count': value.blockCount,
         'confirmation_height': value.confirmationHeight,
         'account_version': value.accountVersion,
+        'representative': value.representative,
+        'weight': value.weight,
+        'pending': value.pending,
     };
 }
 

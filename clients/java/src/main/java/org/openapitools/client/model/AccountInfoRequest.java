@@ -23,11 +23,12 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.openapitools.client.model.ModelBoolean;
 
 /**
  * AccountInfoRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-11-28T18:31:13.967+01:00[Europe/Oslo]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-01-07T20:00:02.801+01:00[Europe/Oslo]")
 public class AccountInfoRequest {
   /**
    * Gets or Sets action
@@ -82,6 +83,18 @@ public class AccountInfoRequest {
   @SerializedName(SERIALIZED_NAME_ACCOUNT)
   private String account;
 
+  public static final String SERIALIZED_NAME_REPRESENTATIVE = "representative";
+  @SerializedName(SERIALIZED_NAME_REPRESENTATIVE)
+  private ModelBoolean representative = null;
+
+  public static final String SERIALIZED_NAME_WEIGHT = "weight";
+  @SerializedName(SERIALIZED_NAME_WEIGHT)
+  private ModelBoolean weight = null;
+
+  public static final String SERIALIZED_NAME_PENDING = "pending";
+  @SerializedName(SERIALIZED_NAME_PENDING)
+  private ModelBoolean pending = null;
+
 
   public AccountInfoRequest action(ActionEnum action) {
     
@@ -129,6 +142,75 @@ public class AccountInfoRequest {
   }
 
 
+  public AccountInfoRequest representative(ModelBoolean representative) {
+    
+    this.representative = representative;
+    return this;
+  }
+
+   /**
+   * Boolean, false by default. Returns representative when set to true. 
+   * @return representative
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Boolean, false by default. Returns representative when set to true. ")
+
+  public ModelBoolean getRepresentative() {
+    return representative;
+  }
+
+
+  public void setRepresentative(ModelBoolean representative) {
+    this.representative = representative;
+  }
+
+
+  public AccountInfoRequest weight(ModelBoolean weight) {
+    
+    this.weight = weight;
+    return this;
+  }
+
+   /**
+   * Boolean, false by default. Returns weigth when set to true. 
+   * @return weight
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Boolean, false by default. Returns weigth when set to true. ")
+
+  public ModelBoolean getWeight() {
+    return weight;
+  }
+
+
+  public void setWeight(ModelBoolean weight) {
+    this.weight = weight;
+  }
+
+
+  public AccountInfoRequest pending(ModelBoolean pending) {
+    
+    this.pending = pending;
+    return this;
+  }
+
+   /**
+   * Boolean, false by default. Returns pending when set to true. 
+   * @return pending
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Boolean, false by default. Returns pending when set to true. ")
+
+  public ModelBoolean getPending() {
+    return pending;
+  }
+
+
+  public void setPending(ModelBoolean pending) {
+    this.pending = pending;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -139,12 +221,15 @@ public class AccountInfoRequest {
     }
     AccountInfoRequest accountInfoRequest = (AccountInfoRequest) o;
     return Objects.equals(this.action, accountInfoRequest.action) &&
-        Objects.equals(this.account, accountInfoRequest.account);
+        Objects.equals(this.account, accountInfoRequest.account) &&
+        Objects.equals(this.representative, accountInfoRequest.representative) &&
+        Objects.equals(this.weight, accountInfoRequest.weight) &&
+        Objects.equals(this.pending, accountInfoRequest.pending);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(action, account);
+    return Objects.hash(action, account, representative, weight, pending);
   }
 
 
@@ -154,6 +239,9 @@ public class AccountInfoRequest {
     sb.append("class AccountInfoRequest {\n");
     sb.append("    action: ").append(toIndentedString(action)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
+    sb.append("    representative: ").append(toIndentedString(representative)).append("\n");
+    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+    sb.append("    pending: ").append(toIndentedString(pending)).append("\n");
     sb.append("}");
     return sb.toString();
   }

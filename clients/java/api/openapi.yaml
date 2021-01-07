@@ -912,7 +912,10 @@ components:
       type: object
     AccountInfoRequest:
       example:
+        pending: ""
         action: account_info
+        weight: ""
+        representative: ""
         account: nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8
       properties:
         action:
@@ -922,6 +925,21 @@ components:
         account:
           example: nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8
           type: string
+        representative:
+          allOf:
+          - $ref: '#/components/schemas/Boolean'
+          description: |
+            Boolean, false by default. Returns representative when set to true.
+        weight:
+          allOf:
+          - $ref: '#/components/schemas/Boolean'
+          description: |
+            Boolean, false by default. Returns weigth when set to true.
+        pending:
+          allOf:
+          - $ref: '#/components/schemas/Boolean'
+          description: |
+            Boolean, false by default. Returns pending when set to true.
       type: object
     AccountKeyRequest:
       example:
@@ -1595,9 +1613,12 @@ components:
         confirmation_height: "28"
         account_version: "1"
         balance: 1000000000000000000000000000000
+        pending: 1000000000000000000000000000000
         open_block: 8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72
+        weight: 1000000000000000000000000000000
         block_count: "1"
         representative_block: 8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72
+        representative: nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8
         modified_timestamp: "1551532723"
       properties:
         frontier:
@@ -1625,6 +1646,19 @@ components:
         account_version:
           example: "1"
           type: string
+        representative:
+          example: nano_1hzoje373eapce4ses7xsx539suww5555hi9q8i8j7hpbayzxq4c4nn91hr8
+          type: string
+        weight:
+          description: 1 raw is the smallest possible division and NANO/Nano (Mnano)
+            is the current standard division used in most wallets, on exchanges, etc.
+          example: 1000000000000000000000000000000
+          type: number
+        pending:
+          description: 1 raw is the smallest possible division and NANO/Nano (Mnano)
+            is the current standard division used in most wallets, on exchanges, etc.
+          example: 1000000000000000000000000000000
+          type: number
       type: object
     AccountKeyResponse:
       example:
