@@ -4,7 +4,7 @@ info:
   title: nano-rpc-api
   description: |
     API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol)
-servers: 
+servers:
  - url: http://localhost:7076
 tags:
   - name: Node RPCs
@@ -22,7 +22,7 @@ paths:
       tags:
         - Node RPCs
       operationId: account_balance
-      description: | 
+      description: |
         Returns how many RAW is owned and how many have not yet been received by **account**
         > This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.
       requestBody:
@@ -112,7 +112,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountInfoResponse'  
+                $ref: '#/components/schemas/AccountInfoResponse'
   /#account_key:
     post:
       tags:
@@ -177,7 +177,7 @@ paths:
       operationId: accounts_balances
       description: |
         Returns how many RAW is owned and how many have not yet been received by **accounts list**
-        
+
         This call may return results that include unconfirmed blocks, so it should not be used in any processes or integrations requiring only details from blocks confirmed by the network.
       requestBody:
         content:
@@ -229,7 +229,7 @@ paths:
           content:
             application/json:
              schema:
-                $ref: '#/components/schemas/AccountsPendingResponse' 
+                $ref: '#/components/schemas/AccountsPendingResponse'
   /#active_difficulty:
     post:
       tags:
@@ -590,7 +590,7 @@ paths:
           content:
             application/json:
              schema:
-                $ref: '#/components/schemas/WorkGenerateResponse' 
+                $ref: '#/components/schemas/WorkGenerateResponse'
   /#block_create:
     post:
       tags:
@@ -767,51 +767,51 @@ components:
   schemas:
     AccountBalanceRequest:
       type: object
-      required: 
+      required:
         - action
         - account
       properties:
         action:
           type: string
-          enum: 
+          enum:
             - "account_balance"
-        account: 
+        account:
           $ref: '#/components/schemas/Account'
     AccountBlockCountRequest:
       type: object
-      required: 
+      required:
         - action
         - account
       properties:
         action:
           type: string
-          enum: 
+          enum:
             - "account_block_count"
-        account: 
+        account:
           $ref: '#/components/schemas/Account'
     AccountGetRequest:
       type: object
-      required: 
+      required:
         - action
         - key
       properties:
         action:
           type: string
-          enum: 
+          enum:
             - "account_get"
-        key: 
+        key:
           $ref: '#/components/schemas/PublicKey'
     AccountHistoryRequest:
       type: object
-      required: 
+      required:
         - action
         - key
       properties:
         action:
           type: string
-          enum: 
+          enum:
             - "account_history"
-        account: 
+        account:
           $ref: '#/components/schemas/Account'
         count:
           $ref: '#/components/schemas/BlockCount'
@@ -822,8 +822,23 @@ components:
           type: string
           enum:
             - "account_info"
-        account: 
+        account:
           $ref: '#/components/schemas/Account'
+        representative:
+          description: |
+            Boolean, false by default. Returns representative when set to true.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        weight:
+          description: |
+            Boolean, false by default. Returns weigth when set to true.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        pending:
+          description: |
+            Boolean, false by default. Returns pending when set to true.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
     AccountKeyRequest:
       type: object
       properties:
@@ -831,7 +846,7 @@ components:
           type: string
           enum:
             - "account_key"
-        account: 
+        account:
           $ref: '#/components/schemas/Account'
     AccountRepresentativeRequest:
       type: object
@@ -840,7 +855,7 @@ components:
           type: string
           enum:
             - "account_representative"
-        account: 
+        account:
           $ref: '#/components/schemas/Account'
     AccountWeightRequest:
       type: object
@@ -849,7 +864,7 @@ components:
           type: string
           enum:
             - "account_weight"
-        account: 
+        account:
           $ref: '#/components/schemas/Account'
     AccountsBalancesRequest:
       type: object
@@ -882,13 +897,13 @@ components:
       properties:
         action:
           type: string
-          enum: 
+          enum:
             - "accounts_pending"
         accounts:
           type: array
           items:
             $ref: '#/components/schemas/Account'
-        count: 
+        count:
           $ref: '#/components/schemas/BlockCount'
         include_active:
           type: boolean
@@ -901,7 +916,7 @@ components:
       properties:
         action:
           type: string
-          enum: 
+          enum:
             - "active_difficulty"
         include_trend:
           description: |
@@ -1119,19 +1134,19 @@ components:
       properties:
         action:
           type: string
-          enum: 
+          enum:
             - "work_generate"
         hash:
           $ref: '#/components/schemas/BlockHash'
         difficulty:
           $ref: '#/components/schemas/WorkDifficulty'
-        
+
     BlockCreateRequest:
       type: object
       properties:
         action:
           type: string
-          enum: 
+          enum:
             - "block_create"
         json_block:
           description: Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.
@@ -1139,7 +1154,7 @@ components:
             - $ref: '#/components/schemas/Boolean'
         "type":
           type: string
-          enum: 
+          enum:
             - "state"
         balance:
           $ref: '#/components/schemas/Raw'
@@ -1245,7 +1260,7 @@ components:
             - "receive"
         wallet:
           $ref: '#/components/schemas/Wallet'
-        account: 
+        account:
           $ref: '#/components/schemas/Account'
         block:
           $ref: '#/components/schemas/BlockHash'
@@ -1254,7 +1269,7 @@ components:
       properties:
         balance:
           $ref: '#/components/schemas/Raw'
-        pending: 
+        pending:
           $ref: '#/components/schemas/Raw'
     AccountBlockCountResponse:
       type: object
@@ -1296,6 +1311,12 @@ components:
           $ref: '#/components/schemas/ConfirmationHeight'
         account_version:
           $ref: '#/components/schemas/AccountVersion'
+        representative:
+          $ref: '#/components/schemas/Account'
+        weight:
+          $ref: '#/components/schemas/Raw'
+        pending:
+          $ref: '#/components/schemas/Raw'
     AccountKeyResponse:
       type: object
       properties:
@@ -1319,17 +1340,17 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/AccountBalanceResponse'
           example:
-            { 
-              "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000":  
-              {  
-                "balance": "10000",  
-                "pending": "10000"  
+            {
+              "nano_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000":
+              {
+                "balance": "10000",
+                "pending": "10000"
               },
-              "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7":  
-                {  
-                  "balance": "10000000",  
-                  "pending": "0"  
-                }  
+              "nano_3i1aq1cchnmbn9x5rsbap8b15akfh7wj7pwskuzi7ahz8oq6cobd99d4r3b7":
+                {
+                  "balance": "10000000",
+                  "pending": "0"
+                }
             }
     AccountsFrontiersResponse:
       type: object
@@ -1515,10 +1536,10 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/AccountPending'
-          example: 
-            "nano_1111111111111111111111111111111111111111111111111117353trpda": {    
-              "142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D": {   
-                "amount": "6000000000000000000000000000000",       
+          example:
+            "nano_1111111111111111111111111111111111111111111111111117353trpda": {
+              "142A538F36833D1CC78B94E11C766F75818F8B940771335C6C1B8AB880C5BB1D": {
+                "amount": "6000000000000000000000000000000",
                 "source": "nano_3dcfozsmekr1tr9skf1oa5wbgmxt81qepfdnt7zicq5x3hk65fg4fqj58mbr"
               }
             }
@@ -1694,7 +1715,7 @@ components:
       example: "8D3AB98B301224253750D448B4BD997132400CEDD0A8432F775724F2D9821C72"
     BlockState:
       type: string
-      enum: 
+      enum:
         - "send"
     ConfirmationHeight:
       type: string
