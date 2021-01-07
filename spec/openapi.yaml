@@ -1205,6 +1205,9 @@ components:
           $ref: '#/components/schemas/BlockHash'
     ProcessRequest:
       type: object
+      required:
+        - action
+        - block
       properties:
         action:
           type: string
@@ -1216,6 +1219,12 @@ components:
             - $ref: '#/components/schemas/Boolean'
         block:
           $ref: '#/components/schemas/BlockDataJson'
+        subtype:
+          description: |
+            _version 18.0+_
+
+            String, empty by default. Additional check for state blocks subtype, i.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks
+          $ref: '#/components/schemas/SubType'
     KeyCreateRequest:
       type: object
       properties:
@@ -1672,6 +1681,10 @@ components:
       type: string
       enum:
         - send
+        - receive
+        - open
+        - change
+        - epoch
     PendingBlock:
       type: object
       properties:

@@ -18,7 +18,11 @@
  * @enum {string}
  */
 export enum SubType {
-    Send = 'send'
+    Send = 'send',
+    Receive = 'receive',
+    Open = 'open',
+    Change = 'change',
+    Epoch = 'epoch'
 }
 
 export function SubTypeFromJSON(json: any): SubType {

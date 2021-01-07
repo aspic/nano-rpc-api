@@ -22,6 +22,10 @@ import {
     ModelBooleanFromJSON,
     ModelBooleanFromJSONTyped,
     ModelBooleanToJSON,
+    SubType,
+    SubTypeFromJSON,
+    SubTypeFromJSONTyped,
+    SubTypeToJSON,
 } from './';
 
 /**
@@ -35,7 +39,7 @@ export interface ProcessRequest {
      * @type {string}
      * @memberof ProcessRequest
      */
-    action?: ProcessRequestActionEnum;
+    action: ProcessRequestActionEnum;
     /**
      * Defaults to `"false"`. If `"true"`, `"block"` contains a JSON subtree instead of a JSON string.
      * @type {ModelBoolean}
@@ -47,7 +51,13 @@ export interface ProcessRequest {
      * @type {BlockDataJson}
      * @memberof ProcessRequest
      */
-    block?: BlockDataJson;
+    block: BlockDataJson;
+    /**
+     * 
+     * @type {SubType}
+     * @memberof ProcessRequest
+     */
+    subtype?: SubType;
 }
 
 export function ProcessRequestFromJSON(json: any): ProcessRequest {
@@ -60,9 +70,10 @@ export function ProcessRequestFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'action': !exists(json, 'action') ? undefined : json['action'],
+        'action': json['action'],
         'jsonBlock': !exists(json, 'json_block') ? undefined : ModelBooleanFromJSON(json['json_block']),
-        'block': !exists(json, 'block') ? undefined : BlockDataJsonFromJSON(json['block']),
+        'block': BlockDataJsonFromJSON(json['block']),
+        'subtype': !exists(json, 'subtype') ? undefined : SubTypeFromJSON(json['subtype']),
     };
 }
 
@@ -78,6 +89,7 @@ export function ProcessRequestToJSON(value?: ProcessRequest | null): any {
         'action': value.action,
         'json_block': ModelBooleanToJSON(value.jsonBlock),
         'block': BlockDataJsonToJSON(value.block),
+        'subtype': SubTypeToJSON(value.subtype),
     };
 }
 
