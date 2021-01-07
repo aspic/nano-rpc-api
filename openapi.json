@@ -750,7 +750,6 @@
     "/#confirmation_height_currently_processing": {
       "post": {
         "tags": [
-          "Node RPCs",
           "debug"
         ],
         "operationId": "confirmation_height_currently_processing",
