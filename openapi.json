@@ -1863,8 +1863,16 @@
           "count": {
             "type": "number"
           },
+          "sorting": {
+            "description": "_version 19.0+_\n\nBoolean, false by default. Additionally sorts the blocks by their amounts in descending order.\n",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Boolean"
+              }
+            ]
+          },
           "include_only_confirmed": {
-            "description": "version 19.0+\n\nBoolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.\n",
+            "description": "_version 19.0+_\n\nBoolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.\n",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Boolean"
