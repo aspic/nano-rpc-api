@@ -2,7 +2,7 @@
   "name": "nano-rpc-api",
   "version": "1.0.0",
   "dependencies": {
-    "@openapitools/openapi-generator-cli": "2.1.7",
+    "@openapitools/openapi-generator-cli": "^2.1.16",
     "swagger-repo": "^2.0.0-rc.15"
   },
   "private": true,
