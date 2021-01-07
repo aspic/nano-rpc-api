@@ -1227,6 +1227,30 @@
           },
           "account": {
             "$ref": "#/components/schemas/Account"
+          },
+          "representative": {
+            "description": "Boolean, false by default. Returns representative when set to true.\n",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Boolean"
+              }
+            ]
+          },
+          "weight": {
+            "description": "Boolean, false by default. Returns weigth when set to true.\n",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Boolean"
+              }
+            ]
+          },
+          "pending": {
+            "description": "Boolean, false by default. Returns pending when set to true.\n",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Boolean"
+              }
+            ]
           }
         }
       },
@@ -1956,6 +1980,15 @@
           },
           "account_version": {
             "$ref": "#/components/schemas/AccountVersion"
+          },
+          "representative": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "weight": {
+            "$ref": "#/components/schemas/Raw"
+          },
+          "pending": {
+            "$ref": "#/components/schemas/Raw"
           }
         }
       },

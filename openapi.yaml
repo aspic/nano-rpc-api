@@ -823,6 +823,21 @@ components:
             - account_info
         account:
           $ref: '#/components/schemas/Account'
+        representative:
+          description: |
+            Boolean, false by default. Returns representative when set to true.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        weight:
+          description: |
+            Boolean, false by default. Returns weigth when set to true.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
+        pending:
+          description: |
+            Boolean, false by default. Returns pending when set to true.
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
     AccountKeyRequest:
       type: object
       properties:
@@ -1296,6 +1311,12 @@ components:
           $ref: '#/components/schemas/ConfirmationHeight'
         account_version:
           $ref: '#/components/schemas/AccountVersion'
+        representative:
+          $ref: '#/components/schemas/Account'
+        weight:
+          $ref: '#/components/schemas/Raw'
+        pending:
+          $ref: '#/components/schemas/Raw'
     AccountKeyResponse:
       type: object
       properties:
