@@ -1816,6 +1816,10 @@
       },
       "ProcessRequest": {
         "type": "object",
+        "required": [
+          "action",
+          "block"
+        ],
         "properties": {
           "action": {
             "type": "string",
@@ -1833,6 +1837,10 @@
           },
           "block": {
             "$ref": "#/components/schemas/BlockDataJson"
+          },
+          "subtype": {
+            "description": "_version 18.0+_\n\nString, empty by default. Additional check for state blocks subtype, i.e. prevent accidental sending to incorrect accounts instead of receiving pending blocks\n",
+            "$ref": "#/components/schemas/SubType"
           }
         }
       },
@@ -2478,7 +2486,11 @@
       "SubType": {
         "type": "string",
         "enum": [
-          "send"
+          "send",
+          "receive",
+          "open",
+          "change",
+          "epoch"
         ]
       },
       "PendingBlock": {
