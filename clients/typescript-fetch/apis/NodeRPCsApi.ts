@@ -201,6 +201,12 @@ import {
     KeyExpandResponse,
     KeyExpandResponseFromJSON,
     KeyExpandResponseToJSON,
+    PendingRequest,
+    PendingRequestFromJSON,
+    PendingRequestToJSON,
+    PendingResponse,
+    PendingResponseFromJSON,
+    PendingResponseToJSON,
     ProcessRequest,
     ProcessRequestFromJSON,
     ProcessRequestToJSON,
@@ -337,6 +343,10 @@ export interface KeyCreateOperationRequest {
 
 export interface KeyExpandOperationRequest {
     keyExpandRequest?: KeyExpandRequest;
+}
+
+export interface PendingOperationRequest {
+    pendingRequest?: PendingRequest;
 }
 
 export interface ProcessOperationRequest {
@@ -1248,6 +1258,35 @@ export class NodeRPCsApi extends runtime.BaseAPI {
      */
     async keyExpand(requestParameters: KeyExpandOperationRequest): Promise<KeyExpandResponse> {
         const response = await this.keyExpandRaw(requestParameters);
+        return await response.value();
+    }
+
+    /**
+     * Returns a list of block hashes which have not yet been received by this account.  **Optional `include_only_confirmed` recommended**:  By default this will return blocks not in active elections but unconfirmed (e.g., block was received but node was restarted, election was dropped, new ledger with reset confirmation height).  **To avoid potential issues related to these situations setting the include_only_confirmed = true is recommended for most use cases.** 
+     */
+    async pendingRaw(requestParameters: PendingOperationRequest): Promise<runtime.ApiResponse<PendingResponse>> {
+        const queryParameters: runtime.HTTPQuery = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/#pending`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PendingRequestToJSON(requestParameters.pendingRequest),
+        });
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PendingResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns a list of block hashes which have not yet been received by this account.  **Optional `include_only_confirmed` recommended**:  By default this will return blocks not in active elections but unconfirmed (e.g., block was received but node was restarted, election was dropped, new ledger with reset confirmation height).  **To avoid potential issues related to these situations setting the include_only_confirmed = true is recommended for most use cases.** 
+     */
+    async pending(requestParameters: PendingOperationRequest): Promise<PendingResponse> {
+        const response = await this.pendingRaw(requestParameters);
         return await response.value();
     }
 

@@ -73,6 +73,8 @@ export * from './KeyExpandRequest';
 export * from './KeyExpandResponse';
 export * from './ModelBoolean';
 export * from './PendingBlock';
+export * from './PendingRequest';
+export * from './PendingResponse';
 export * from './ProcessRequest';
 export * from './ProcessResponse';
 export * from './ReceiveRequest';
