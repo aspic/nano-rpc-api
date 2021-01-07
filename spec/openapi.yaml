@@ -1256,6 +1256,13 @@ components:
             Boolean, false by default. Only returns block which have their confirmation height set or are undergoing confirmation height processing.
           allOf:
             - $ref: '#/components/schemas/Boolean'
+        source:
+          description: |
+            _version 19.0+_
+
+            Boolean, false by default. Returns a list of pending block hashes with amount and source accounts
+          allOf:
+            - $ref: '#/components/schemas/Boolean'
     ProcessRequest:
       type: object
       required:

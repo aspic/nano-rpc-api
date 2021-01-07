@@ -60,6 +60,14 @@ export interface PendingRequest {
      * @memberof PendingRequest
      */
     includeOnlyConfirmed?: ModelBoolean;
+    /**
+     * _version 19.0+_
+     * 
+     * Boolean, false by default. Returns a list of pending block hashes with amount and source accounts
+     * @type {ModelBoolean}
+     * @memberof PendingRequest
+     */
+    source?: ModelBoolean;
 }
 
 export function PendingRequestFromJSON(json: any): PendingRequest {
@@ -77,6 +85,7 @@ export function PendingRequestFromJSONTyped(json: any, ignoreDiscriminator: bool
         'count': !exists(json, 'count') ? undefined : json['count'],
         'sorting': !exists(json, 'sorting') ? undefined : ModelBooleanFromJSON(json['sorting']),
         'includeOnlyConfirmed': !exists(json, 'include_only_confirmed') ? undefined : ModelBooleanFromJSON(json['include_only_confirmed']),
+        'source': !exists(json, 'source') ? undefined : ModelBooleanFromJSON(json['source']),
     };
 }
 
@@ -94,6 +103,7 @@ export function PendingRequestToJSON(value?: PendingRequest | null): any {
         'count': value.count,
         'sorting': ModelBooleanToJSON(value.sorting),
         'include_only_confirmed': ModelBooleanToJSON(value.includeOnlyConfirmed),
+        'source': ModelBooleanToJSON(value.source),
     };
 }
 
