@@ -1878,6 +1878,14 @@
                 "$ref": "#/components/schemas/Boolean"
               }
             ]
+          },
+          "source": {
+            "description": "_version 19.0+_\n\nBoolean, false by default. Returns a list of pending block hashes with amount and source accounts\n",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Boolean"
+              }
+            ]
           }
         }
       },
