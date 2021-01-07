@@ -1,6 +1,6 @@
 {
   "name": "nano-rpc-fetch",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Nano Node RPC client built with Typescript and Fetch",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,6 +9,10 @@
   },
   "author": "Kjetil Mehl",
   "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/aspic/nano-rpc-api"
+  },
   "devDependencies": {
     "typescript": "^4.1.2"
   }
