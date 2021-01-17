@@ -13,9 +13,10 @@
     "gh-pages": "swagger-repo gh-pages",
     "gen-typescript": "openapi-generator-cli generate -g typescript-fetch -i ./spec/openapi.yaml -o ./clients/typescript-fetch -c config-typescript.json",
     "gen-java": "openapi-generator-cli generate -g java -i ./spec/openapi.yaml -o ./clients/java -c config-java.json",
-    "set-version": "yarn dot-json config-typescript.json npmVersion \"$(yarn -s dot-json package.json version)\"",
-    "version": "yarn version --no-git-tag-version",
-    "postversion": "yarn set-version && yarn gen-typescript"
+    "set-version": "yarn dot-json config-typescript.json npmVersion $npm_package_version",
+    "preversion": "yarn test",
+    "postversion": "yarn set-version && yarn gen-typescript",
+    "bump": "yarn version --no-git-tag-version"
   },
   "devDependencies": {
     "dot-json": "^1.2.1"
