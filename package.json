@@ -1,6 +1,6 @@
 {
   "name": "nano-rpc-api",
-  "version": "1.1.11",
+  "version": "1.1.9",
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.1.16",
     "swagger-repo": "^2.0.0-rc.15"
@@ -16,7 +16,7 @@
     "set-version": "yarn dot-json config-typescript.json npmVersion $npm_package_version",
     "preversion": "yarn test",
     "postversion": "yarn set-version && yarn gen-typescript",
-    "bump": "yarn version --no-git-tag-version"
+    "bump": "yarn version --no-git-tag-version && git commit -am \"$npm_package_version\" && yarn version --new-version $npm_package_version"
   },
   "devDependencies": {
     "dot-json": "^1.2.1"
