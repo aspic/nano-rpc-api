@@ -1,26 +1,45 @@
-# nano-rpc-fetch
+## nano-rpc-fetch@1.1.8
 
-[![npm version](https://badge.fury.io/js/nano-rpc-fetch.svg)](//npmjs.com/package/nano-rpc-fetch)
+This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
-Generated Typescript client for Nano RPC
+Environment
+* Node.js
+* Webpack
+* Browserify
 
-## Install with NPM
+Language level
+* ES5 - you must have a Promises/A+ library installed
+* ES6
 
-    $ npm install --save nano-rpc-fetch
+Module system
+* CommonJS
+* ES6 module system
 
-## Example usage
+It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
 
-```javascript
-// Import 
-import { NodeRPCsApi, KeyCreateRequestActionEnum } from 'nano-rpc-fetch'
+### Building
 
-const nanoApi = new NodeRPCsApi()
-nanoApi.keyCreate({
-  keyCreateRequest: {
-    action: KeyCreateRequestActionEnum.KeyCreate
-  }
-}).then(res => {
-  console.log(res)
-})
+To build and compile the typescript sources to javascript use:
+```
+npm install
+npm run build
+```
+
+### Publishing
+
+First build the package then run ```npm publish```
+
+### Consuming
+
+navigate to the folder of your consuming project and run one of the following commands.
+
+_published:_
 
 ```
+npm install nano-rpc-fetch@1.1.8 --save
+```
+
+_unPublished (not recommended):_
+
+```
+npm install PATH_TO_GENERATED_PACKAGE --save

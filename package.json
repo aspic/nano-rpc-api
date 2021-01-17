@@ -11,7 +11,7 @@
     "build": "swagger-repo build -o web_deploy",
     "test": "swagger-repo validate",
     "gh-pages": "swagger-repo gh-pages",
-    "gen-typescript": "openapi-generator-cli generate --additional-properties=typescriptThreePlus=true -g typescript-fetch -i ./spec/openapi.yaml -o ./clients/typescript-fetch",
+    "gen-typescript": "openapi-generator-cli generate -g typescript-fetch -i ./spec/openapi.yaml -o ./clients/typescript-fetch -c typescript-fetch.json",
     "gen-java": "openapi-generator-cli generate -g java -i ./spec/openapi.yaml -o ./clients/java -c config.json"
   }
 }
