@@ -1,6 +1,6 @@
 {
   "name": "nano-rpc-api",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.1.16",
     "swagger-repo": "^2.0.0-rc.15"
@@ -14,7 +14,7 @@
     "gen-typescript": "openapi-generator-cli generate -g typescript-fetch -i ./spec/openapi.yaml -o ./clients/typescript-fetch -c config-typescript.json",
     "gen-java": "openapi-generator-cli generate -g java -i ./spec/openapi.yaml -o ./clients/java -c config-java.json",
     "set-version": "yarn dot-json config-typescript.json npmVersion \"$(yarn -s dot-json package.json version)\"",
-    "postversion": "yarn set-version && yarn gen-typescript"
+    "preversion": "yarn set-version && yarn gen-typescript"
   },
   "devDependencies": {
     "dot-json": "^1.2.1"
