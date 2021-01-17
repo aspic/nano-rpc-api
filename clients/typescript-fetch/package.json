@@ -1,6 +1,6 @@
 {
   "name": "nano-rpc-fetch",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "OpenAPI client for nano-rpc-fetch",
   "author": "OpenAPI-Generator",
   "main": "./dist/index.js",
