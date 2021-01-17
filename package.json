@@ -15,8 +15,7 @@
     "gen-java": "openapi-generator-cli generate -g java -i ./spec/openapi.yaml -o ./clients/java -c config-java.json",
     "set-version": "yarn dot-json config-typescript.json npmVersion $npm_package_version",
     "preversion": "yarn test",
-    "postversion": "yarn set-version && yarn gen-typescript",
-    "bump": "yarn version --no-git-tag-version && git commit -am \"$npm_package_version\" && yarn version --new-version $npm_package_version"
+    "bump": "yarn version --no-git-tag-version && yarn set-version && yarn gen-typescript && git commit -am \"$npm_package_version\" && yarn version --new-version $npm_package_version"
   },
   "devDependencies": {
     "dot-json": "^1.2.1"
