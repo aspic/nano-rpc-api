@@ -1,6 +1,6 @@
 {
   "npmName": "nano-rpc-fetch",
   "npmVersion": "1.1.8",
-  "snapshot" : false,
+  "snapshot": false,
   "supportsES6": true
 }
