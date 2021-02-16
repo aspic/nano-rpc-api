@@ -1,4 +1,4 @@
-## nano-rpc-fetch@2.0.1
+## nano-rpc-fetch@2.0.2
 
 This generator creates TypeScript/JavaScript client that utilizes fetch-api. 
 
@@ -21,7 +21,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install nano-rpc-fetch@2.0.1 --save
+npm install nano-rpc-fetch@2.0.2 --save
 ```
 
 _unPublished (not recommended):_
