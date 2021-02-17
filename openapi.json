@@ -10,6 +10,11 @@
       "url": "http://localhost:7076"
     }
   ],
+  "security": [
+    {
+      "BasicAuth": []
+    }
+  ],
   "tags": [
     {
       "name": "Node RPCs",
@@ -1169,6 +1174,12 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
     "schemas": {
       "AccountBalanceRequest": {
         "type": "object",
@@ -2021,6 +2032,11 @@
       },
       "AccountHistoryResponse": {
         "type": "object",
+        "required": [
+          "account",
+          "history",
+          "previous"
+        ],
         "properties": {
           "account": {
             "$ref": "#/components/schemas/Account"
@@ -2038,9 +2054,19 @@
       },
       "AccountInfoResponse": {
         "type": "object",
+        "required": [
+          "frontier",
+          "open_block",
+          "representative_block",
+          "balance",
+          "modified_timestamp",
+          "block_count",
+          "confirmation_height",
+          "account_version"
+        ],
         "properties": {
           "frontier": {
-            "type": "string"
+            "$ref": "#/components/schemas/BlockHash"
           },
           "open_block": {
             "$ref": "#/components/schemas/BlockHash"
@@ -2365,6 +2391,9 @@
       },
       "AccountsPendingResponse": {
         "type": "object",
+        "required": [
+          "blocks"
+        ],
         "properties": {
           "blocks": {
             "type": "object",
@@ -2695,6 +2724,14 @@
       },
       "Block": {
         "type": "object",
+        "required": [
+          "type",
+          "account",
+          "amount",
+          "local_timestamp",
+          "height",
+          "hash"
+        ],
         "properties": {
           "type": {
             "$ref": "#/components/schemas/BlockState"
