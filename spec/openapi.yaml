@@ -6,6 +6,8 @@ info:
     API specification for the [Nano Node RPC API](https://docs.nano.org/commands/rpc-protocol)
 servers:
  - url: http://localhost:7076
+security:
+ - BasicAuth: [ ]
 tags:
   - name: Node RPCs
     description: For interacting with the node and ledger.
@@ -788,6 +790,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/WalletCreateResponse'
 components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
   schemas:
     AccountBalanceRequest:
       type: object
@@ -1351,6 +1357,10 @@ components:
           $ref: '#/components/schemas/Account'
     AccountHistoryResponse:
       type: object
+      required:
+        - account
+        - history
+        - previous
       properties:
         account:
           $ref: '#/components/schemas/Account'
@@ -1362,9 +1372,18 @@ components:
           $ref: '#/components/schemas/BlockHash'
     AccountInfoResponse:
       type: object
+      required:
+        - frontier
+        - open_block
+        - representative_block
+        - balance
+        - modified_timestamp
+        - block_count
+        - confirmation_height
+        - account_version
       properties:
         frontier:
-          type: string
+          $ref: '#/components/schemas/BlockHash'
         open_block:
           $ref: '#/components/schemas/BlockHash'
         representative_block:
@@ -1599,6 +1618,8 @@ components:
             }
     AccountsPendingResponse:
       type: object
+      required:
+        - blocks
       properties:
         blocks:
           type: object
@@ -1835,6 +1856,13 @@ components:
         - "false"
     Block:
       type: object
+      required:
+        - type
+        - account
+        - amount
+        - local_timestamp
+        - height
+        - hash
       properties:
         "type":
           $ref: '#/components/schemas/BlockState'
